@@ -25,6 +25,7 @@ class Prompt:
 
     def main_loop(self):
         command = [""]
+        cprint("VALORANT skin manager - type 'help set' for help",attrs=["bold","underline"])
         while command[0] != "exit":
 
             command = input("> ").split()
