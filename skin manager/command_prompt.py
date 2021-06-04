@@ -3,13 +3,24 @@ from termcolor import colored, cprint
 from manager import Manager
 from content import Content
 
-
 class Prompt:
 
     def __init__(self):
         self.manager = Manager()
         self.content = Content()
         self.gun_pool = self.manager.fetch_gun_pool()
+        self.help_data = {
+            "set":{
+                "desc":"set a gun's skin/level/chroma",
+                "params":{
+                    "[weapon_name]":"weapon's name (knife = melee)",
+                    "[skin_name]":"skinline's name (reaver, prime)",
+                    "(level_name)":"skin's upgrade level (defaults to 1)",
+                    "(chroma_name)":"skin's chroma level (ex. 'blue', 'red'; defaults to Base)"
+                },
+                "example":"set vandal reaver 4 white"
+            }
+        }
 
 
     def main_loop(self):
@@ -17,6 +28,25 @@ class Prompt:
         while command[0] != "exit":
 
             command = input("> ").split()
+
+            if command[0] == "help":
+                try:
+                    cmd = command[1]
+                except:
+                    cmd = "help"
+
+                try:
+                    data = self.help_data[cmd]
+
+                    cprint(f"HELP FOR {cmd.upper()}","yellow",attrs=["bold"])
+                    cprint(f"description: {data['desc']}","cyan")
+                    cprint("PARAMETERS","yellow",attrs=["underline"])
+                    cprint("\n".join(f"{param} \t -> {desc}" for param,desc in data['params'].items()),"green")
+                    cprint(f"example: '{data['example']}'","cyan")
+                except:
+                    pass
+
+
 
             if command[0] == "set":
                 #format: set weanpon_name skin_name level chroma
@@ -76,6 +106,10 @@ class Prompt:
                 
                 else:
                     cprint("invalid weapon","red")
+            
+            if command[0] == "randomize":
+                self.manager.randomize_skins() 
+                cprint("randomized skins", "green", attrs=["bold"])
 
 
 prompt = Prompt()

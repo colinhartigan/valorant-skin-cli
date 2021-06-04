@@ -13,6 +13,7 @@ client.hook()
 class Manager:
 
     def fetch_loadout(self):
+        # make a better version that prints in gun -> skin format
         return client.fetch_player_loadout()
 
     def put_loadout(self,loadout):
@@ -44,7 +45,6 @@ class Manager:
 
     def randomize_skins(self):
         loadout = self.fetch_loadout()
-        print(loadout)
 
         weapon_datas = requests.get(f"https://valorant-api.com/v1/weapons")
         weapon_datas = weapon_datas.json()['data']
@@ -64,12 +64,9 @@ class Manager:
             level = list(skin['levels'])[random.randrange(0,len(skin['levels']))]
             chroma = list(skin['chromas'])[random.randrange(0,len(skin['chromas']))]
 
-            print(f"{weapon_name}\t-> {choice}\t({level}/{chroma})")
-
             i['SkinID'] = skin['uuid']
             i['SkinLevelID'] = skin['levels'][level] 
             i['ChromaID'] = skin['chromas'][chroma]
 
-        new = self.__put_loadout(loadout=loadout)
-        print("ok" if loadout['Guns'] == new['Guns'] else "nope")
+        new = self.put_loadout(loadout=loadout)
 

@@ -1,0 +1,6 @@
+valclient
+requests
+termcolor
+json
+os
+random
