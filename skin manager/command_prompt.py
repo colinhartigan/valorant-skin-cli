@@ -29,10 +29,12 @@ class Prompt:
                 try:
                     level_name = str(command[3])
                 except:
+                    cprint("no level provided, using default (lvl1)", "yellow")
                     level_name = "lvl1"
                 try:
                     chroma_name = str(command[4])
                 except:
+                    cprint("no chroma provided, using default (Base)", "yellow")
                     chroma_name = "Base" #based
 
                 #check input
@@ -55,14 +57,14 @@ class Prompt:
                             for level,uuid in selected_skin['levels'].items():
                                 if level_name in level.lower():
                                     selected_level = [level,uuid] 
-                        else:
+                        if len(selected_skin['levels']) == 1 or selected_level == []:
                             selected_level = ["lvl1",selected_skin['levels']['lvl1']]
                         
                         if len(selected_skin['chromas']) > 1:
                             for name,uuid in selected_skin['chromas'].items():
                                 if chroma_name in name.lower():
                                     selected_chroma = [name,uuid]
-                        else:
+                        if len(selected_skin['chromas']) == 1 or selected_chroma == []:
                             selected_level = ["Base",selected_skin['chromas']['Base']]
 
                         self.manager.modify_skin(weapon['uuid'],selected_skin['uuid'],selected_level[1],selected_chroma[1])
@@ -74,9 +76,6 @@ class Prompt:
                 
                 else:
                     cprint("invalid weapon","red")
-
-
-
 
 
 prompt = Prompt()

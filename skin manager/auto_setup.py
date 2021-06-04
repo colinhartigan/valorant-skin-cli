@@ -19,7 +19,7 @@ class skin_loader:
 
         for weapon in weapon_datas:
             weapon_uuid = weapon['uuid']
-            print(f"[{weapon['displayName']}] which skins do you want to include in the pool for this gun?")
+            print(f"[{weapon['displayName']}] which skins do you want to include in the pool for this gun? (separate skins with comma ex. 'reaver,prime')")
             themes = input("skins: ").split(",")
 
             payload[weapon_uuid] = themes  
@@ -47,7 +47,7 @@ class skin_loader:
         payload = {}
         skin_pool = {}
 
-        with open(os.path.join(here, 'skins.json')) as f:
+        with open(os.path.join(here, 'included_skins.json')) as f:
             skin_pool = json.load(f)
 
         for weapon in weapon_datas:
@@ -91,5 +91,3 @@ class skin_loader:
 
         cprint("done!","blue",attrs=['bold'])
         print(json.dumps(payload, indent=4))
-
-skin_loader.generate_skin_datas()
