@@ -1,0 +1,488 @@
+{
+    "63e6c2b6-4a8e-869c-3d4c-e38355226584": {
+        "Lightwave Odin": {
+            "uuid": "57523cf0-4574-968b-9f17-168e3bdb6d0d",
+            "levels": {
+                "lvl1": "162beb92-4ab7-4383-da51-4b94ba90bd5d"
+            },
+            "chromas": {
+                "Base": "156158a5-4eb2-79ef-49e9-16a680fe93a9",
+                "Variant 1 Blue": "a5a25319-4159-072f-5555-48824316ef00"
+            }
+        },
+        "Aerosol Odin": {
+            "uuid": "befa2f32-410f-a418-d8d3-b194dcf2ec6d",
+            "levels": {
+                "lvl1": "657b3476-4919-7b4b-be54-aeaedad999e6"
+            },
+            "chromas": {
+                "Base": "309941f1-48b5-edc2-5e07-eaa7a435fedc"
+            }
+        }
+    },
+    "55d8a0f4-4274-ca67-fe2c-06ab45efdf58": {
+        "Outpost Ares": {
+            "uuid": "4308fe43-44c1-9fe8-d5f9-95be2bc70d51",
+            "levels": {
+                "lvl1": "81694ace-47b3-3d95-9b88-59983d351471"
+            },
+            "chromas": {
+                "Base": "7a0165c2-4790-d7d2-2500-2e87e6c85e2b"
+            }
+        },
+        "POLYfrog Ares": {
+            "uuid": "ff555802-4633-0c8b-93f8-b8887666e3ad",
+            "levels": {
+                "lvl1": "9b61f5ca-4aa2-8557-37b2-a1b05f30c678"
+            },
+            "chromas": {
+                "Base": "3c0d0c63-4c14-c181-f53c-b8b174b8c1ec"
+            }
+        }
+    },
+    "9c82e19d-4575-0200-1a81-3eacf00cf872": {
+        "Prime Vandal": {
+            "uuid": "b9ee2457-481c-6776-3f5b-0ca8e8f90c89",
+            "levels": {
+                "lvl1": "c9678d8c-4327-f397-b0ec-dca3c3d6fb15",
+                "lvl2": "c6f9c7ef-4a35-fa14-c9ed-bd80e37be826",
+                "lvl3": "fc332008-475f-5555-0155-4cb3bce714ff",
+                "lvl4": "22821a32-4e04-ad4a-1893-95904c08b264"
+            },
+            "chromas": {
+                "Base": "a26e0d1d-4886-7d62-6b4f-1996e706463d",
+                "Variant 1 Orange": "ad2b0b8b-4da8-9c88-331a-028f2026ab66",
+                "Variant 2 Blue": "cd3ebdc1-4858-efda-6cee-c683726f8ca9",
+                "Variant 3 Yellow": "d43b8d21-4fb2-1224-1392-53ab6d829ed1"
+            }
+        },
+        "Reaver Vandal": {
+            "uuid": "30388628-42f0-606c-82c0-73ad43de997f",
+            "levels": {
+                "lvl1": "ba42fe63-457a-78ce-4499-47950a698129",
+                "lvl2": "6f9ba692-4618-d0e6-3099-42b4dc5fce89",
+                "lvl3": "98597b95-451c-70cf-46fb-31b4c5a54394",
+                "lvl4": "8c282914-446a-3e99-095a-cd97df201c8b"
+            },
+            "chromas": {
+                "Base": "2bd28382-48c6-8579-83e8-e9b64b783de3",
+                "Variant 2 Black": "db4461e5-40dd-1173-3b64-e5836f92f4dd",
+                "Variant 3 White": "b2619c1c-4974-4f06-f37b-c68b1d6d7bd1",
+                "Variant 1 Red": "b2a065c0-4632-ccaa-f496-7681dc2a6185"
+            }
+        }
+    },
+    "ae3de142-4d85-2547-dd26-4e90bed35cf7": {
+        "Depths Bulldog": {
+            "uuid": "4e6341f9-4851-603d-daff-9185f007d3dc",
+            "levels": {
+                "lvl1": "6f86d77a-43c6-17b5-312f-87bf159076d9"
+            },
+            "chromas": {
+                "Base": "e455f87b-4afc-f2ea-22de-5ab5fe7ef7f5"
+            }
+        },
+        "Infinity Bulldog": {
+            "uuid": "decd0962-453a-1551-47e1-1287aafb5a27",
+            "levels": {
+                "lvl1": "5fc3c5e8-470e-7683-b594-6580d5e3d624"
+            },
+            "chromas": {
+                "Base": "01f3fffe-4306-7b4b-9cb8-afb0027f4cf9",
+                "Variant 3 Pink": "3722b38e-49ec-e9da-fe96-3ba099630a27"
+            }
+        }
+    },
+    "ee8e8d15-496b-07ac-e5f6-8fae5d4c7b1a": {
+        "Ion Phantom": {
+            "uuid": "e86bf7e4-4dd3-fbee-533b-fa875344bbaf",
+            "levels": {
+                "lvl1": "b8bb264c-4578-2410-8dfa-6aacfeb318b0",
+                "lvl2": "d8168629-4e42-1359-4401-ffbb79f59866",
+                "lvl3": "1b251e84-47f3-738d-c686-6cb718e66c71",
+                "lvl4": "f97aa61f-4119-f21a-621d-589fe5e55b01"
+            },
+            "chromas": {
+                "Base": "b9c9eb56-4cbd-04b7-06a8-329dc6f1e73a"
+            }
+        },
+        "Glitchpop Phantom": {
+            "uuid": "25a7f0f2-4bce-7e45-b4b0-ca9264f5dfcc",
+            "levels": {
+                "lvl1": "9f6e4612-433b-aea9-1683-3db7aee90848",
+                "lvl2": "07e8bbcb-488e-b038-630f-c3a7c4f4763f",
+                "lvl3": "7f54b1ac-49b5-48ec-9926-8a966a0233a5",
+                "lvl4": "dee8b295-4a06-15fb-e952-acb6298d5929"
+            },
+            "chromas": {
+                "Base": "7dd3f7d8-455b-bc3a-94b8-af9fba0bebed",
+                "Variant 1 Blue": "ff938463-444c-9bdc-38fa-3c98e865ab31",
+                "Variant 2 Red": "710ff5e9-48fd-5890-b061-9689f54fe848",
+                "Variant 3 Gold": "ba802a0b-4038-4208-89c7-58828408ebed"
+            }
+        }
+    },
+    "ec845bf4-4f79-ddda-a3da-0db3774b2794": {
+        "Outpost Judge": {
+            "uuid": "400d71b1-4090-6abf-224e-21938569fe24",
+            "levels": {
+                "lvl1": "11e342ba-4f18-b9ab-964e-e48fdf610890"
+            },
+            "chromas": {
+                "Base": "1d01f834-43c6-f2ba-ad12-feaf075be7e3"
+            }
+        },
+        "Prism III Judge": {
+            "uuid": "1fc3f066-4211-d65a-42ab-b287c6bb2448",
+            "levels": {
+                "lvl1": "b3e563fe-4a91-6070-4582-7ca51d62631a"
+            },
+            "chromas": {
+                "Base": "45eb1c26-4dcd-c53b-e72d-01832d18feb3"
+            }
+        },
+        "Serenity Judge": {
+            "uuid": "3a1c857a-4671-0667-8efe-ee90b8ba1e5a",
+            "levels": {
+                "lvl1": "4afdc818-4665-1582-6319-8081aa64e550"
+            },
+            "chromas": {
+                "Base": "7242d958-42f4-ca19-bb8b-7db67de3d8c5"
+            }
+        }
+    },
+    "910be174-449b-c412-ab22-d0873436b21b": {
+        "Prime//2.0 Bucky": {
+            "uuid": "89eebdb1-4df6-0a1d-8988-f495cca4badb",
+            "levels": {
+                "lvl1": "f987be1f-4287-35a4-34a9-d6a92805e7ff",
+                "lvl2": "bb7700ba-44a7-fac9-0a8b-969412238fd4",
+                "lvl3": "1db224e3-49b7-eba5-0c94-779238480de1",
+                "lvl4": "a468da91-408b-e7ad-9872-9dafbdd7d37c"
+            },
+            "chromas": {
+                "Base": "ab5fdc5b-4c3a-4bb1-4f78-57bb5e5502b2",
+                "Variant 2 Green": "58e9f7ab-4eeb-bb81-7ec0-a2863d05237d",
+                "Variant 3 Orange": "51ec6344-458c-ea16-0060-f6be1ae9ef29"
+            }
+        },
+        "Aerosol Bucky": {
+            "uuid": "cf2cc18c-42ec-3fb0-4ca7-3583373a33ab",
+            "levels": {
+                "lvl1": "5f2ae626-44a5-b1c5-a879-98bc2fe587c6"
+            },
+            "chromas": {
+                "Base": "0e383715-4dd6-4743-b69c-59aee968a865"
+            }
+        },
+        "Cavalier Bucky": {
+            "uuid": "e6eefed6-4d10-5794-4859-6d9ab5ff1d66",
+            "levels": {
+                "lvl1": "b6a089dd-4616-be48-4f28-d8b2a539c0a5"
+            },
+            "chromas": {
+                "Base": "dfc525fb-4515-1d0d-3292-959326cc86de"
+            }
+        }
+    },
+    "44d4e95c-4157-0037-81b2-17841bf2e8e3": {
+        "Spitfire Frenzy": {
+            "uuid": "5bb5acb1-44dd-184b-484e-319188ef78eb",
+            "levels": {
+                "lvl1": "468505e6-46e2-af29-3974-5fbbe6bf212f"
+            },
+            "chromas": {
+                "Base": "5a649a38-4c12-fb73-fc12-9f975495716f"
+            }
+        }
+    },
+    "29a0cfab-485b-f5d5-779a-b59f85e204a8": {
+        "Prime Classic": {
+            "uuid": "d653f4a7-4e92-2559-0a97-2c9d46d009b3",
+            "levels": {
+                "lvl1": "c7695ce7-4fc9-1c79-64b3-8c8f9e21571c",
+                "lvl2": "7b2c1232-460b-ab9a-1eca-55b5aee9ad08",
+                "lvl3": "4fc58223-43e7-a868-a6df-5e93be31369c",
+                "lvl4": "e8a35ddb-4ce7-3867-154c-94803ed12a24"
+            },
+            "chromas": {
+                "Base": "d9dce0ec-464c-df67-63a3-1f9a05d322ad",
+                "Variant 1 Orange": "42280760-422f-b5d1-4255-1e8993a817a4",
+                "Variant 2 Blue": "02390051-4309-22d4-b733-c09fbfcf2e7f",
+                "Variant 3 Yellow": "9fcc46a1-42f8-6407-787d-cb9d3e0bb718"
+            }
+        },
+        "Final Chamber Classic": {
+            "uuid": "47d5e54a-48e5-b62a-5cf5-3cb7efc12e90",
+            "levels": {
+                "lvl1": "bbbe4b32-457c-e4fb-a674-1d9c3885d331"
+            },
+            "chromas": {
+                "Base": "528232a1-4d11-e724-5c1b-b3bb0c392c84"
+            }
+        },
+        "Kingdom Classic": {
+            "uuid": "e72d72ab-4284-1469-b544-478a811a29a6",
+            "levels": {
+                "lvl1": "6ab90b28-49f1-9e1b-5083-2da2de61e109"
+            },
+            "chromas": {
+                "Base": "e7644f3c-42d3-8336-5135-17a4883032fd"
+            }
+        }
+    },
+    "1baa85b4-4c70-1284-64bb-6481dfc3bb4e": {
+        "Eclipse Ghost": {
+            "uuid": "4725c2c4-45b7-d9ab-ff4f-a79c3b2dd9ec",
+            "levels": {
+                "lvl1": "55aaa4ee-4d64-51c7-3c09-fd9bcbe1d122"
+            },
+            "chromas": {
+                "Base": "b6812d54-4e43-5daa-0b19-5884e5a3e9ca"
+            }
+        },
+        "Cavalier Ghost": {
+            "uuid": "153b2b33-4e6c-fb98-42dd-5a9819649dc7",
+            "levels": {
+                "lvl1": "7cee2791-457c-6017-cfba-bca7f61fc151"
+            },
+            "chromas": {
+                "Base": "316ce231-48eb-a875-95ab-9caa53cfaee1"
+            }
+        },
+        "Depths Ghost": {
+            "uuid": "69addb00-4eb5-eebb-c4c5-2296549cba6f",
+            "levels": {
+                "lvl1": "bb0450c4-47db-4fc7-d0c3-a8a5320d673b"
+            },
+            "chromas": {
+                "Base": "02cc5691-4a5f-76b2-a73c-7ca6a1f5efda"
+            }
+        },
+        "Hush Ghost": {
+            "uuid": "a1d3a9e2-4f61-b1f7-3a01-cf867264d1cb",
+            "levels": {
+                "lvl1": "afcb2528-4415-0178-98b1-c0a751092762"
+            },
+            "chromas": {
+                "Base": "b412e61c-4001-8fab-c5e9-6eb7caa41e88"
+            }
+        },
+        "Outpost Ghost": {
+            "uuid": "377ea8ac-46bf-52da-3173-109c2950dc9d",
+            "levels": {
+                "lvl1": "9fa5664e-45fa-2a52-68e4-db97d85c8a91"
+            },
+            "chromas": {
+                "Base": "20e2f0ee-43a8-5b68-403d-4a8c3158619d"
+            }
+        },
+        "Serenity Ghost": {
+            "uuid": "d8314b6c-45fc-fbda-a797-569a24c11bb9",
+            "levels": {
+                "lvl1": "de822d80-4e91-943d-3dd5-429513e7d177"
+            },
+            "chromas": {
+                "Base": "27e0b39a-4f38-d19e-fa71-40b63567a909"
+            }
+        }
+    },
+    "e336c6b8-418d-9340-d77f-7a9e4cfe0702": {
+        "Protektor Sheriff": {
+            "uuid": "4f1fde01-4130-0ae7-1320-6fb2f2fb6ab9",
+            "levels": {
+                "lvl1": "d9fc55c6-4b92-98ac-5052-2a8b5ca4fb71"
+            },
+            "chromas": {
+                "Base": "6671a60e-483f-706a-c59d-0697a1865f60"
+            }
+        },
+        "POLYfrog Sheriff": {
+            "uuid": "91d95358-4a3e-3abc-a251-98826225f18d",
+            "levels": {
+                "lvl1": "54ab75c2-42f2-544f-f4f2-ce9ca9180f6b"
+            },
+            "chromas": {
+                "Base": "68495a06-43d8-0b62-d1d3-3b99e9ccf2a8"
+            }
+        },
+        "Lightwave Sheriff": {
+            "uuid": "a5057a74-4a6a-561c-6974-d19a2b939599",
+            "levels": {
+                "lvl1": "dd024421-4c2a-7126-b58e-fea865a45aa9"
+            },
+            "chromas": {
+                "Base": "9af3565a-4a0b-993e-8cf0-c7bcf6e3be25",
+                "Variant 1 Blue": "a09e55cd-44db-b90d-c33c-e0b05388215b"
+            }
+        }
+    },
+    "42da8ccc-40d5-affc-beec-15aa47b42eda": {
+        "Wunderkind Shorty": {
+            "uuid": "310b80d8-4e1b-b4f0-b713-9dad458ce734",
+            "levels": {
+                "lvl1": "f9688e62-42c5-9f10-f160-49abaee2e02c"
+            },
+            "chromas": {
+                "Base": "eb54deca-4ae4-07c5-f506-8f9f2ec6331b"
+            }
+        },
+        "Aerosol Shorty": {
+            "uuid": "a39bd1bb-4b17-4d57-c505-7eb15caffa4d",
+            "levels": {
+                "lvl1": "1db941af-4587-c6a4-5885-dbb77fefcb32"
+            },
+            "chromas": {
+                "Base": "acefbdfb-40e8-4d41-d879-d188dc6e01a1"
+            }
+        },
+        "Ruin Shorty": {
+            "uuid": "1064fbd1-416c-bf00-0e30-a282a359847f",
+            "levels": {
+                "lvl1": "907bab1f-4fca-982e-7645-41a941ef6626"
+            },
+            "chromas": {
+                "Base": "ef08044d-4934-a38f-0ff9-63886354d59b"
+            }
+        }
+    },
+    "a03b24d3-4319-996d-0f8c-94bbfba1dfc7": {
+        "Forsaken Operator": {
+            "uuid": "c692e38e-4f38-0141-d0c9-aa99fab9362a",
+            "levels": {
+                "lvl1": "10a5fe91-4efa-9d6b-44f7-47ae9660550d",
+                "lvl2": "995b9baa-4335-6ff8-5868-bba728958de5",
+                "lvl3": "d542977e-4c98-1e6a-583f-7fa169afabba",
+                "lvl4": "a2774d57-4703-9acc-7cd9-a2895b754c51"
+            },
+            "chromas": {
+                "Base": "e20d7984-4797-8c42-a90d-65a6ea15e71d",
+                "Variant 1 Gold": "5f4634b4-41e3-1f48-4251-778091198113"
+            }
+        }
+    },
+    "4ade7faa-4cf1-8376-95ef-39884480959b": {
+        "Prime Guardian": {
+            "uuid": "2a049f35-4bcd-af25-21fd-ec942e2d5007",
+            "levels": {
+                "lvl1": "9336ab9d-445c-0872-a283-9f9b61a0098a",
+                "lvl2": "edc646b0-4a5a-6a76-a860-6b8db95bd132",
+                "lvl3": "14b04b38-4359-62a3-ab62-bcbe715e3fa0",
+                "lvl4": "99b7b761-41b3-e26c-ceeb-b9a1c3a67736"
+            },
+            "chromas": {
+                "Base": "e2f5a979-4e9a-f931-7f52-d99f0ec4a61b",
+                "Variant 1 Orange": "4ca16478-40c7-2cf6-bdd2-099761921e61",
+                "Variant 2 Blue": "e866f273-4acc-806f-becd-56a6bef48fbc",
+                "Variant 3 Yellow": "22f831db-4e55-6280-9078-d9b63ae93e4d"
+            }
+        }
+    },
+    "c4883e50-4494-202c-3ec3-6b8a9284f00b": {
+        "Songsteel Marshal": {
+            "uuid": "51da27fe-4a3f-016a-d18d-b68a47545f6f",
+            "levels": {
+                "lvl1": "3e0a3431-4e78-89d1-ee57-d9837e324ee0"
+            },
+            "chromas": {
+                "Base": "4156c0b0-44b8-7ea9-6707-75aec36ec5fb"
+            }
+        },
+        "Ruin Marshal": {
+            "uuid": "027a5d7f-4bfc-7c41-a012-24b8c6720fda",
+            "levels": {
+                "lvl1": "60dc909f-4c52-b96e-dd37-dfaa2392e373"
+            },
+            "chromas": {
+                "Base": "609f948b-4d2e-99ee-631e-b98a74468877"
+            }
+        },
+        "POLYfrog Marshal": {
+            "uuid": "6eea7984-4ca4-d547-4d50-b4a608072feb",
+            "levels": {
+                "lvl1": "f1b4577e-4dd3-6573-472c-a68cfe695d60"
+            },
+            "chromas": {
+                "Base": "8502c2a0-439b-89bb-4f04-a09611b01ab9"
+            }
+        }
+    },
+    "462080d1-4035-2937-7c09-27aa2a5c27a7": {
+        "Prime Spectre": {
+            "uuid": "20807bd8-4259-35e5-e54e-c1b214f58cc8",
+            "levels": {
+                "lvl1": "d1d528ae-4dcc-e693-68e2-e8a475df83a4",
+                "lvl2": "d5b3f1de-413c-3b6b-1101-128d408647bf",
+                "lvl3": "3546dc11-40fe-0ca9-2989-cd80fc53eccc",
+                "lvl4": "fefc628b-4078-c57b-dcc7-3591eca5c4d0"
+            },
+            "chromas": {
+                "Base": "48b6e421-4f93-5a00-62b3-20a1d320b040",
+                "Variant 3 Yellow": "4c67e98b-4e1f-9f53-3163-16b393849f9d",
+                "Variant 2 Blue": "f55e732b-4798-2f21-c099-f7ba8facc0bf",
+                "Variant 1 Orange": "e6586300-4434-2dee-8867-45b47980f7a5"
+            }
+        },
+        "Serenity Spectre": {
+            "uuid": "4643050b-417c-0d84-3626-27b709c49c67",
+            "levels": {
+                "lvl1": "54ebea37-4cfe-a79b-707d-0d94017a69a6"
+            },
+            "chromas": {
+                "Base": "93d4333a-4aaf-5b7f-8f75-ba8a6e261762"
+            }
+        }
+    },
+    "f7e1b454-4ad4-1063-ec0a-159e56b58941": {
+        "Cavalier Stinger": {
+            "uuid": "51e2b876-4339-521d-8d68-9aaec119bc1f",
+            "levels": {
+                "lvl1": "7b71fc11-4fa2-c84c-31ec-5eb5c3e3fff3"
+            },
+            "chromas": {
+                "Base": "81460fb0-45df-800e-1203-5193c70c9c33"
+            }
+        },
+        "Depths Stinger": {
+            "uuid": "e1297b8f-4374-3131-27a9-38bb0eda1c0d",
+            "levels": {
+                "lvl1": "6a1cd98a-4248-4b67-8ced-ac9c56fb4630"
+            },
+            "chromas": {
+                "Base": "f130ea97-4a39-9a50-cb54-56993b7d4bbe"
+            }
+        }
+    },
+    "2f59173c-4bed-b6c3-2191-dea9b58be9c7": {
+        "Prime Axe": {
+            "uuid": "e100dff1-4cf5-54ec-aa65-6fadbc22973b",
+            "levels": {
+                "lvl1": "249b0e46-4a11-f045-51bb-649151cd802a",
+                "lvl2": "df1ace24-4acb-e615-24eb-6e95b7e44dc5"
+            },
+            "chromas": {
+                "Base": "d2e296d9-448e-c58f-2229-14a481906686"
+            }
+        },
+        "Glitchpop Dagger": {
+            "uuid": "ddc025b2-475f-889a-2800-80b4215582bc",
+            "levels": {
+                "lvl1": "48ce4a70-4207-623b-4739-bfb937812432",
+                "lvl2": "29bd8b5b-4d19-b6af-70c3-4797c0482e1c"
+            },
+            "chromas": {
+                "Base": "9d137aeb-41a1-a84f-3523-5194e24cc580"
+            }
+        },
+        "Sovereign Sword": {
+            "uuid": "2e77ac95-4681-3d87-bbdc-93a50ff6b1f6",
+            "levels": {
+                "lvl1": "90fe45d6-41ea-1c49-8fb9-46b0e98c0077",
+                "lvl2": "5e7f5d27-46ca-abd5-72d8-ecbb413ec217"
+            },
+            "chromas": {
+                "Base": "3391be35-4eab-936c-f26d-ec810f4454c8"
+            }
+        }
+    }
+}
