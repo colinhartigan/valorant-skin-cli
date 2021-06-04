@@ -5,7 +5,7 @@ import os
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-class skin_loader:
+class Loader:
     @staticmethod
     def get_weapon_datas():
         weapon_datas = requests.get(f"https://valorant-api.com/v1/weapons")
@@ -13,20 +13,21 @@ class skin_loader:
         return weapon_datas
         
     @staticmethod
-    def generate_skin_lists():
-        weapon_datas = skin_loader.get_weapon_datas()
+    def generate_skin_list():
+        cprint("SKIN COLLECTION SETUP","yellow",attrs=["bold"])
+        weapon_datas = Loader.get_weapon_datas()
         payload = {}
 
         for weapon in weapon_datas:
             weapon_uuid = weapon['uuid']
-            print(f"[{weapon['displayName']}] which skins do you want to include in the pool for this gun? (separate skins with comma ex. 'reaver,prime')")
-            themes = input("skins: ").split(",")
+            cprint(f"[{weapon['displayName']}] which skins do you want to include in the pool for this gun? (separate skins with comma ex. 'reaver,prime')","green")
+            themes = input("> ").split(",")
 
             payload[weapon_uuid] = themes  
 
-        with open(os.path.join(here, 'skins.json'), 'w') as f:
+        with open(os.path.join(here, 'included_skins.json'), 'w') as f:
             json.dump(payload, f)
-            print("done")
+            cprint("done","blue",attrs=["bold"])
 
     @staticmethod
     def sanitize_chroma_name(skin,chroma,weapon_name):
@@ -43,7 +44,8 @@ class skin_loader:
 
     @staticmethod
     def generate_skin_datas():
-        weapon_datas = skin_loader.get_weapon_datas()
+        cprint("SKIN DATA SETUP","yellow",attrs=["bold"])
+        weapon_datas = Loader.get_weapon_datas()
         payload = {}
         skin_pool = {}
 
@@ -53,7 +55,7 @@ class skin_loader:
         for weapon in weapon_datas:
             #print(weapon)
             payload[weapon['uuid']] = {}
-            cprint(f"[{weapon['displayName']}] loading requested skins","green","on_grey",attrs=["bold"])
+            cprint(f"[{weapon['displayName']}] loading requested skins","green",attrs=["bold"])
 
             skins = weapon['skins']
 
@@ -68,18 +70,18 @@ class skin_loader:
 
                         if len(skin['chromas']) > 1:
                             cprint(f"[{skin['displayName']}] which chromas do you want to include? (press enter for all or type the number(s) separated by commas)","yellow")
-                            print("\n".join(f"{i} - {skin_loader.sanitize_chroma_name(skin,v['displayName'],weapon['displayName'])}" for i,v in enumerate(skin['chromas'])))
+                            print("\n".join(f"{i} - {Loader.sanitize_chroma_name(skin,v['displayName'],weapon['displayName'])}" for i,v in enumerate(skin['chromas'])))
                             
-                            choices = input()
+                            choices = input("> ")
                             if choices == "" or choices == " ":
-                                chromas = {skin_loader.sanitize_chroma_name(skin,i['displayName'],weapon['displayName']) : i['uuid'] for i in skin['chromas']}
+                                chromas = {Loader.sanitize_chroma_name(skin,i['displayName'],weapon['displayName']) : i['uuid'] for i in skin['chromas']}
                             else:
                                 choices = [int(i) for i in choices.strip().split(",")]
                                 for i,v in enumerate(skin['chromas']):
                                     if i in choices:
-                                        chromas[skin_loader.sanitize_chroma_name(skin,v['displayName'],weapon['displayName'])] = v['uuid']
+                                        chromas[Loader.sanitize_chroma_name(skin,v['displayName'],weapon['displayName'])] = v['uuid']
                         else:
-                            chromas = {skin_loader.sanitize_chroma_name(skin,i['displayName'],weapon['displayName']) : i['uuid'] for i in skin['chromas']}
+                            chromas = {Loader.sanitize_chroma_name(skin,i['displayName'],weapon['displayName']) : i['uuid'] for i in skin['chromas']}
 
 
                         payload[weapon['uuid']][skin['displayName']] = {
@@ -88,6 +90,7 @@ class skin_loader:
                             "chromas": chromas
                         }
                         
-
+        with open(os.path.join(here, 'gun_pool.json'), 'w') as f:
+            json.dump(payload, f)
         cprint("done!","blue",attrs=['bold'])
-        print(json.dumps(payload, indent=4))
+        

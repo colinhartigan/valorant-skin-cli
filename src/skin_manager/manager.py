@@ -7,17 +7,18 @@ from termcolor import colored, cprint
 
 here = os.path.dirname(os.path.abspath(__file__))
 
-client = Client()
-client.hook()
-
 class Manager:
+
+    def __init__(self,auth_data=None):
+        self.client = Client(auth=auth_data)
+        self.client.hook()
 
     def fetch_loadout(self):
         # make a better version that prints in gun -> skin format
-        return client.fetch_player_loadout()
+        return self.client.fetch_player_loadout()
 
     def put_loadout(self,loadout):
-        return client.put_player_loadout(loadout=loadout)
+        return self.client.put_player_loadout(loadout=loadout)
 
     def fetch_gun_pool(self):
         with open(os.path.join(here, 'gun_pool.json')) as f:
