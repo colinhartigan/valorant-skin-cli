@@ -50,8 +50,8 @@ class Prompt:
 
             if command[0] == "set":
                 #format: set weanpon_name skin_name level chroma
-                if len(command) != 5:
-                    cprint("command missing params","red")
+                if len(command) < 3:
+                    cprint("command missing required params","red")
                     continue
                 weapon_name = str(command[1])
                 skin_name = str(command[2])
@@ -87,15 +87,15 @@ class Prompt:
                             for level,uuid in selected_skin['levels'].items():
                                 if level_name in level.lower():
                                     selected_level = [level,uuid] 
-                        if len(selected_skin['levels']) == 1 or selected_level == []:
+                        if selected_level == []:
                             selected_level = ["lvl1",selected_skin['levels']['lvl1']]
                         
                         if len(selected_skin['chromas']) > 1:
                             for name,uuid in selected_skin['chromas'].items():
                                 if chroma_name in name.lower():
                                     selected_chroma = [name,uuid]
-                        if len(selected_skin['chromas']) == 1 or selected_chroma == []:
-                            selected_level = ["Base",selected_skin['chromas']['Base']]
+                        if selected_chroma == []:
+                            selected_chroma = ["Base",selected_skin['chromas']['Base']]
 
                         self.manager.modify_skin(weapon['uuid'],selected_skin['uuid'],selected_level[1],selected_chroma[1])
                        
