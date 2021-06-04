@@ -64,7 +64,6 @@ class skin_loader:
                         
                         cprint(f"[{weapon['displayName']}] generating data for {skin['displayName']}","cyan")
 
-                        #{i['displayName'].strip()[i['displayName'].find("(")+1:i['displayName'].find(")")].strip(weapon['displayName']).strip() : i['uuid'] for i in skin['chromas']},
                         chromas = {}
 
                         if len(skin['chromas']) > 1:
