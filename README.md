@@ -1,2 +1,2 @@
-# valorant skin randomizer
- randomize valorant skins
+# valorant skin manager
+ randomize valorant skins and other stuff
