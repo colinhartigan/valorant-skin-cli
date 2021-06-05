@@ -1,4 +1,8 @@
 from src.commands.command_prompt import Prompt 
+from valclient.client import Client
 
-prompt = Prompt()
+client = Client()
+client.hook()
+
+prompt = Prompt(client=client)
 prompt.main_loop()

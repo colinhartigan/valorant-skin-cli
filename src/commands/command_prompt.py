@@ -3,6 +3,7 @@ from termcolor import colored, cprint
 from ..skin_manager.manager import Manager
 from ..skin_manager.content import Content
 from ..skin_manager.skin_loader import Loader
+from ..game_listener.session import Session
 
 #command imports 
 from .set_skin import Set
@@ -10,10 +11,13 @@ from .help import Help
 
 class Prompt:
 
-    def __init__(self,auth_data=None):
-        self.manager = Manager(auth_data)
+    def __init__(self,auth_data=None,client=None):
+        self.client = client
+        self.manager = Manager(auth_data,client)
         self.content = Content()
         self.gun_pool = self.manager.fetch_gun_pool()
+
+        #self.session = Session(client)
 
         # configuration stuffs
         self.auto_randomize = False

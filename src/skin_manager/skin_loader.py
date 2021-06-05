@@ -45,8 +45,13 @@ class Loader:
         payload = {}
         skin_pool = {}
 
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'included_skins.json')), 'w') as f:
+        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'included_skins.json'))) as f:
             skin_pool = json.load(f)
+
+        level_type = ""
+        while (level_type == "") and (level_type != "y" or level_type != "n"):
+            cprint("[Leveling] 1/2: include (1) all levels or (2) only max level? (for upgradable skins)","yellow")
+            level_type = str(input("> "))
 
         for weapon in weapon_datas:
             #print(weapon)
@@ -81,10 +86,16 @@ class Loader:
                         else:
                             chromas = {Loader.sanitize_chroma_name(skin,i['displayName'],weapon['displayName']) : i['uuid'] for i in skin['chromas']}
 
+                        levels = {}
+                        if level_type == "1":
+                            levels = {f"lvl{i+1}": v['uuid'] for i,v in enumerate(skin['levels'])}
+                        else:
+                            levels = {f"lvl{len(skin['levels'])}" : skin['levels'][-1]['uuid']}
+                                                    
 
                         payload[weapon['uuid']][skin['displayName']] = {
                             "uuid": skin['uuid'],
-                            "levels": {f"lvl{i+1}": v['uuid'] for i,v in enumerate(skin['levels'])},
+                            "levels": levels,
                             "chromas": chromas
                         }
                         

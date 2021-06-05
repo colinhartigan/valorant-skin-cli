@@ -11,9 +11,8 @@ here = os.path.dirname(os.path.abspath(__file__))
 
 class Manager:
 
-    def __init__(self,auth_data=None):
-        self.client = Client(auth=auth_data)
-        self.client.hook()
+    def __init__(self,auth_data=None,client=None):
+        self.client = client
 
     def fetch_loadout(self):
         # make a better version that prints in gun -> skin format

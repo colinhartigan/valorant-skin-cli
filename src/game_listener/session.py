@@ -1,4 +1,5 @@
 from valclient import Client
+import asyncio
 
 class Session:
 
