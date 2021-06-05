@@ -2,20 +2,16 @@ import requests
 from termcolor import colored, cprint
 import json
 import os
+from .content import Content
 
 here = os.path.dirname(os.path.abspath(__file__))
 
 class Loader:
-    @staticmethod
-    def get_weapon_datas():
-        weapon_datas = requests.get(f"https://valorant-api.com/v1/weapons")
-        weapon_datas = weapon_datas.json()['data']
-        return weapon_datas
         
     @staticmethod
     def generate_skin_list():
         cprint("SKIN COLLECTION SETUP","yellow",attrs=["bold"])
-        weapon_datas = Loader.get_weapon_datas()
+        weapon_datas = Content.fetch_weapon_datas()
         payload = {}
 
         for weapon in weapon_datas:
@@ -25,7 +21,7 @@ class Loader:
 
             payload[weapon_uuid] = themes  
 
-        with open(os.path.join(here, 'included_skins.json'), 'w') as f:
+        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'included_skins.json')), 'w') as f:
             json.dump(payload, f)
             cprint("done","blue",attrs=["bold"])
 
@@ -45,11 +41,11 @@ class Loader:
     @staticmethod
     def generate_skin_datas():
         cprint("SKIN DATA SETUP","yellow",attrs=["bold"])
-        weapon_datas = Loader.get_weapon_datas()
+        weapon_datas = Content.fetch_weapon_datas()
         payload = {}
         skin_pool = {}
 
-        with open(os.path.join(here, 'included_skins.json')) as f:
+        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'included_skins.json')), 'w') as f:
             skin_pool = json.load(f)
 
         for weapon in weapon_datas:
@@ -61,6 +57,8 @@ class Loader:
 
             themes = skin_pool[weapon['uuid']]
             for theme in themes:
+                if theme == "":
+                    continue
                 for skin in skins:
                     if theme in skin['displayName'].lower():
                         
@@ -90,7 +88,7 @@ class Loader:
                             "chromas": chromas
                         }
                         
-        with open(os.path.join(here, 'gun_pool.json'), 'w') as f:
+        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'gun_pool.json')), 'w') as f:
             json.dump(payload, f)
         cprint("done!","blue",attrs=['bold'])
         

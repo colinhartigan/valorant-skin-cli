@@ -44,8 +44,6 @@
             "uuid": "b9ee2457-481c-6776-3f5b-0ca8e8f90c89",
             "levels": {
                 "lvl1": "c9678d8c-4327-f397-b0ec-dca3c3d6fb15",
-                "lvl2": "c6f9c7ef-4a35-fa14-c9ed-bd80e37be826",
-                "lvl3": "fc332008-475f-5555-0155-4cb3bce714ff",
                 "lvl4": "22821a32-4e04-ad4a-1893-95904c08b264"
             },
             "chromas": {
@@ -59,8 +57,6 @@
             "uuid": "30388628-42f0-606c-82c0-73ad43de997f",
             "levels": {
                 "lvl1": "ba42fe63-457a-78ce-4499-47950a698129",
-                "lvl2": "6f9ba692-4618-d0e6-3099-42b4dc5fce89",
-                "lvl3": "98597b95-451c-70cf-46fb-31b4c5a54394",
                 "lvl4": "8c282914-446a-3e99-095a-cd97df201c8b"
             },
             "chromas": {
@@ -97,8 +93,6 @@
             "uuid": "e86bf7e4-4dd3-fbee-533b-fa875344bbaf",
             "levels": {
                 "lvl1": "b8bb264c-4578-2410-8dfa-6aacfeb318b0",
-                "lvl2": "d8168629-4e42-1359-4401-ffbb79f59866",
-                "lvl3": "1b251e84-47f3-738d-c686-6cb718e66c71",
                 "lvl4": "f97aa61f-4119-f21a-621d-589fe5e55b01"
             },
             "chromas": {
@@ -108,9 +102,6 @@
         "Glitchpop Phantom": {
             "uuid": "25a7f0f2-4bce-7e45-b4b0-ca9264f5dfcc",
             "levels": {
-                "lvl1": "9f6e4612-433b-aea9-1683-3db7aee90848",
-                "lvl2": "07e8bbcb-488e-b038-630f-c3a7c4f4763f",
-                "lvl3": "7f54b1ac-49b5-48ec-9926-8a966a0233a5",
                 "lvl4": "dee8b295-4a06-15fb-e952-acb6298d5929"
             },
             "chromas": {
@@ -155,8 +146,6 @@
             "uuid": "89eebdb1-4df6-0a1d-8988-f495cca4badb",
             "levels": {
                 "lvl1": "f987be1f-4287-35a4-34a9-d6a92805e7ff",
-                "lvl2": "bb7700ba-44a7-fac9-0a8b-969412238fd4",
-                "lvl3": "1db224e3-49b7-eba5-0c94-779238480de1",
                 "lvl4": "a468da91-408b-e7ad-9872-9dafbdd7d37c"
             },
             "chromas": {
@@ -200,8 +189,6 @@
             "uuid": "d653f4a7-4e92-2559-0a97-2c9d46d009b3",
             "levels": {
                 "lvl1": "c7695ce7-4fc9-1c79-64b3-8c8f9e21571c",
-                "lvl2": "7b2c1232-460b-ab9a-1eca-55b5aee9ad08",
-                "lvl3": "4fc58223-43e7-a868-a6df-5e93be31369c",
                 "lvl4": "e8a35ddb-4ce7-3867-154c-94803ed12a24"
             },
             "chromas": {
@@ -348,9 +335,6 @@
         "Forsaken Operator": {
             "uuid": "c692e38e-4f38-0141-d0c9-aa99fab9362a",
             "levels": {
-                "lvl1": "10a5fe91-4efa-9d6b-44f7-47ae9660550d",
-                "lvl2": "995b9baa-4335-6ff8-5868-bba728958de5",
-                "lvl3": "d542977e-4c98-1e6a-583f-7fa169afabba",
                 "lvl4": "a2774d57-4703-9acc-7cd9-a2895b754c51"
             },
             "chromas": {
@@ -364,8 +348,6 @@
             "uuid": "2a049f35-4bcd-af25-21fd-ec942e2d5007",
             "levels": {
                 "lvl1": "9336ab9d-445c-0872-a283-9f9b61a0098a",
-                "lvl2": "edc646b0-4a5a-6a76-a860-6b8db95bd132",
-                "lvl3": "14b04b38-4359-62a3-ab62-bcbe715e3fa0",
                 "lvl4": "99b7b761-41b3-e26c-ceeb-b9a1c3a67736"
             },
             "chromas": {
@@ -410,8 +392,6 @@
             "uuid": "20807bd8-4259-35e5-e54e-c1b214f58cc8",
             "levels": {
                 "lvl1": "d1d528ae-4dcc-e693-68e2-e8a475df83a4",
-                "lvl2": "d5b3f1de-413c-3b6b-1101-128d408647bf",
-                "lvl3": "3546dc11-40fe-0ca9-2989-cd80fc53eccc",
                 "lvl4": "fefc628b-4078-c57b-dcc7-3591eca5c4d0"
             },
             "chromas": {
