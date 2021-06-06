@@ -1,2 +1,2 @@
-# valorant skin manager
- randomize valorant skins and other stuff
+# valorant command line interface
+ manage skins and some other utility stuffs
