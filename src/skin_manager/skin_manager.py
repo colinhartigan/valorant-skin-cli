@@ -1,21 +1,18 @@
-from valclient.client import Client
 import os 
 import json
-import random
-import requests
 from termcolor import colored, cprint
-from .content import Content
+
+from ..utility.config_manager import Config
+from .skin_content import Skin_Content
 from .skin_loader import Loader
+from .randomizer import Randomize
 
-here = os.path.dirname(os.path.abspath(__file__))
+class Skin_Manager:
 
-class Manager:
-
-    def __init__(self,auth_data=None,client=None):
+    def __init__(self,client=None):
         self.client = client
 
     def fetch_loadout(self):
-        # make a better version that prints in gun -> skin format
         return self.client.fetch_player_loadout()
 
     def put_loadout(self,loadout):
@@ -36,16 +33,33 @@ class Manager:
             if i['uuid'] == skin_uuid:
                 return i
 
+    def fetch_max_level_for_skin(self,gun_pool,weapon_uuid,skin_uuid):
+        for gun,data in gun_pool.items():
+            if gun == weapon_uuid:
+                for skin,skin_data in data.items():
+                    if skin_data["uuid"] == skin_uuid:
+                        return list(skin_data["levels"].items())[-1][0],list(skin_data["levels"].items())[-1][1]
+
+    def fetch_default_chroma_for_skin(self,gun_pool,weapon_uuid,skin_uuid):
+        for gun,data in gun_pool.items():
+            if gun == weapon_uuid:
+                for skin,skin_data in data.items():
+                    if skin_data["uuid"] == skin_uuid:
+                        return list(skin_data["chromas"].items())[0][0],list(skin_data["chromas"].items())[0][1]
+
+    def fetch_weapon_by_name(self,name):
+        return Skin_Content.fetch_weapon_by_name(name)
 
     def fetch_skin_table(self):
+
         loadout = self.fetch_loadout()['Guns']
         skins = {}
         grid = {}
 
         longest = 0
 
-        weapons_datas = Content.fetch_weapon_datas()
-        skins_datas = Content.fetch_skin_datas()
+        weapons_datas = Skin_Content.fetch_weapon_datas()
+        skins_datas = Skin_Content.fetch_skin_datas()
 
         for skin in loadout:
             skin_data = self.fetch_skin_data(skin['SkinID'],skins_datas)
@@ -73,29 +87,4 @@ class Manager:
 
 
     def randomize_skins(self):
-        loadout = self.fetch_loadout()
-
-        weapon_datas = requests.get(f"https://valorant-api.com/v1/weapons")
-        weapon_datas = weapon_datas.json()['data']
-
-        gun_pool = self.fetch_gun_pool()
-        for i in loadout['Guns']:
-            weapon_uuid = i['ID']
-
-            weapon_data = self.fetch_weapon_data(weapon_uuid,weapon_datas)
-            weapon_name = weapon_data['displayName']
-
-            skins = gun_pool[weapon_uuid] # find valid skins by weapon uuid
-            amount = len(skins) # determine how many skins there are for a weapon
-            if amount != 0:
-                choice = list(skins)[random.randrange(0,amount)] # pick a random skin from the set
-                skin = skins[choice] # get skin info
-                
-                level = list(skin['levels'])[random.randrange(0,len(skin['levels']))]
-                chroma = list(skin['chromas'])[random.randrange(0,len(skin['chromas']))]
-
-                i['SkinID'] = skin['uuid']
-                i['SkinLevelID'] = skin['levels'][level] 
-                i['ChromaID'] = skin['chromas'][chroma]
-
-        new = self.put_loadout(loadout=loadout)
+        Randomize(self)

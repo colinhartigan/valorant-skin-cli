@@ -43,7 +43,6 @@
         "Prime Vandal": {
             "uuid": "b9ee2457-481c-6776-3f5b-0ca8e8f90c89",
             "levels": {
-                "lvl1": "c9678d8c-4327-f397-b0ec-dca3c3d6fb15",
                 "lvl4": "22821a32-4e04-ad4a-1893-95904c08b264"
             },
             "chromas": {
@@ -56,7 +55,6 @@
         "Reaver Vandal": {
             "uuid": "30388628-42f0-606c-82c0-73ad43de997f",
             "levels": {
-                "lvl1": "ba42fe63-457a-78ce-4499-47950a698129",
                 "lvl4": "8c282914-446a-3e99-095a-cd97df201c8b"
             },
             "chromas": {
@@ -92,7 +90,6 @@
         "Ion Phantom": {
             "uuid": "e86bf7e4-4dd3-fbee-533b-fa875344bbaf",
             "levels": {
-                "lvl1": "b8bb264c-4578-2410-8dfa-6aacfeb318b0",
                 "lvl4": "f97aa61f-4119-f21a-621d-589fe5e55b01"
             },
             "chromas": {
@@ -145,7 +142,6 @@
         "Prime//2.0 Bucky": {
             "uuid": "89eebdb1-4df6-0a1d-8988-f495cca4badb",
             "levels": {
-                "lvl1": "f987be1f-4287-35a4-34a9-d6a92805e7ff",
                 "lvl4": "a468da91-408b-e7ad-9872-9dafbdd7d37c"
             },
             "chromas": {
@@ -188,7 +184,6 @@
         "Prime Classic": {
             "uuid": "d653f4a7-4e92-2559-0a97-2c9d46d009b3",
             "levels": {
-                "lvl1": "c7695ce7-4fc9-1c79-64b3-8c8f9e21571c",
                 "lvl4": "e8a35ddb-4ce7-3867-154c-94803ed12a24"
             },
             "chromas": {
@@ -329,7 +324,6 @@
         "Prime Guardian": {
             "uuid": "2a049f35-4bcd-af25-21fd-ec942e2d5007",
             "levels": {
-                "lvl1": "9336ab9d-445c-0872-a283-9f9b61a0098a",
                 "lvl4": "99b7b761-41b3-e26c-ceeb-b9a1c3a67736"
             },
             "chromas": {
@@ -373,7 +367,6 @@
         "Prime Spectre": {
             "uuid": "20807bd8-4259-35e5-e54e-c1b214f58cc8",
             "levels": {
-                "lvl1": "d1d528ae-4dcc-e693-68e2-e8a475df83a4",
                 "lvl4": "fefc628b-4078-c57b-dcc7-3591eca5c4d0"
             },
             "chromas": {
@@ -408,7 +401,6 @@
         "Prime Axe": {
             "uuid": "e100dff1-4cf5-54ec-aa65-6fadbc22973b",
             "levels": {
-                "lvl1": "249b0e46-4a11-f045-51bb-649151cd802a",
                 "lvl2": "df1ace24-4acb-e615-24eb-6e95b7e44dc5"
             },
             "chromas": {
@@ -418,7 +410,6 @@
         "Glitchpop Dagger": {
             "uuid": "ddc025b2-475f-889a-2800-80b4215582bc",
             "levels": {
-                "lvl1": "48ce4a70-4207-623b-4739-bfb937812432",
                 "lvl2": "29bd8b5b-4d19-b6af-70c3-4797c0482e1c"
             },
             "chromas": {
@@ -428,7 +419,6 @@
         "Sovereign Sword": {
             "uuid": "2e77ac95-4681-3d87-bbdc-93a50ff6b1f6",
             "levels": {
-                "lvl1": "90fe45d6-41ea-1c49-8fb9-46b0e98c0077",
                 "lvl2": "5e7f5d27-46ca-abd5-72d8-ecbb413ec217"
             },
             "chromas": {

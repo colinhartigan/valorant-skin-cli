@@ -1,4 +1,4 @@
-from src.commands.command_prompt import Prompt 
+from src.cli.command_prompt import Prompt 
 from valclient.client import Client
 
 client = Client()

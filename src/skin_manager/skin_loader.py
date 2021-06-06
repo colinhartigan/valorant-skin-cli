@@ -2,7 +2,7 @@ import requests
 from termcolor import colored, cprint
 import json
 import os
-from .content import Content
+from .skin_content import Skin_Content
 
 here = os.path.dirname(os.path.abspath(__file__))
 
