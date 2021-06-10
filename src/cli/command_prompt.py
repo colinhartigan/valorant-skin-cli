@@ -3,11 +3,11 @@ from termcolor import colored, cprint
 import sys
 import os
 
-from ..skin_manager.skin_manager import Skin_Manager
-from ..skin_manager.skin_loader import Loader
+from ..flair_management.skin_manager.skin_manager import Skin_Manager
+from ..flair_management.skin_manager.skin_loader import Loader
 
-from ..title_manager.title_manager import Title_Manager
-from ..card_manager.card_manager import Card_Manager
+from ..flair_management.title_manager.title_manager import Title_Manager
+from ..flair_management.card_manager.card_manager import Card_Manager
 
 from ..core_game.session import Session
 
@@ -111,6 +111,10 @@ class Prompt:
                 
                 if command[0] == "randomize":
                     self.skin_manager.randomize_skins() 
-                    cprint("randomized skins", "green", attrs=["bold"])
                     Loadout(self.skin_manager)
                     listener = "lol"
+
+                if command[0] == "exit":
+                    listener = "done"
+
+        sys.exit()

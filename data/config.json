@@ -1,10 +1,10 @@
 {
+    "async_refresh_interval":5,
     "instalock":{
         "instalock_enabled":false,
         "instalock_target":"Reyna"
     },
     "skin_manager":{
-        "randomize_after_each_game":true,
-        "included_levels_in_randomizer":[1,2,3,4]
+        "randomize_after_each_game":true
     }
 }

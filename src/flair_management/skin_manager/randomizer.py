@@ -1,9 +1,11 @@
+from termcolor import cprint
 from .skin_content import Skin_Content
 import random
 
 class Randomize:
 
     def __init__(self,manager):
+        cprint("randomized skins", "green", attrs=["bold"])
         loadout = manager.fetch_loadout()
 
         weapon_datas = Skin_Content.fetch_weapon_datas()

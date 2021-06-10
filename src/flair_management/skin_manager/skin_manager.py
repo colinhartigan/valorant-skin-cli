@@ -2,7 +2,7 @@ import os
 import json
 from termcolor import colored, cprint
 
-from ..utility.config_manager import Config
+from ...utility.config_manager import Config
 from .skin_content import Skin_Content
 from .skin_loader import Loader
 from .randomizer import Randomize
@@ -19,7 +19,7 @@ class Skin_Manager:
         return self.client.put_player_loadout(loadout=loadout)
 
     def fetch_gun_pool(self):
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'gun_pool.json'))) as f:
+        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../data', 'gun_pool.json'))) as f:
             gun_pool = json.load(f)
             return gun_pool
 
@@ -88,3 +88,4 @@ class Skin_Manager:
 
     def randomize_skins(self):
         Randomize(self)
+        
