@@ -17,6 +17,7 @@ from .commands.set_title import Set_Title
 from .commands.set_card import Set_Card
 from .commands.help import Help
 from .commands.loadout import Loadout
+from .commands.test import Test
 
 class Prompt: 
 
@@ -67,14 +68,15 @@ class Prompt:
     def main_loop(self):
         command = [""]
         cprint("VALORANT CLI - type 'help' for help",attrs=["bold","underline"])
-        cprint("press enter to type a command","yellow",attrs=["bold"])
         
         listener = "nope"
 
         while command[0] != "exit":
             while listener != "":
+                if listener != "success":
+                    cprint("press enter to type a command","yellow",attrs=["bold"])
                 listener = input()
-                cprint("press enter to type a command","yellow",attrs=["bold"])
+                
 
             while listener == "":
                 command = input("> ").split()
@@ -83,39 +85,43 @@ class Prompt:
 
                 if command[0] == "help":
                     Help(command,self.help_data)
-                    listener = "lol"
+                    listener = "success"
 
                 if command[0] == "title":
                     Set_Title(command,self.title_manager)
-                    listener = "lol"
+                    listener = "success"
 
                 if command[0] == "card":
                     Set_Card(command,self.card_manager)
-                    listener = "lol"
+                    listener = "success"
 
                 if command[0] == "loadout":
                     Loadout(self.skin_manager)
-                    listener = "lol"
+                    listener = "success"
 
                 if command[0] == "setup":
                     Loader.generate_skin_list()
                     Loader.generate_skin_datas()
-                    listener = "lol"
+                    listener = "success"
 
                 if command[0] == "modify":
                     Loader.generate_skin_datas()
-                    listener = "lol"
+                    listener = "success"
 
                 if command[0] == "set":
                     Set_Skin(command,self.skin_manager,self.gun_pool)
-                    listener = "lol"
+                    listener = "success"
                 
                 if command[0] == "randomize":
                     self.skin_manager.randomize_skins() 
                     Loadout(self.skin_manager)
-                    listener = "lol"
+                    listener = "success"
 
                 if command[0] == "exit":
                     listener = "done"
+
+                if command[0] == "test":
+                    Test(self.client)
+                    listener = "success"
 
         sys.exit()

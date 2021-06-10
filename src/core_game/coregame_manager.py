@@ -9,9 +9,6 @@ from .session import Session
 # important imports or something
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 
-# task imports 
-from .async_tasks import randomize
-
 class Coregame_Manager:
 
     def __init__(self,client):
@@ -19,8 +16,8 @@ class Coregame_Manager:
         self.skin_manager = Skin_Manager(self.client)
         self.session = Session(self.client,self.skin_manager)
 
-    async def update_session_routine(self):
-        presence = await self.session.update()
+        self.instalocker_running = False
 
     async def main_loop(self):
-        await self.update_session_routine()
+        await self.session.update_presence()
+        await self.session.instalocker_check()

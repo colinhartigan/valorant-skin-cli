@@ -19,6 +19,9 @@ class Async_Manager:
         self.loop.run_until_complete(self.main_loop())
 
     async def main_loop(self):
+        '''
+        for refreshing non-time-essential async tasks
+        '''
         while True:
             # NONE OF THE CHILD MODULES SHOULD HAVE THEIR OWN LOOPS
             await self.coregame_manager.main_loop() # coregame loop

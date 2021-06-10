@@ -1,6 +1,6 @@
 from ...utility.config_manager import Config
 
-class Randomize_Skins:
+class Randomizer:
 
     def __init__(self,manager):
         config = Config.fetch_config() 

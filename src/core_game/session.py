@@ -1,5 +1,8 @@
 import asyncio
 
+from .async_tasks.randomize import Randomizer
+from .async_tasks.instalock import Instalocker
+
 class Session:
     '''
     this one's in charge of activating session-related tasks such as instalocking, skin randomizing after match, etc.
@@ -12,18 +15,19 @@ class Session:
         self.previous_presence = self.client.fetch_presence()
         self.presence = self.previous_presence
 
-    def fetch_loop_state(self):
-        return self.presence["sessionLoopState"]
+    async def randomizer_check(self):
+        if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
+            Randomizer(self.skin_manager)
 
-    def randomizer_check(self,presence):
-        if (presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and presence["sessionLoopState"] == "MENUS"):
-            self.skin_manager.randomize_skins()
+    async def instalocker_check(self):
+        if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "MENUS" and self.presence["sessionLoopState"] == "PREGAME"):
+            Instalocker(self.client)
 
-    async def update(self):
+    async def update_presence(self):
         self.previous_presence = self.presence 
 
         presence = self.client.fetch_presence()
         self.presence = presence
-        self.randomizer_check(presence)
+        await self.randomizer_check()
 
-        return self.presence    
+        return self.presence

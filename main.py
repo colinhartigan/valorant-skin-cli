@@ -6,6 +6,9 @@ import threading
 
 '''
 TODO:
+- instalock module
+- spray randomizer w/ loadout randomizer
+
 - launch with valorant
 - taskbar icon
 - (implement RPC?) probably make this a diff module as an extension
