@@ -37,17 +37,17 @@ class Set_Skin:
                 cprint(f"no chroma provided, using default ({chroma_name})", "yellow")
 
             if selected_skin != {}:
-                if len(selected_skin['levels']) > 1:
+                if len(selected_skin['levels']) >= 1:
                     for level, uuid in selected_skin['levels'].items():
-                        if level_name in level.lower():
+                        if level_name.lower() in level.lower():
                             selected_level = (level, uuid)
                 if selected_level == ():
                     selected_level = manager.fetch_max_level_for_skin(gun_pool,weapon['uuid'],selected_skin['uuid'])
                     cprint(f"invalid level provided, using default ({selected_level[0]})", "yellow")
 
-                if len(selected_skin['chromas']) > 1:
+                if len(selected_skin['chromas']) >= 1:
                     for name, uuid in selected_skin['chromas'].items():
-                        if chroma_name in name.lower():
+                        if chroma_name.lower() in name.lower():
                             selected_chroma = (name, uuid)
                 if selected_chroma == ():
                     selected_chroma = manager.fetch_default_chroma_for_skin(gun_pool,weapon['uuid'],selected_skin['uuid'])

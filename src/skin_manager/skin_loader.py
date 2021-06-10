@@ -11,7 +11,7 @@ class Loader:
     @staticmethod
     def generate_skin_list():
         cprint("SKIN COLLECTION SETUP","yellow",attrs=["bold"])
-        weapon_datas = Content.fetch_weapon_datas()
+        weapon_datas = Skin_Content.fetch_weapon_datas()
         payload = {}
 
         for weapon in weapon_datas:
@@ -41,7 +41,7 @@ class Loader:
     @staticmethod
     def generate_skin_datas():
         cprint("SKIN DATA SETUP","yellow",attrs=["bold"])
-        weapon_datas = Content.fetch_weapon_datas()
+        weapon_datas = Skin_Content.fetch_weapon_datas()
         payload = {}
         skin_pool = {}
 

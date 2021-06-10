@@ -1,5 +1,7 @@
 
 from termcolor import colored, cprint
+import sys
+import os
 
 from ..skin_manager.skin_manager import Skin_Manager
 from ..skin_manager.skin_loader import Loader
@@ -7,11 +9,9 @@ from ..skin_manager.skin_loader import Loader
 from ..title_manager.title_manager import Title_Manager
 from ..card_manager.card_manager import Card_Manager
 
-from ..core_game.match_manager import Match_Manager
 from ..core_game.session import Session
 
 #command imports 
-from .commands.disassociate import Disassociate
 from .commands.set_skin import Set_Skin
 from .commands.set_title import Set_Title
 from .commands.set_card import Set_Card
@@ -23,13 +23,11 @@ class Prompt:
     def __init__(self,auth_data=None,client=None):
         self.client = client
 
-
         self.skin_manager = Skin_Manager(client)
         self.gun_pool = self.skin_manager.fetch_gun_pool()
 
         self.title_manager = Title_Manager(client)
         self.card_manager = Card_Manager(client)
-        self.match_manager = Match_Manager(client)
 
         #self.session = Session(client)
 
@@ -69,37 +67,50 @@ class Prompt:
     def main_loop(self):
         command = [""]
         cprint("VALORANT CLI - type 'help' for help",attrs=["bold","underline"])
+        cprint("press enter to type a command","yellow",attrs=["bold"])
+        
+        listener = "nope"
+
         while command[0] != "exit":
-            command = input("> ").split()
-            if command == []:
-                command = [""]
+            while listener != "":
+                listener = input()
 
-            if command[0] == "help":
-                Help(command,self.help_data)
+            while listener == "":
+                command = input("> ").split()
+                if command == []:
+                    command = [""]
 
-            if command[0] == "dodge":
-                Disassociate(self.match_manager)
+                if command[0] == "help":
+                    Help(command,self.help_data)
+                    listener = "lol"
 
-            if command[0] == "title":
-                Set_Title(command,self.title_manager)
+                if command[0] == "title":
+                    Set_Title(command,self.title_manager)
+                    listener = "lol"
 
-            if command[0] == "card":
-                Set_Card(command,self.card_manager)
+                if command[0] == "card":
+                    Set_Card(command,self.card_manager)
+                    listener = "lol"
 
-            if command[0] == "loadout":
-                Loadout(self.skin_manager)
+                if command[0] == "loadout":
+                    Loadout(self.skin_manager)
+                    listener = "lol"
 
-            if command[0] == "setup":
-                Loader.generate_skin_list()
-                Loader.generate_skin_datas()
+                if command[0] == "setup":
+                    Loader.generate_skin_list()
+                    Loader.generate_skin_datas()
+                    listener = "lol"
 
-            if command[0] == "modify":
-                Loader.generate_skin_datas()
+                if command[0] == "modify":
+                    Loader.generate_skin_datas()
+                    listener = "lol"
 
-            if command[0] == "set":
-                Set_Skin(command,self.skin_manager,self.gun_pool)
-            
-            if command[0] == "randomize":
-                self.skin_manager.randomize_skins() 
-                cprint("randomized skins", "green", attrs=["bold"])
-                Loadout(self.skin_manager)
+                if command[0] == "set":
+                    Set_Skin(command,self.skin_manager,self.gun_pool)
+                    listener = "lol"
+                
+                if command[0] == "randomize":
+                    self.skin_manager.randomize_skins() 
+                    cprint("randomized skins", "green", attrs=["bold"])
+                    Loadout(self.skin_manager)
+                    listener = "lol"
