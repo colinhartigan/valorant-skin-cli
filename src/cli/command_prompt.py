@@ -74,6 +74,7 @@ class Prompt:
         while command[0] != "exit":
             while listener != "":
                 listener = input()
+                cprint("press enter to type a command","yellow",attrs=["bold"])
 
             while listener == "":
                 command = input("> ").split()
