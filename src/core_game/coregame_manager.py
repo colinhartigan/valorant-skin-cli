@@ -20,4 +20,4 @@ class Coregame_Manager:
 
     async def main_loop(self):
         await self.session.update_presence()
-        await self.session.instalocker_check()
+        await self.session.autolocker_check()

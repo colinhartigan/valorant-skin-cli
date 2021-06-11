@@ -6,8 +6,8 @@ import threading
 
 '''
 TODO:
-- instalock module
-- spray randomizer w/ loadout randomizer
+- skin pool change command should list a menu of guns then give options to set skins/chromas instead of going thru each gun
+- spray randomizer extension for loadout randomizer
 
 - launch with valorant
 - taskbar icon

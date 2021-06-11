@@ -3,6 +3,8 @@ from termcolor import colored, cprint
 import sys
 import os
 
+from ..utility.config_manager import Config
+
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..flair_management.skin_manager.skin_loader import Loader
 
@@ -12,6 +14,7 @@ from ..flair_management.card_manager.card_manager import Card_Manager
 from ..core_game.session import Session
 
 #command imports 
+from .commands.autolocker_config import Autolocker_Config
 from .commands.set_skin import Set_Skin
 from .commands.set_title import Set_Title
 from .commands.set_card import Set_Card
@@ -82,9 +85,14 @@ class Prompt:
                 command = input("> ").split()
                 if command == []:
                     command = [""]
+                    listener = "success"
 
                 if command[0] == "help":
                     Help(command,self.help_data)
+                    listener = "success"
+
+                if command[0] == "autolock":
+                    Autolocker_Config(command,Config,Session)
                     listener = "success"
 
                 if command[0] == "title":
