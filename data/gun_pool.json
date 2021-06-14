@@ -203,24 +203,6 @@
                 "Variant 2 Blue": "02390051-4309-22d4-b733-c09fbfcf2e7f",
                 "Variant 3 Yellow": "9fcc46a1-42f8-6407-787d-cb9d3e0bb718"
             }
-        },
-        "Final Chamber Classic": {
-            "uuid": "47d5e54a-48e5-b62a-5cf5-3cb7efc12e90",
-            "levels": {
-                "lvl1": "bbbe4b32-457c-e4fb-a674-1d9c3885d331"
-            },
-            "chromas": {
-                "Base": "528232a1-4d11-e724-5c1b-b3bb0c392c84"
-            }
-        },
-        "Kingdom Classic": {
-            "uuid": "e72d72ab-4284-1469-b544-478a811a29a6",
-            "levels": {
-                "lvl1": "6ab90b28-49f1-9e1b-5083-2da2de61e109"
-            },
-            "chromas": {
-                "Base": "e7644f3c-42d3-8336-5135-17a4883032fd"
-            }
         }
     },
     "1baa85b4-4c70-1284-64bb-6481dfc3bb4e": {
@@ -404,15 +386,6 @@
                 "Variant 3 Yellow": "4c67e98b-4e1f-9f53-3163-16b393849f9d",
                 "Variant 2 Blue": "f55e732b-4798-2f21-c099-f7ba8facc0bf",
                 "Variant 1 Orange": "e6586300-4434-2dee-8867-45b47980f7a5"
-            }
-        },
-        "Serenity Spectre": {
-            "uuid": "4643050b-417c-0d84-3626-27b709c49c67",
-            "levels": {
-                "lvl1": "54ebea37-4cfe-a79b-707d-0d94017a69a6"
-            },
-            "chromas": {
-                "Base": "93d4333a-4aaf-5b7f-8f75-ba8a6e261762"
             }
         }
     },
