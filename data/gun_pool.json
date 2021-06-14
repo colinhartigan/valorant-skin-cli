@@ -6,6 +6,7 @@
                 "lvl1": "162beb92-4ab7-4383-da51-4b94ba90bd5d"
             },
             "chromas": {
+                "Base": "156158a5-4eb2-79ef-49e9-16a680fe93a9",
                 "Variant 1 Blue": "a5a25319-4159-072f-5555-48824316ef00"
             }
         },
@@ -59,9 +60,9 @@
             },
             "chromas": {
                 "Base": "2bd28382-48c6-8579-83e8-e9b64b783de3",
+                "Variant 1 Red": "b2a065c0-4632-ccaa-f496-7681dc2a6185",
                 "Variant 2 Black": "db4461e5-40dd-1173-3b64-e5836f92f4dd",
-                "Variant 3 White": "b2619c1c-4974-4f06-f37b-c68b1d6d7bd1",
-                "Variant 1 Red": "b2a065c0-4632-ccaa-f496-7681dc2a6185"
+                "Variant 3 White": "b2619c1c-4974-4f06-f37b-c68b1d6d7bd1"
             }
         }
     },
@@ -178,6 +179,16 @@
             "chromas": {
                 "Base": "5a649a38-4c12-fb73-fc12-9f975495716f"
             }
+        },
+        "Lightwave Frenzy": {
+            "uuid": "f67d4d78-4567-f8ca-010b-18919c49aa05",
+            "levels": {
+                "lvl1": "fe7ac291-4516-02d4-9101-0a990615a585"
+            },
+            "chromas": {
+                "Base": "c4db17ef-4610-90e6-1e8c-688b3a5aac71",
+                "Variant 1 Blue": "667e3d2c-414d-175a-8135-4886ea07bee7"
+            }
         }
     },
     "29a0cfab-485b-f5d5-779a-b59f85e204a8": {
@@ -191,6 +202,24 @@
                 "Variant 1 Orange": "42280760-422f-b5d1-4255-1e8993a817a4",
                 "Variant 2 Blue": "02390051-4309-22d4-b733-c09fbfcf2e7f",
                 "Variant 3 Yellow": "9fcc46a1-42f8-6407-787d-cb9d3e0bb718"
+            }
+        },
+        "Final Chamber Classic": {
+            "uuid": "47d5e54a-48e5-b62a-5cf5-3cb7efc12e90",
+            "levels": {
+                "lvl1": "bbbe4b32-457c-e4fb-a674-1d9c3885d331"
+            },
+            "chromas": {
+                "Base": "528232a1-4d11-e724-5c1b-b3bb0c392c84"
+            }
+        },
+        "Kingdom Classic": {
+            "uuid": "e72d72ab-4284-1469-b544-478a811a29a6",
+            "levels": {
+                "lvl1": "6ab90b28-49f1-9e1b-5083-2da2de61e109"
+            },
+            "chromas": {
+                "Base": "e7644f3c-42d3-8336-5135-17a4883032fd"
             }
         }
     },
@@ -275,6 +304,7 @@
                 "lvl1": "dd024421-4c2a-7126-b58e-fea865a45aa9"
             },
             "chromas": {
+                "Base": "9af3565a-4a0b-993e-8cf0-c7bcf6e3be25",
                 "Variant 1 Blue": "a09e55cd-44db-b90d-c33c-e0b05388215b"
             }
         }
@@ -374,6 +404,15 @@
                 "Variant 3 Yellow": "4c67e98b-4e1f-9f53-3163-16b393849f9d",
                 "Variant 2 Blue": "f55e732b-4798-2f21-c099-f7ba8facc0bf",
                 "Variant 1 Orange": "e6586300-4434-2dee-8867-45b47980f7a5"
+            }
+        },
+        "Serenity Spectre": {
+            "uuid": "4643050b-417c-0d84-3626-27b709c49c67",
+            "levels": {
+                "lvl1": "54ebea37-4cfe-a79b-707d-0d94017a69a6"
+            },
+            "chromas": {
+                "Base": "93d4333a-4aaf-5b7f-8f75-ba8a6e261762"
             }
         }
     },

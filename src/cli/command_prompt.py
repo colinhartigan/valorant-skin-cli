@@ -15,6 +15,8 @@ from ..core_game.session import Session
 
 #command imports 
 from .commands.autolocker_config import Autolocker_Config
+from .commands.select import Select
+from .commands.lock import Lock
 from .commands.set_skin import Set_Skin
 from .commands.set_title import Set_Title
 from .commands.set_card import Set_Card
@@ -33,7 +35,7 @@ class Prompt:
         self.title_manager = Title_Manager(client)
         self.card_manager = Card_Manager(client)
 
-        #self.session = Session(client)
+        self.session = Session(client,self.skin_manager)
 
         # configuration stuffs
         self.auto_randomize = False
@@ -78,6 +80,8 @@ class Prompt:
             while listener != "":
                 if listener != "success":
                     cprint("press enter to type a command","yellow",attrs=["bold"])
+                else:
+                    print()
                 listener = input()
                 
 
@@ -89,6 +93,14 @@ class Prompt:
 
                 if command[0] == "help":
                     Help(command,self.help_data)
+                    listener = "success"
+
+                if command[0] == "select" or command[0] == "sel":
+                    Select(command,self.session,self.client)
+                    listener = "success"
+
+                if command[0] == "lock":
+                    Lock(command,self.session,self.client)
                     listener = "success"
 
                 if command[0] == "autolock":
@@ -131,5 +143,6 @@ class Prompt:
                 if command[0] == "test":
                     Test(self.client)
                     listener = "success"
+
 
         sys.exit()

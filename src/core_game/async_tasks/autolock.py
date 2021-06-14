@@ -31,7 +31,7 @@ class Autolocker:
                     agent_id = agent_data["uuid"]
                     response = self.client.lock_character(match_id, agent_id)
                     self.toc = time.perf_counter()
-                    cprint(f"locked in as {agent_data['displayName']} in {self.toc-self.tic:0.2f}s (match_id: {match_id})","green",attrs=["bold"])
+                    cprint(f"autolocked as {agent_data['displayName']} in {self.toc-self.tic:0.2f}s (match_id: {match_id})","green",attrs=["bold"])
                 else:
                     cprint(f"'{self.config['autolock']['target']}' is an invalid agent","red")
             except:

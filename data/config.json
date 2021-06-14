@@ -1,11 +1,1 @@
-{
-    "async_refresh_interval": 5,
-    "autolock": {
-        "enabled": false,
-        "target": "Jett",
-        "delay": 0
-    },
-    "skin_manager": {
-        "randomize_after_each_game": true
-    }
-}
+{"async_refresh_interval": 5, "autolock": {"enabled": false, "target": "Jett", "delay": 0}, "skin_manager": {"randomize_after_each_game": true}}

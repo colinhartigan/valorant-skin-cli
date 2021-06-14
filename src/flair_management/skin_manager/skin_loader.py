@@ -45,7 +45,7 @@ class Loader:
         payload = {}
         skin_pool = {}
 
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'included_skins.json'))) as f:
+        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../data', 'included_skins.json'))) as f:
             skin_pool = json.load(f)
 
         level_type = ""
@@ -99,7 +99,7 @@ class Loader:
                             "chromas": chromas
                         }
                         
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'gun_pool.json')), 'w') as f:
+        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../data', 'gun_pool.json')), 'w') as f:
             json.dump(payload, f)
         cprint("done!","blue",attrs=['bold'])
         

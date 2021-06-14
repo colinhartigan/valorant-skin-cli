@@ -11,6 +11,7 @@ class Coregame_Content:
     def fetch_agent_datas():
         agents = Coregame_Content.fetch(endpoint="/agents")
 
+    @staticmethod
     def fetch_agent_by_name(name):
         agents = Coregame_Content.fetch(endpoint="/agents")["data"]
 
