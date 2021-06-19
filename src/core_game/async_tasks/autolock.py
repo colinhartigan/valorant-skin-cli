@@ -2,7 +2,7 @@ from termcolor import cprint
 import asyncio
 import time
 
-from ..coregame_content import Coregame_Content
+from ...content.coregame_content import Coregame_Content
 from ...utility.config_manager import Config
 
 class Autolocker:

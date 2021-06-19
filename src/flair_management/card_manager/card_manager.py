@@ -1,4 +1,4 @@
-from .card_content import Card_Content
+from ...content.card_content import Card_Content
 
 class Card_Manager:
     def __init__(self,client=None):

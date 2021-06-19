@@ -1,4 +1,4 @@
-from .title_content import Title_Content
+from ...content.title_content import Title_Content
 
 class Title_Manager:
     def __init__(self,client=None):

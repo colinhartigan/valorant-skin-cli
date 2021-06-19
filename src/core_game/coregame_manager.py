@@ -16,8 +16,6 @@ class Coregame_Manager:
         self.skin_manager = Skin_Manager(self.client)
         self.session = Session(self.client,self.skin_manager)
 
-        self.instalocker_running = False
-
     async def main_loop(self):
         await self.session.update_presence()
         await self.session.autolocker_check()

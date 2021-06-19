@@ -3,8 +3,8 @@ import json
 from termcolor import colored, cprint
 
 from ...utility.config_manager import Config
-from .skin_content import Skin_Content
-from .skin_loader import Loader
+from ...content.skin_content import Skin_Content
+#from .skin_loader import Loader
 from .randomizer import Randomize
 
 class Skin_Manager:

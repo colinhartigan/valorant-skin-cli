@@ -4,9 +4,4 @@ class Test:
 
     def __init__(self,client):
         self.client = client
-        loadout = self.client.fetch_player_loadout()
-        print(loadout)
-        for spray in loadout["Sprays"]:
-            spray["SprayID"] = "a78eb46a-4d66-4683-9a77-02adae482146"
-        self.client.put_player_loadout(loadout=loadout)
-        cprint("ok","green",attrs=["bold"])
+        entitlements = self.client.fetch_store_entitlements("3ad1b2b2-acdb-4524-852f-954a76ddae0a")

@@ -3,7 +3,7 @@ import asyncio
 from .async_tasks.randomize import Randomizer
 from .async_tasks.autolock import Autolocker
 
-from .coregame_content import Coregame_Content
+from ..content.coregame_content import Coregame_Content
 
 class Session:
     '''

@@ -2,7 +2,6 @@ import requests
 
 class Skin_Content:
 
-
     @staticmethod
     def fetch(endpoint="/"):
         data = requests.get(f"https://valorant-api.com/v1{endpoint}")

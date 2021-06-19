@@ -1,5 +1,5 @@
 from termcolor import cprint
-from .skin_content import Skin_Content
+from ...content.skin_content import Skin_Content
 import random
 
 class Randomize:
