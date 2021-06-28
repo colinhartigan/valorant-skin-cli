@@ -1,6 +1,7 @@
 import json 
 import os
 from termcolor import cprint,colored
+
 from InquirerPy import prompt,inquirer
 from InquirerPy.separator import Separator
 
@@ -21,13 +22,14 @@ class Editor:
             message = 'select a weapon to view the skins of',
             choices = weapon_choices,
             height = "100%",
-        ).execute()
+        )
+        weapon_choice = weapon_choice.execute()
 
         if weapon_choice == "exit":
             return
         
         Editor.select_skin(skin_data,weapon_choice)
-        
+
 
     @staticmethod 
     def select_skin(skin_data,weapon_choice):
@@ -38,9 +40,9 @@ class Editor:
         skin_choices.insert(0,{"name":"back","value":"back"})
 
         skin_choice = inquirer.select(
-            message = 'select a skin to modify (escape - back)',
+            message = 'select a skin to modify',
             choices = skin_choices,
-            height = "100%"
+            height = "100%",
         ).execute()
 
         if skin_choice == "back":
@@ -74,9 +76,10 @@ class Editor:
         
         # preferences prompt
         skin_preferences = inquirer.checkbox(
-            message = f"modify skin preferences for {skin_data['display_name']} (space - toggle, enter - finish)",
+            message = f"modify skin preferences for {skin_data['display_name']}",
             choices = preferences,
-            height = "100%"
+            height = "100%",
+            instruction = '(space - toggle, enter - finish)'
         ).execute()
 
         # clear out all old preferences 

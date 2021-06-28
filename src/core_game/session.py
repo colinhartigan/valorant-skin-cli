@@ -14,7 +14,10 @@ class Session:
         self.client = client 
         self.skin_manager = manager
 
-        self.previous_presence = self.client.fetch_presence()
+        try:
+            self.previous_presence = self.client.fetch_presence()
+        except:
+            self.previous_presence = {}
         self.presence = self.previous_presence
         self.ingame = False
 

@@ -1,33 +1,33 @@
 from termcolor import cprint
 from ...content.skin_content import Skin_Content
+from ...flair_loader.skin_loader import Loader
 import random
 
 class Randomize:
 
     def __init__(self,manager):
-        cprint("randomized skins", "green", attrs=["bold"])
         loadout = manager.fetch_loadout()
+        all_skins = Loader.fetch_skin_data()
 
-        weapon_datas = Skin_Content.fetch_weapon_datas()
+        # this spawn of satan creates a streamlined dict of weapons enabled in the randomizer pool
+        randomizer_pool = {weapon: {skin: {'display_name': skin_data['display_name'], 'levels': {level: level_data for level,level_data in skin_data['levels'].items() if level_data['enabled']}, 'chromas': {chroma: chroma_data for chroma,chroma_data in skin_data['chromas'].items() if chroma_data['enabled']}} for skin,skin_data in weapon_data['skins'].items() if skin_data['enabled']} for weapon,weapon_data in all_skins.items()}
 
-        gun_pool = manager.fetch_gun_pool()
-        for i in loadout['Guns']:
-            weapon_uuid = i['ID']
+        for weapon in loadout['Guns']:
+            weapon_data = randomizer_pool[weapon['ID']]
 
-            weapon_data = manager.fetch_weapon_data(weapon_uuid,weapon_datas)
-            weapon_name = weapon_data['displayName']
+            # if data is blank just leave skin as is
+            if weapon_data != {}:
+                random_index = random.randrange(0,len(weapon_data)) # pick a random skin from the set
 
-            skins = gun_pool[weapon_uuid] # find valid skins by weapon uuid
-            amount = len(skins) # determine how many skins there are for a weapon
-            if amount != 0:
-                choice = list(skins)[random.randrange(0,amount)] # pick a random skin from the set
-                skin = skins[choice] # get skin info
+                skin = weapon_data[list(weapon_data.keys())[random_index]] 
+
+                level_index = random.randrange(0,len(skin['levels']))
+                chroma_index = random.randrange(0,len(skin['chromas'])) if len(skin['chromas']) > 0 else 0
                 
-                level = list(skin['levels'])[random.randrange(0,len(skin['levels']))]
-                chroma = list(skin['chromas'])[random.randrange(0,len(skin['chromas']))]
-
-                i['SkinID'] = skin['uuid']
-                i['SkinLevelID'] = skin['levels'][level] 
-                i['ChromaID'] = skin['chromas'][chroma]
-
+                weapon['SkinID'] = list(weapon_data.keys())[random_index]
+                weapon['SkinLevelID'] = list(skin['levels'].keys())[level_index]
+                weapon['ChromaID'] = list(skin['chromas'].keys())[chroma_index]
+            
         new = manager.put_loadout(loadout=loadout)
+        
+        cprint("randomized skins", "green", attrs=["bold"])

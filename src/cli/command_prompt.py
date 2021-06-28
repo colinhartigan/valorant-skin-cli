@@ -2,14 +2,14 @@
 from termcolor import colored, cprint
 import sys
 import os
+from InquirerPy import prompt,inquirer
+from InquirerPy.separator import Separator
 
 from ..utility.config_manager import Config
 
-from ..flair_management.skin_manager.skin_manager import Skin_Manager
-#from ..flair_management.skin_manager.skin_loader import Loader
+from ..flair_loader.skin_editor import Editor
 
-from ..flair_management.title_manager.title_manager import Title_Manager
-from ..flair_management.card_manager.card_manager import Card_Manager
+from ..flair_management.skin_manager.skin_manager import Skin_Manager
 
 from ..core_game.session import Session
 
@@ -18,8 +18,6 @@ from .commands.autolocker_config import Autolocker_Config
 from .commands.select import Select
 from .commands.lock import Lock
 from .commands.set_skin import Set_Skin
-from .commands.set_title import Set_Title
-from .commands.set_card import Set_Card
 from .commands.help import Help
 from .commands.loadout import Loadout
 from .commands.test import Test
@@ -31,9 +29,6 @@ class Prompt:
 
         self.skin_manager = Skin_Manager(client)
         self.gun_pool = self.skin_manager.fetch_gun_pool()
-
-        self.title_manager = Title_Manager(client)
-        self.card_manager = Card_Manager(client)
 
         self.session = Session(client,self.skin_manager)
 
@@ -107,25 +102,12 @@ class Prompt:
                     Autolocker_Config(command,Config,Session)
                     listener = "success"
 
-                if command[0] == "title":
-                    Set_Title(command,self.title_manager)
-                    listener = "success"
-
-                if command[0] == "card":
-                    Set_Card(command,self.card_manager)
-                    listener = "success"
-
                 if command[0] == "loadout":
                     Loadout(self.skin_manager)
                     listener = "success"
 
-                if command[0] == "setup":
-                    Loader.generate_skin_list()
-                    Loader.generate_skin_datas()
-                    listener = "success"
-
                 if command[0] == "modify":
-                    Loader.generate_skin_datas()
+                    Editor.select_weapon()
                     listener = "success"
 
                 if command[0] == "set":

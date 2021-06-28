@@ -107,7 +107,7 @@ class Loader:
                                         }
                                         cprint(f"[{skin['displayName']}] found new chroma data ({Loader.sanitize_chroma_name(skin,chroma['displayName'],weapon['displayName'])})","cyan")
 
-                        if chroma["displayName"] == skin["displayName"]:
+                        if chroma["displayName"] == skin["displayName"] or chroma["displayName"] == None:
                             if chroma_already_exists:
                                 weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"][chroma["uuid"]]
                             else:
@@ -115,6 +115,7 @@ class Loader:
                                     "display_name": Loader.sanitize_chroma_name(skin,chroma["displayName"],weapon["displayName"]),
                                     "enabled": False
                                 }
+
 
                     # enable base level/chroma
                     if len(weapon_data["skins"][skin_uuid]["chromas"]) >= 1:
