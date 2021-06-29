@@ -1,2 +1,2 @@
-# valorant command line interface
- manage skins and some other utility stuffs
+# valorant skin command line interface
+ manage skins
