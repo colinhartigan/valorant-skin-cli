@@ -6,7 +6,7 @@ from ..content.coregame_content import Coregame_Content
 
 class Session:
     '''
-    this one's in charge of activating session-related tasks such as instalocking, skin randomizing after match, etc.
+    this one's in charge of activating session-related tasks
     '''
 
     def __init__(self,client,manager):
