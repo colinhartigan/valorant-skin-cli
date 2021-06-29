@@ -15,6 +15,7 @@ from ..core_game.session import Session
 
 #command imports 
 from .completer_generator import Completer
+from .validator import Command_Validator
 from .commands import (loadout)
 
 class Prompt: 
@@ -40,18 +41,23 @@ class Prompt:
                 message="",
                 qmark=">",
                 completer=self.commands,
-                validate=lambda result: result.split()[0].strip() in list(self.commands.keys()),
-                transformer=lambda result: result.split()[0].strip(),
-                filter = lambda result: result.strip(),
+                validate=Command_Validator(),
+                transformer=lambda result: result.replace("-"," "),
+                filter=lambda result: [i.strip() for i in result.split()],
                 multicolumn_complete=True,
+                invalid_message="invalid command"
             ).execute()
+            print(command)
 
-            if command == "randomize":
+            if command[0] == "randomize":
                 self.skin_manager.randomize_skins()
                 loadout.Loadout(self.skin_manager)
 
-            if command == "modify":
+            if command[0] == "modify":
                 Editor.select_weapon_type()
+
+            if command[0] == "set":
+                pass
             
 
 
