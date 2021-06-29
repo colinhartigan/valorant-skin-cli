@@ -22,7 +22,10 @@ class Loader:
 
     @staticmethod 
     def fetch_content_tier(tiers,uuid):
-        tier_indicies = {
+        '''
+        define skin tier indices for sorting skins
+        '''
+        tier_indices = {
             "Standard": 0,
             "Battlepass": 1,
             "Select": 2,
@@ -35,19 +38,19 @@ class Loader:
         if uuid != "standard" and uuid != "bp":
             for tier in tiers:
                 if tier["uuid"] == uuid:
-                    tier["index"] = tier_indicies[tier["devName"]]
+                    tier["index"] = tier_indices[tier["devName"]]
                     return tier
         elif uuid == "standard":
             return {
                 "devName": "Standard",
                 "highlightColor": "474747",
-                "index": tier_indicies["Standard"]
+                "index": tier_indices["Standard"]
             }
         elif uuid == "bp":
             return {
                 "devName": "Battlepass",
                 "highlightColor": "66C3A9",
-                "index": tier_indicies["Battlepass"]
+                "index": tier_indices["Battlepass"]
             }          
 
     @staticmethod 

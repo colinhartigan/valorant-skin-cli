@@ -51,7 +51,7 @@ class Prompt:
                 loadout.Loadout(self.skin_manager)
 
             if command == "modify":
-                Editor.select_weapon()
+                Editor.select_weapon_type()
             
 
 

@@ -8,46 +8,45 @@ from InquirerPy.separator import Separator
 from .skin_loader import Loader
 
 class Editor:
-
+    '''
+    this flows through 4 stages
+    weapon type -> weapon -> skins -> skin preferences
+    '''
     @staticmethod 
     def select_weapon_type():
         skin_data = Loader.fetch_skin_data()
 
         type_choices = [
-            {
-                "name":"Sidearms",
-                "value":"Sidearm"
-            },
-            {
-                "name":"SMGs",
-                "value":"SMG"
-            },
-            {
-                "name":"Shotguns",
-                "value":"Shotgun"
-            },
-            {
-                "name":"Rifles",
-                "value":"Rifle"
-            },
-            {
-                "name":"Sniper Rifles",
-                "value":"Sniper"
-            },
-            {
-                "name":"Machine Guns",
-                "value":"Heavy"
-            }
+            {"name":"exit","value":"exit"},
+            {"name":"Sidearms","value":"Sidearm"},
+            {"name":"SMGs","value":"SMG"},
+            {"name":"Shotguns","value":"Shotgun"},
+            {"name":"Rifles","value":"Rifle"},
+            {"name":"Sniper Rifles","value":"Sniper"},
+            {"name":"Machine Guns","value":"Heavy"},
+            {"name":"Melee","value":"Melee"}
         ]
+        type_choice = inquirer.select( 
+            message = 'select a weapon type',
+            choices = type_choices,
+            height = "100%",
+        )
+        type_choice = type_choice.execute()
 
+        if type_choice == "exit":
+            print("exit") 
+            return 
+        elif type_choice == "Melee":
+            Editor.select_skin(skin_data,"2f59173c-4bed-b6c3-2191-dea9b58be9c7")
+        else:
+            Editor.select_weapon(skin_data,type_choice)
+
+        
     @staticmethod
     def select_weapon(skin_data,weapon_type):
-        skin_data = Loader.fetch_skin_data()
 
-        weapon_count = len(skin_data.keys())
-
-        weapon_choices = [{"name":f"{data['display_name']} ({len(data['skins'])} skins, {len([skin for skin in data['skins'].keys() if data['skins'][skin]['enabled']])} enabled)","value":uuid} for uuid,data in skin_data.items()]
-        weapon_choices.insert(0,{"name":"exit","value":"exit"})
+        weapon_choices = [{"name":f"{data['display_name']} ({len(data['skins'])} skins, {len([skin for skin in data['skins'].keys() if data['skins'][skin]['enabled']])} enabled)","value":uuid} for uuid,data in skin_data.items() if data['weapon_type'] == weapon_type]
+        weapon_choices.insert(0,{"name":"back","value":"back"})
 
         weapon_choice = inquirer.select( 
             message = 'select a weapon to view the skins of',
@@ -56,7 +55,8 @@ class Editor:
         )
         weapon_choice = weapon_choice.execute()
 
-        if weapon_choice == "exit":
+        if weapon_choice == "back":
+            Editor.select_weapon_type()
             return
         
         Editor.select_skin(skin_data,weapon_choice)
@@ -85,7 +85,10 @@ class Editor:
         ).execute()
 
         if skin_choice == "back":
-            Editor.select_weapon()
+            if weapon_data['display_name'] == "Melee":
+                Editor.select_weapon_type()
+            else:
+                Editor.select_weapon(skin_data,weapon_data['weapon_type'])
             return
 
         weapon_skin_data = weapon_data['skins'][skin_choice]
@@ -139,10 +142,9 @@ class Editor:
                     skin_data['chromas'][preference.removeprefix('chroma_')]['enabled'] = True
 
             if preference == "skin_enabled":
-                print('enable')
                 skin_data['enabled'] = True 
 
-        # check if any have 0 chromas/levels enabled
+        # check if any have 0 chromas/levels enabled then enable the top level
         enabled_levels = [level for _,level in skin_data['levels'].items() if level['enabled']]
         enabled_chromas = [chroma for _,chroma in skin_data['chromas'].items() if chroma['enabled']]
 

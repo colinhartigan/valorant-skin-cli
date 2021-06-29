@@ -1,7 +1,6 @@
 import asyncio
 
 from .async_tasks.randomize import Randomizer
-from .async_tasks.autolock import Autolocker
 
 from ..content.coregame_content import Coregame_Content
 
@@ -29,10 +28,6 @@ class Session:
         if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
             Randomizer(self.skin_manager)
 
-    async def autolocker_check(self):
-        if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "MENUS" and self.presence["sessionLoopState"] == "PREGAME"):
-            autolocker = Autolocker(self.client)
-            await autolocker.run()
 
     async def update_presence(self):
         self.previous_presence = self.presence 
