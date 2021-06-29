@@ -10,7 +10,7 @@ class Randomize:
         all_skins = Loader.fetch_skin_data()
 
         # this spawn of satan creates a streamlined dict of weapons enabled in the randomizer pool
-        randomizer_pool = {weapon: {skin: {'display_name': skin_data['display_name'], 'levels': {level: level_data for level,level_data in skin_data['levels'].items() if level_data['enabled']}, 'chromas': {chroma: chroma_data for chroma,chroma_data in skin_data['chromas'].items() if chroma_data['enabled']}} for skin,skin_data in weapon_data['skins'].items() if skin_data['enabled']} for weapon,weapon_data in all_skins.items()}
+        randomizer_pool = {weapon: {skin: {'levels': {level: level_data for level,level_data in skin_data['levels'].items() if level_data['enabled']}, 'chromas': {chroma: chroma_data for chroma,chroma_data in skin_data['chromas'].items() if chroma_data['enabled']}} for skin,skin_data in weapon_data['skins'].items() if skin_data['enabled']} for weapon,weapon_data in all_skins.items()}
 
         for weapon in loadout['Guns']:
             weapon_data = randomizer_pool[weapon['ID']]
@@ -27,7 +27,10 @@ class Randomize:
                 weapon['SkinID'] = list(weapon_data.keys())[random_index]
                 weapon['SkinLevelID'] = list(skin['levels'].keys())[level_index]
                 weapon['ChromaID'] = list(skin['chromas'].keys())[chroma_index]
+            else:
+                cprint(f"[!] {all_skins[weapon['ID']]['display_name']} has no skins in the randomizer pool, using currently equipped skin", "yellow")
             
         new = manager.put_loadout(loadout=loadout)
         
         cprint("randomized skins", "green", attrs=["bold"])
+        

@@ -11,8 +11,7 @@ from src.flair_loader.skin_loader import Loader
 
 '''
 TODO:
-- spray randomizer extension for loadout randomizer
-- add override for some skins that dont get recognized with chromas (prime axe)
+- buddy randomizer (pretty much copy the skin randomizer stuff but with buddies)
 
 - launch with valorant
 - taskbar icon

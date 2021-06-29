@@ -9,8 +9,39 @@ from .skin_loader import Loader
 
 class Editor:
 
+    @staticmethod 
+    def select_weapon_type():
+        skin_data = Loader.fetch_skin_data()
+
+        type_choices = [
+            {
+                "name":"Sidearms",
+                "value":"Sidearm"
+            },
+            {
+                "name":"SMGs",
+                "value":"SMG"
+            },
+            {
+                "name":"Shotguns",
+                "value":"Shotgun"
+            },
+            {
+                "name":"Rifles",
+                "value":"Rifle"
+            },
+            {
+                "name":"Sniper Rifles",
+                "value":"Sniper"
+            },
+            {
+                "name":"Machine Guns",
+                "value":"Heavy"
+            }
+        ]
+
     @staticmethod
-    def select_weapon():
+    def select_weapon(skin_data,weapon_type):
         skin_data = Loader.fetch_skin_data()
 
         weapon_count = len(skin_data.keys())
@@ -33,10 +64,18 @@ class Editor:
 
     @staticmethod 
     def select_skin(skin_data,weapon_choice):
-
+        tier_aliases = {
+            "Deluxe": "DLX",
+            "Exclusive": "EXC",
+            "Premium": "PRE",
+            "Select": "SEL",
+            "Ultra": "ULT",
+            "Battlepass": "BTP",
+            "Standard": "STD"
+        }
         weapon_data = skin_data[weapon_choice]
 
-        skin_choices = [{"name":f"{'☑' if data['enabled'] else '☒'} {data['display_name']} ({len(data['levels'])} levels, {len(data['chromas'])} chromas)","value":uuid} for uuid,data in weapon_data['skins'].items()]
+        skin_choices = [{"name":f"{'☑' if data['enabled'] else '☒'} [{tier_aliases[data['tier']['display_name']]}] {data['display_name']} ({len(data['levels'])} levels, {len(data['chromas'])} chromas)","value":uuid} for uuid,data in weapon_data['skins'].items()]
         skin_choices.insert(0,{"name":"back","value":"back"})
 
         skin_choice = inquirer.select(
@@ -102,5 +141,15 @@ class Editor:
             if preference == "skin_enabled":
                 print('enable')
                 skin_data['enabled'] = True 
+
+        # check if any have 0 chromas/levels enabled
+        enabled_levels = [level for _,level in skin_data['levels'].items() if level['enabled']]
+        enabled_chromas = [chroma for _,chroma in skin_data['chromas'].items() if chroma['enabled']]
+
+        if len(enabled_levels) == 0:
+            skin_data['levels'][list(skin_data['levels'].keys())[-1]]['enabled'] = True 
+        
+        if len(enabled_chromas) == 0:
+            skin_data['chromas'][list(skin_data['chromas'].keys())[-1]]['enabled'] = True 
 
         return skin_data

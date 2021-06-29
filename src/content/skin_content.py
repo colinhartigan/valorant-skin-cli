@@ -45,3 +45,8 @@ class Skin_Content:
     def fetch_level_by_id(uuid):
         skin = Skin_Content.fetch(endpoint=f"/weapons/skinlevels/{uuid}")
         return skin['data']
+
+    @staticmethod 
+    def fetch_content_tiers():
+        tiers = Skin_Content.fetch(endpoint=f"/contenttiers")
+        return tiers["data"]

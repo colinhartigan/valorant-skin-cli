@@ -14,13 +14,8 @@ from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..core_game.session import Session
 
 #command imports 
-from .commands.autolocker_config import Autolocker_Config
-from .commands.select import Select
-from .commands.lock import Lock
-from .commands.set_skin import Set_Skin
-from .commands.help import Help
-from .commands.loadout import Loadout
-from .commands.test import Test
+from .completer_generator import Completer
+from .commands import (loadout)
 
 class Prompt: 
 
@@ -35,36 +30,33 @@ class Prompt:
         # configuration stuffs
         self.auto_randomize = False
 
-        self.help_data = {
-            "set":{
-                "desc":"set a gun's skin/level/chroma",
-                "params":{
-                    "[weapon_name]":"weapon's name (knife = melee)",
-                    "[skin_name]":"skinline's name (reaver, prime)",
-                    "(level_name)":"skin's upgrade level (defaults to 1)",
-                    "(chroma_name)":"skin's chroma level (ex. 'blue', 'red'; defaults to Base)"
-                },
-                "bottom":"example: 'set vandal reaver 4 white'"
-            },
-            "help":{
-                "desc":"overview of all commands",
-                "commands":{
-                    "help":"get this menu",
-                    "set":"set a weapon's skin",
-                    "randomize":"randomize each weapon's skin from the gun pool",
-                    "loadout":"get the active skin loadout"
-                },
-                "bottom":"run 'setup' to set up your skin collection"
-            },
-            "loadout":{
-                "desc":"get the active skin loadout",
-            },
-            "randomize":{
-                "desc":"randomize your equipped skins",
-            }
-        }
+        self.commands = Completer.generate_completer_dict()
+
+    def main_loop(self):
+        command = ""
+
+        while command != "exit":
+            command = inquirer.text(
+                message="",
+                qmark=">",
+                completer=self.commands,
+                validate=lambda result: result.split()[0].strip() in list(self.commands.keys()),
+                transformer=lambda result: result.split()[0].strip(),
+                filter = lambda result: result.strip(),
+                multicolumn_complete=True,
+            ).execute()
+
+            if command == "randomize":
+                self.skin_manager.randomize_skins()
+                loadout.Loadout(self.skin_manager)
+
+            if command == "modify":
+                Editor.select_weapon()
+            
 
 
+
+'''
     def main_loop(self):
         command = [""]
         cprint("VALORANT CLI - type 'help' for help",attrs=["bold","underline"])
@@ -128,3 +120,4 @@ class Prompt:
 
 
         sys.exit()
+'''
