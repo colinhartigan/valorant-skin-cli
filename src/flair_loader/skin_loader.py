@@ -137,7 +137,7 @@ class Loader:
                                     "enabled": False
                                 }
                                 cprint(f"[{skin['displayName']}] found new level data ({level['displayName']})","cyan")
-                        if level["displayName"] == skin["displayName"].replace("Standard ",""):
+                        if level is not None and level["displayName"] == skin["displayName"].replace("Standard ",""):
                             # if skin is standard
                             process_skin_level()
                         else:
