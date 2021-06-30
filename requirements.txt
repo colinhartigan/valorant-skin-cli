@@ -1,3 +1,4 @@
 valclient
+requests
 termcolor
 InquirerPy
