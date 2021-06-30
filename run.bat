@@ -1,1 +1,1 @@
-python D:\colin\programming\VALORANT\valorant-cli\main.py
+python.exe ./main.py

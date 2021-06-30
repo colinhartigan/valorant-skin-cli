@@ -1,6 +1,3 @@
 valclient
-requests
 termcolor
-json
-os
-random
+InquirerPy
