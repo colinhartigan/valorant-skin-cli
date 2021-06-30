@@ -7,7 +7,7 @@ full documentation coming soon, but just install the packages in `requirements.t
 
 # Commands
 - randomize - randomizes your skins manually (will still automatically happen after each match)
-- modify - modify the skins to be randomized (Use arrow keys and Enter to select)
+- modify - modify the skins to be randomized (use arrow keys and enter to select)
 - set - manually set a skin
 - exit
 
