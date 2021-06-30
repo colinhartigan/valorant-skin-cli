@@ -7,8 +7,9 @@
   - set refresh interval 
   - set region
   - reset/regen skin inventory
-- [ ] write docs
 - [ ] loadout command should print each gun with its skin tier level color instead of all green
+- [ ] write docs
+
 
 simple command line interface to manage valorant skins w/ a skin randomizer
 
