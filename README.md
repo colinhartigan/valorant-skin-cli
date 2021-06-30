@@ -4,7 +4,9 @@
 ## things left to do before v1 release
 - [ ] onboarding experience (set region, tutorial, etc)
 - [ ] config command
-  - asdf 
+  - set refresh interval 
+  - set region
+  - reset/regen skin inventory
 - [ ] write docs
 - [ ] loadout command should print each gun with its skin tier level color instead of all green
 
