@@ -18,7 +18,7 @@ class Skin_Manager:
     def put_loadout(self,loadout):
         return self.client.put_player_loadout(loadout=loadout)
 
-    def fetch_gun_pool(self):
+    def fetch_inventory_data(self):
         with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../data', 'skin_data.json'))) as f:
             gun_pool = json.load(f)
             return gun_pool

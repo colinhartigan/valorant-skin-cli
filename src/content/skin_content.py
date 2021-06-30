@@ -22,7 +22,7 @@ class Skin_Content:
         weapons = Skin_Content.fetch(endpoint="/weapons")["data"]
 
         for weapon in weapons:
-            if name in weapon['displayName'].lower():
+            if name.lower() in weapon['displayName'].lower():
                 return weapon
         return None
 

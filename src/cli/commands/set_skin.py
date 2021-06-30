@@ -1,66 +1,50 @@
 from termcolor import cprint
 
 class Set_Skin:
-    def __init__(self,command,manager,gun_pool):
+    def __init__(self,command,manager,inventory_data):
 
         # format: set weanpon_name skin_name level chroma
         if len(command) < 3:
             cprint("command missing required params", "red")
             return
         weapon_name = str(command[1])
-        skin_name = str(command[2])
+        skin_name = str(command[2]).replace("-"," ")
 
-        # check input
-        weapon = manager.fetch_weapon_by_name(weapon_name)
-        if weapon is not None:
-            weapon_skins = gun_pool[weapon['uuid']]
+        weapon_data = ()
+        skin_data = ()
+        level_data = ()
+        chroma_data = ()
+        for uuid,weapon in inventory_data.items():
+            if weapon["display_name"] == weapon_name:
+                weapon_data = (uuid,weapon) 
 
-            real_skin_name = ""
-            selected_skin = {}
-            selected_level = ()
-            selected_chroma = ()
+        for uuid,skin in weapon_data[1]["skins"].items():
+            if skin["display_name"] == skin_name:
+                skin_data = (uuid,skin)
 
-            for name, skin in weapon_skins.items():
-                if skin_name in name.lower():
-                    selected_skin = skin
-                    real_skin_name = name
-
-            try:
-                level_name = str(command[3])
-            except:
-                level_name,level_id = manager.fetch_max_level_for_skin(gun_pool,weapon['uuid'],selected_skin['uuid'])
-                cprint(f"no level provided, using default ({level_name})", "yellow")
-            try:
-                chroma_name = str(command[4])
-            except:
-                chroma_name,chroma_id = manager.fetch_default_chroma_for_skin(gun_pool,weapon['uuid'],selected_skin['uuid'])
-                cprint(f"no chroma provided, using default ({chroma_name})", "yellow")
-
-            if selected_skin != {}:
-                if len(selected_skin['levels']) >= 1:
-                    for level, uuid in selected_skin['levels'].items():
-                        if level_name.lower() in level.lower():
-                            selected_level = (level, uuid)
-                if selected_level == ():
-                    selected_level = manager.fetch_max_level_for_skin(gun_pool,weapon['uuid'],selected_skin['uuid'])
-                    cprint(f"invalid level provided, using default ({selected_level[0]})", "yellow")
-
-                if len(selected_skin['chromas']) >= 1:
-                    for name, uuid in selected_skin['chromas'].items():
-                        if chroma_name.lower() in name.lower():
-                            selected_chroma = (name, uuid)
-                if selected_chroma == ():
-                    selected_chroma = manager.fetch_default_chroma_for_skin(gun_pool,weapon['uuid'],selected_skin['uuid'])
-                    cprint(f"invalid chroma provided, using default ({selected_chroma[0]})", "yellow")
-
-                manager.modify_skin(
-                    weapon['uuid'], selected_skin['uuid'], selected_level[1], selected_chroma[1])
-
-                cprint(
-                    f"{weapon['displayName']} -> {real_skin_name} ({selected_level[0]}/{selected_chroma[0]})", "green", attrs=["bold"])
-
-            else:
-                cprint("invalid skin; do you have it in the gun pool?", "red")
-
+        if len(command) < 4:
+            # missing level
+            level_data = (list(skin_data[1]["levels"].keys())[-1],skin_data[1]["levels"][list(skin_data[1]["levels"].keys())[-1]])
+            if len(skin_data[1]["levels"]) > 1:
+                cprint(f"no level provided, using default ({level_data[1]['display_name']})", "yellow")
         else:
-            cprint("invalid weapon", "red")
+            level_name = command[3].replace("-"," ")
+            for uuid,level in skin_data[1]["levels"].items():
+                if level['display_name'] == level_name:
+                    level_data = (uuid,level)
+
+        if len(command) < 5:
+            # missing chroma
+            chroma_data = (list(skin_data[1]["chromas"].keys())[-1],skin_data[1]["chromas"][list(skin_data[1]["chromas"].keys())[-1]])
+            if len(skin_data[1]["chromas"]) > 1:
+                cprint(f"no chroma provided, using default ({chroma_data[1]['display_name']})", "yellow")
+        else:
+            chroma_name = command[4].replace("-"," ") 
+            for uuid,chroma in skin_data[1]["chromas"].items():
+                if chroma['display_name'] == chroma_name:
+                    chroma_data = (uuid,chroma)
+
+
+        manager.modify_skin(weapon_data[0], skin_data[0], level_data[0], chroma_data[0])
+        cprint(f"{weapon_data[1]['display_name']} -> {skin_data[1]['display_name']} ({level_data[1]['display_name']}/{chroma_data[1]['display_name']})", "green", attrs=["bold"])
+        

@@ -16,7 +16,7 @@ from ..core_game.session import Session
 #command imports 
 from .completer_generator import Completer
 from .validator import Command_Validator
-from .commands import (loadout)
+from .commands import (loadout,set_skin)
 
 class Prompt: 
 
@@ -24,7 +24,7 @@ class Prompt:
         self.client = client
 
         self.skin_manager = Skin_Manager(client)
-        self.gun_pool = self.skin_manager.fetch_gun_pool()
+        self.skin_data = self.skin_manager.fetch_inventory_data()
 
         self.session = Session(client,self.skin_manager)
 
@@ -47,7 +47,6 @@ class Prompt:
                 multicolumn_complete=True,
                 invalid_message="invalid command"
             ).execute()
-            print(command)
 
             if command[0] == "randomize":
                 self.skin_manager.randomize_skins()
@@ -57,7 +56,7 @@ class Prompt:
                 Editor.select_weapon_type()
 
             if command[0] == "set":
-                pass
+                set_skin.Set_Skin(command,self.skin_manager,self.skin_data)
             
 
 
