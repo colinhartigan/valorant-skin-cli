@@ -6,14 +6,9 @@ simple command line interface to manage valorant skins w/ a skin randomizer
 full documentation coming soon, but just install the packages in `requirements.txt` and run `main.py`
 
 # Commands
-Randomize - Randomizes your skins manually. 
-
-Modify - Modify the skins to be randomized (Use arrow keys and Enter to select).
-
-Set - Manually set a skin.
-
-Help
-
-Exit
+- randomize - randomizes your skins manually (will still automatically happen after each match)
+- modify - modify the skins to be randomized (Use arrow keys and Enter to select)
+- set - manually set a skin
+- exit
 
 
