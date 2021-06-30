@@ -57,6 +57,8 @@ class Prompt:
 
             if command[0] == "set":
                 set_skin.Set_Skin(command,self.skin_manager,self.skin_data)
+
+        sys.exit()
             
 
 
