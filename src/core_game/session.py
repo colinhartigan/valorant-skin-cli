@@ -1,4 +1,6 @@
 import asyncio
+import sys
+from termcolor import cprint
 
 from .async_tasks.randomize import Randomizer
 
@@ -25,8 +27,12 @@ class Session:
         return Coregame_Content.fetch_agent_by_name(name)
 
     async def randomizer_check(self):
-        if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
-            Randomizer(self.skin_manager)
+        try:
+            if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
+                Randomizer(self.skin_manager)
+        except:
+            cprint("VALORANT is no longer running, terminating thread!","red")
+            sys.exit()
 
 
     async def update_presence(self):

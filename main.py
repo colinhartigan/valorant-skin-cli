@@ -22,9 +22,6 @@ TODO:
 if __name__ == "__main__":
     config = Config.fetch_config()
 
-    if not config["meta"]["onboarding_completed"]:
-        Onboarder(client)
-
     region = config["region"].lower()
     client = Client(region=region)
     try:
@@ -32,6 +29,13 @@ if __name__ == "__main__":
     except Exception as e:
         cprint(f"unable to launch: {e}", "red", "on_white", attrs=["bold"])
         sys.exit()
+
+    if not config["meta"]["onboarding_completed"]:
+        Onboarder(client)
+        # reset the client if region changed during onboarding
+        config = Config.fetch_config()
+        client = Client(region=region)
+        client.hook()
 
     # load skin data
     Loader.generate_skin_data(client)

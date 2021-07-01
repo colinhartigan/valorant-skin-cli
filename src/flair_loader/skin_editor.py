@@ -27,9 +27,8 @@ class Editor:
             {"name":"Melee","value":"Melee"}
         ]
         type_choice = inquirer.select( 
-            message = 'select a weapon type',
+            message = '[randomizer pool editor] select a weapon type',
             choices = type_choices,
-            height = "100%",
         )
         type_choice = type_choice.execute()
 
@@ -48,9 +47,8 @@ class Editor:
         weapon_choices.insert(0,{"name":"back","value":"back"})
 
         weapon_choice = inquirer.select( 
-            message = 'select a weapon to view the skins of',
+            message = f"[{weapon_type}] select a weapon to view the skins of",
             choices = weapon_choices,
-            height = "100%",
         )
         weapon_choice = weapon_choice.execute()
 
@@ -78,9 +76,8 @@ class Editor:
         skin_choices.insert(0,{"name":"back","value":"back"})
 
         skin_choice = inquirer.select(
-            message = 'select a skin to modify',
+            message = f"[{weapon_data['display_name']}] select a skin to modify",
             choices = skin_choices,
-            height = "100%",
         ).execute()
 
         if skin_choice == "back":
@@ -119,7 +116,6 @@ class Editor:
         skin_preferences = inquirer.checkbox(
             message = f"modify skin preferences for {skin_data['display_name']}",
             choices = preferences,
-            height = "100%",
             instruction = '(space - toggle, enter - finish)'
         ).execute()
 
