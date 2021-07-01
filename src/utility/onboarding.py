@@ -47,6 +47,7 @@ class Onboarder:
  | |/ / __ |/ /__/ /_/ / , _/ __ |/    / / / /___(_-</  '_// / _ \/___/ __/ / / 
  |___/_/ |_/____/\____/_/|_/_/ |_/_/|_/ /_/     /___/_/\_\/_/_//_/    \__/_/_/  ''',"red",
         )
+        
         for item in self.procedure:
             returned = None
             cprint(item["text"],"green")
