@@ -9,6 +9,8 @@ from src.asynchronous.async_manager import Async_Manager
 from src.flair_loader.skin_editor import Editor
 from src.flair_loader.skin_loader import Loader
 
+from src.utility.config_manager import Config
+
 '''
 TODO:
 - buddy randomizer (pretty much copy the skin randomizer stuff but with buddies)
@@ -18,7 +20,9 @@ TODO:
 '''
 
 if __name__ == "__main__":
-    client = Client()
+    config = Config.fetch_config()
+    region = config["region"].lower()
+    client = Client(region=region)
     try:
         client.hook()
     except Exception as e:

@@ -34,7 +34,6 @@ class Editor:
         type_choice = type_choice.execute()
 
         if type_choice == "exit":
-            print("exit") 
             return 
         elif type_choice == "Melee":
             Editor.select_skin(skin_data,"2f59173c-4bed-b6c3-2191-dea9b58be9c7")

@@ -16,7 +16,7 @@ from ..core_game.session import Session
 #command imports 
 from .completer_generator import Completer
 from .validator import Command_Validator
-from .commands import (loadout,set_skin)
+from .commands import (loadout,set_skin,config)
 
 class Prompt: 
 
@@ -61,73 +61,7 @@ class Prompt:
             if command[0] == "loadout":
                 loadout.Loadout(self.skin_manager)
 
-        sys.exit()
-            
-
-
-
-'''
-    def main_loop(self):
-        command = [""]
-        cprint("VALORANT CLI - type 'help' for help",attrs=["bold","underline"])
-        
-        listener = "nope"
-
-        while command[0] != "exit":
-            while listener != "":
-                if listener != "success":
-                    cprint("press enter to type a command","yellow",attrs=["bold"])
-                else:
-                    print()
-                listener = input()
-                
-
-            while listener == "":
-                command = input("> ").split()
-                if command == []:
-                    command = [""]
-                    listener = "success"
-
-                if command[0] == "help":
-                    Help(command,self.help_data)
-                    listener = "success"
-
-                if command[0] == "select" or command[0] == "sel":
-                    Select(command,self.session,self.client)
-                    listener = "success"
-
-                if command[0] == "lock":
-                    Lock(command,self.session,self.client)
-                    listener = "success"
-
-                if command[0] == "autolock":
-                    Autolocker_Config(command,Config,Session)
-                    listener = "success"
-
-                if command[0] == "loadout":
-                    Loadout(self.skin_manager)
-                    listener = "success"
-
-                if command[0] == "modify":
-                    Editor.select_weapon()
-                    listener = "success"
-
-                if command[0] == "set":
-                    Set_Skin(command,self.skin_manager,self.gun_pool)
-                    listener = "success"
-                
-                if command[0] == "randomize":
-                    self.skin_manager.randomize_skins() 
-                    Loadout(self.skin_manager)
-                    listener = "success"
-
-                if command[0] == "exit":
-                    listener = "done"
-
-                if command[0] == "test":
-                    Test(self.client)
-                    listener = "success"
-
+            if command[0] == "config":
+                config.Config()
 
         sys.exit()
-'''

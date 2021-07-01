@@ -10,15 +10,16 @@ class Completer:
             "randomize": None,
             "modify": None,
             "loadout": None,
+            "config": None,
+            "set": {},
             "exit": None,
-            "set": {}
         }
 
+        # generate autocomplete for "set" command
         skin_data = Loader.fetch_skin_data()
+        weapons = {}
         
-        weapons = {
-
-        }
+        # im actually so happy this worked; made validation for setting skins SO easy to implement
         for uuid,weapon in skin_data.items():
             weapons[weapon['display_name']] = {
                skin['display_name'].replace(" ","-"): {
@@ -27,7 +28,7 @@ class Completer:
                    } for _,level in skin['levels'].items()
                } for _,skin in weapon['skins'].items()
             }
-
         data['set'] = weapons
+
 
         return data

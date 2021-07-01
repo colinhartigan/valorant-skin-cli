@@ -24,6 +24,7 @@ class Command_Validator(Validator):
                     )
                 valid = False
 
+                # who knew something so simple could make my life so easy
                 next_data = completer_data
                 for index in range(0,len(args)):
                     if args[index] in next_data.keys():
