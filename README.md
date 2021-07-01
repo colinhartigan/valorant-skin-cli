@@ -11,7 +11,6 @@ https://user-images.githubusercontent.com/42125428/124053877-05a45900-d9ef-11eb-
   - set refresh interval 
   - set region
   - ~~reset/regen skin inventory~~ (coming in a future update after v1 probably)
-- [ ] loadout command should print each gun with its skin tier level color instead of all green
 - [ ] write docs
 
 
