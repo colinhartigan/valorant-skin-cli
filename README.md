@@ -6,7 +6,7 @@
 - [x] [config command](https://github.com/colinhartigan/valorant-skin-cli/commit/973dee78becbfbda1c6f3cfd9f7e929f823ae8ec#diff-77765503b3f273fa49a93e1c5bfa59786213a26f2143d7a6ad75fbd2c38d5cd2)
   - set refresh interval 
   - set region
-  - reset/regen skin inventory
+  - reset/regen skin inventory (coming in a future update after v1 probably)
 - [ ] loadout command should print each gun with its skin tier level color instead of all green
 - [ ] write docs
 
