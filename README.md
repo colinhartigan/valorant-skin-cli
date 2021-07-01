@@ -3,7 +3,7 @@
 
 ## things left to do before v1 release
 - [ ] onboarding experience (set region, tutorial, etc)
-- [ ] config command
+- [x] config command
   - set refresh interval 
   - set region
   - reset/regen skin inventory
