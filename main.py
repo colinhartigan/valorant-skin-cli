@@ -10,10 +10,10 @@ from src.flair_loader.skin_editor import Editor
 from src.flair_loader.skin_loader import Loader
 
 from src.utility.config_manager import Config
+from src.utility.onboarding import Onboarder
 
 '''
 TODO:
-- buddy randomizer (pretty much copy the skin randomizer stuff but with buddies)
 
 - launch with valorant
 - taskbar icon
@@ -21,6 +21,10 @@ TODO:
 
 if __name__ == "__main__":
     config = Config.fetch_config()
+
+    if not config["meta"]["onboarding_completed"]:
+        Onboarder(client)
+
     region = config["region"].lower()
     client = Client(region=region)
     try:

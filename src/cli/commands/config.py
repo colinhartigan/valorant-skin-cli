@@ -12,10 +12,8 @@ class Config_Editor:
     # my friends made me listen to alvin and the chipmunks music while writing this so i apologize for how poorly its written
 
     def __init__(self):
-
-        self.regions = ["na","eu","latam","br","ap","kr"]
         self.config = app_config.fetch_config()
-
+        
         self.config_menu("main",self.config)
         
 
@@ -81,7 +79,8 @@ class Config_Editor:
             return choice
 
     @staticmethod
-    def set_region(regions,option):
+    def set_region(option):
+        regions = ["na","eu","latam","br","ap","kr"]
         choice = inquirer.select(
             message="select your region",
             choices=[{"name":region,"value":region} for region in regions],
