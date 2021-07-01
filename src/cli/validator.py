@@ -14,8 +14,10 @@ class Command_Validator(Validator):
                 cursor_position=len(document.text)
             )
         else:
+
             # validator overrides for more complex commands
             if command == "set":
+                # check if set command has required arguments which match expected inputs
                 completer_data = commands["set"]
                 if len(args) < 2:
                     raise ValidationError(

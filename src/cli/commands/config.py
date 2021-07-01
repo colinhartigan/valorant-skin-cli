@@ -7,7 +7,7 @@ from InquirerPy.separator import Separator
 
 from ...utility.config_manager import Config as app_config
 
-class Config:
+class Config_Editor:
 
     # my friends made me listen to alvin and the chipmunks music while writing this so i apologize for how poorly its written
 
@@ -49,13 +49,7 @@ class Config:
 
     def config_set(self,name,option): 
         if name == "region":
-            choice = inquirer.select(
-                message="select your region",
-                choices=[{"name":region,"value":region} for region in self.regions],
-                default=option
-            )
-            choice = choice.execute()
-            return choice
+            return Config_Editor.set_region(self.regions,option)
         
         if type(option) is str:
             choice = inquirer.text(
@@ -85,3 +79,13 @@ class Config:
             )
             choice = choice.execute()
             return choice
+
+    @staticmethod
+    def set_region(regions,option):
+        choice = inquirer.select(
+            message="select your region",
+            choices=[{"name":region,"value":region} for region in regions],
+            default=option
+        )
+        choice = choice.execute()
+        return choice

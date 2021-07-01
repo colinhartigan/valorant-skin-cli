@@ -62,6 +62,6 @@ class Prompt:
                 loadout.Loadout(self.skin_manager)
 
             if command[0] == "config":
-                config.Config()
+                config.Config_Editor()
 
         sys.exit()
