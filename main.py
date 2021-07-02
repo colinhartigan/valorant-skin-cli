@@ -20,6 +20,15 @@ TODO:
 '''
 
 if __name__ == "__main__":
+
+    cprint(
+'''     _   _____   __   ____  ___  ___   _  ________        __    _              ___ 
+    | | / / _ | / /  / __ \/ _ \/ _ | / |/ /_  __/______ / /__ (_)__  ________/ (_)
+    | |/ / __ |/ /__/ /_/ / , _/ __ |/    / / / /___(_-</  '_// / _ \/___/ __/ / / 
+    |___/_/ |_/____/\____/_/|_/_/ |_/_/|_/ /_/     /___/_/\_\/_/_//_/    \__/_/_/  
+''',"red",
+    )
+
     config = Config.fetch_config()
 
     region = config["region"].lower()
@@ -44,9 +53,7 @@ if __name__ == "__main__":
     async_thread = threading.Thread(target=loop.init_loop,daemon=True)
     async_thread.start()
 
-
     prompt = Prompt(client=client)
     cli_thread = threading.Thread(target=prompt.main_loop)
     cli_thread.start()
     cli_thread.join()
-

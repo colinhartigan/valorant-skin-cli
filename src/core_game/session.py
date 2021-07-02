@@ -22,10 +22,6 @@ class Session:
         self.presence = self.previous_presence
         self.ingame = False
 
-    @staticmethod
-    def fetch_agent_by_name(name):
-        return Coregame_Content.fetch_agent_by_name(name)
-
     async def randomizer_check(self):
         try:
             if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):

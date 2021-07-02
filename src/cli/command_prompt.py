@@ -37,9 +37,10 @@ class Prompt:
         command = ""
 
         while command != "exit":
+            
             command = inquirer.text(
-                message="",
-                qmark=">",
+                message=">",
+                qmark="",
                 completer=self.commands,
                 validate=Command_Validator(),
                 transformer=lambda result: result.replace("-"," "),

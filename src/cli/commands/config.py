@@ -47,7 +47,7 @@ class Config_Editor:
 
     def config_set(self,name,option): 
         if name == "region":
-            return Config_Editor.set_region(self.regions,option)
+            return Config_Editor.set_region(option)
         
         if type(option) is str:
             choice = inquirer.text(
