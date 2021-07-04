@@ -3,7 +3,8 @@ from .completer_generator import Completer
 
 class Command_Validator(Validator):
     
-    def validate(self, document):
+    @staticmethod
+    def validate(document):
         commands = Completer.generate_completer_dict()
         command = document.text.split()[0].strip()
         args = document.text.split()[1:]
