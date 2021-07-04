@@ -21,7 +21,7 @@
 
 
 ## Demo
-https://user-images.githubusercontent.com/42125428/124053877-05a45900-d9ef-11eb-9acc-fb71edfcc487.mp4
+https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-8cea-724e6150978f.mp4
 
 
 ## Installation and usage
