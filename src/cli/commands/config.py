@@ -1,29 +1,31 @@
-import json 
+import json
 import os
-from termcolor import cprint,colored
+from termcolor import cprint, colored
 
 from InquirerPy import inquirer
 from InquirerPy.separator import Separator
 
 from ...utility.config_manager import Config as app_config
 
+
 class Config_Editor:
 
-    # my friends made me listen to alvin and the chipmunks music while writing this so i apologize for how poorly its written
+    # my friends made me listen to alvin and the chipmunks music
+    # while writing this so i apologize for how poorly its written
 
     def __init__(self):
         self.config = app_config.fetch_config()
-        
-        self.config_menu("main",self.config)
-        
 
-    def config_menu(self,section,choices,callback=None,callback_args=None):
-        #recursion makes me want to die but its for a good cause
+        self.config_menu("main", self.config)
+
+    def config_menu(self, section, choices, callback=None, callback_args=None):
+        # recursion makes me want to die but its for a good cause
 
         prompt_choices = [
-            {"name":f"{setting}"+(f" ({value})" if not isinstance(value,dict) else " (>>)"),"value":setting} for setting,value in choices.items()
+            {"name": f"{setting}" + (f" ({value})" if not isinstance(value, dict) else " (>>)"), "value": setting} for
+            setting, value in choices.items()
         ]
-        prompt_choices.insert(0,{"name":"back","value":"back"})
+        prompt_choices.insert(0, {"name": "back", "value": "back"})
 
         choice = inquirer.select(
             message=f"[{section}] select a configuration option",
@@ -36,20 +38,21 @@ class Config_Editor:
                 callback(*callback_args)
             elif callback is None:
                 app_config.modify_config(self.config)
-                cprint("config saved!","green")
+                cprint("config saved!", "green")
                 return
         else:
-            if isinstance(choices[choice],dict):
-                self.config_menu(choice,choices[choice],callback=self.config_menu,callback_args=(section,choices,callback,callback_args))
+            if isinstance(choices[choice], dict):
+                self.config_menu(choice, choices[choice], callback=self.config_menu,
+                                 callback_args=(section, choices, callback, callback_args))
             else:
-                choices[choice] = self.config_set(choice,choices[choice])
-                self.config_menu(section,choices,callback,callback_args)
+                choices[choice] = self.config_set(choice, choices[choice])
+                self.config_menu(section, choices, callback, callback_args)
 
     @staticmethod
-    def config_set(name,option): 
+    def config_set(name, option):
         if name == "region":
             return Config_Editor.set_region(option)
-        
+
         if type(option) is str:
             choice = inquirer.text(
                 message=f"set value for {name} (expecting str)",
@@ -74,17 +77,17 @@ class Config_Editor:
             choice = inquirer.select(
                 message=f"set value for {name}",
                 default=option,
-                choices=[{"name":"true","value":True},{"name":"false","value":False}]
+                choices=[{"name": "true", "value": True}, {"name": "false", "value": False}]
             )
             choice = choice.execute()
             return choice
 
     @staticmethod
     def set_region(option):
-        regions = ["na","eu","latam","br","ap","kr"]
+        regions = ["na", "eu", "latam", "br", "ap", "kr"]
         choice = inquirer.select(
             message="select your region",
-            choices=[{"name":region,"value":region} for region in regions],
+            choices=[{"name": region, "value": region} for region in regions],
             default=option
         )
         choice = choice.execute()

@@ -62,7 +62,9 @@ class Loader:
         all_weapon_content = Skin_Content.fetch_weapon_datas()
 
         existing_skin_data = {}
-        # check integrity of existing skin data and/or if it exists, if not, start new data
+        # check integrity of existing skin data and/or if it exists
+        # if not, start new data
+
         try:
             existing_skin_data = Loader.fetch_skin_data()
         except:
