@@ -125,7 +125,10 @@ class Loader:
                     }
 
                     for level in skin["levels"]:
-                        level_already_exists = skin_previously_owned and level["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
+                        try:
+                           level_already_exists = skin_previously_owned and level["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
+                        except:
+                           level_already_exists = None
 
                         def process_skin_level():
                             if level_already_exists:
