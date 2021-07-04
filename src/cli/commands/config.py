@@ -45,7 +45,8 @@ class Config_Editor:
                 choices[choice] = self.config_set(choice,choices[choice])
                 self.config_menu(section,choices,callback,callback_args)
 
-    def config_set(self,name,option): 
+    @staticmethod
+    def config_set(name,option): 
         if name == "region":
             return Config_Editor.set_region(option)
         
