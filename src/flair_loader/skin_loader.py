@@ -23,9 +23,9 @@ class Loader:
 
     @staticmethod
     def fetch_content_tier(tiers, uuid):
-        '''
-        define skin tier indices for sorting skins
-        '''
+
+        # define skin tier indices for sorting skins
+
         tier_indices = {
             "Standard": 0,
             "Battlepass": 1,
@@ -98,10 +98,9 @@ class Loader:
 
                 for level in skin["levels"]:
                     for entitlement in skin_level_entitlements["Entitlements"]:
-                        if level is not None:
-                            if entitlement["ItemID"] == level["uuid"]:
-                                skin_owned = True
-                                break
+                        if level is not None and entitlement["ItemID"] == level["uuid"]:
+                            skin_owned = True
+                            break
 
                 if "Standard" in skin["displayName"]:
                     # enable if base skin
@@ -136,7 +135,7 @@ class Loader:
                         def process_skin_level():
                             if level_already_exists:
                                 weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = \
-                                existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"][level["uuid"]]
+                                    existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"][level["uuid"]]
 
                             else:
                                 weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = {
@@ -157,9 +156,8 @@ class Loader:
                             process_skin_level()
                         else:
                             for entitlement in skin_level_entitlements["Entitlements"]:
-                                if level is not None:
-                                    if entitlement["ItemID"] == level["uuid"]:
-                                        process_skin_level()
+                                if level is not None and entitlement["ItemID"] == level["uuid"]:
+                                    process_skin_level()
 
                     for chroma in skin["chromas"]:
                         chroma_already_exists = skin_previously_owned and chroma["uuid"] in \
@@ -168,7 +166,7 @@ class Loader:
                         def process_chroma():
                             if chroma_already_exists:
                                 weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = \
-                                existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"][chroma["uuid"]]
+                                    existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"][chroma["uuid"]]
                             else:
                                 weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = {
                                     "display_name": Loader.sanitize_chroma_name(skin, chroma["displayName"],
@@ -185,9 +183,8 @@ class Loader:
                             process_chroma()
                         else:
                             for entitlement in skin_chroma_entitlements["Entitlements"]:
-                                if chroma is not None:
-                                    if entitlement["ItemID"] == chroma["uuid"]:
-                                        process_chroma()
+                                if chroma is not None and entitlement["ItemID"] == chroma["uuid"]:
+                                    process_chroma()
 
                     # enable base level/chroma
                     # print(weapon_data["skins"][skin_uuid])
