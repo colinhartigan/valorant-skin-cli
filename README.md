@@ -1,27 +1,27 @@
 <h1 align="center">Valorant skin manager CLI</h1>
 
-> Simple command line interface to manage Valorant skins with a skin randomizer
+> simple command line interface to manage valorant skins w/ a skin randomizer
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![GitHub License](https://img.shields.io/github/license/colinhartigan/valorant-skin-cli)](https://github.com/colinhartigan/valorant-skin-cli/blob/master/LICENSE)
-[![Discord](https://img.shields.io/badge/discord-join-7389D8?style=flat&logo=discord)](https://discord.gg/uGuswsZwAT)
-[![GitHub issues](https://img.shields.io/github/issues/colinhartigan/valorant-skin-cli)](https://github.com/colinhartigan/valorant-skin-cli/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/colinhartigan/valorant-skin-cli)](https://github.com/colinhartigan/valorant-skin-cli/pulls)
+![GitHub](https://img.shields.io/github/license/colinhartigan/valorant-skin-cli)
+[![Discord](https://img.shields.io/badge/discord-join-7389D8?style=flat&logo=discord)](discord.gg/uGuswsZwAT)
+
+![GitHub issues](https://img.shields.io/github/issues/colinhartigan/valorant-skin-cli)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/colinhartigan/valorant-skin-cli)
 ![GitHub Repo stars](https://img.shields.io/github/stars/colinhartigan/valorant-skin-cli?style=social)
-[![BetterREADME Verified](https://img.shields.io/badge/BetterREADME-Verified-grey?logo=github&labelColor=white&logoColor=grey)](https://github.com/better-readme)
 
 
 ### Table of Contents
 1. [Demo](#demo)
 2. [Installation and usage](#installation-and-usage)
-3. [FAQ: Ban or no ban?](#am-i-getting-banned)
+3. [FAQ: Ban or no ban?](#am-i-getting-banned?)
 4. [TODOs](#todos)
 5. [Dependencies](#dependencies)
 6. [Contribute](#contribute)
 
 
 ## Demo
-https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-8cea-724e6150978f.mp4
+https://user-images.githubusercontent.com/42125428/124053877-05a45900-d9ef-11eb-9acc-fb71edfcc487.mp4
 
 
 ## Installation and usage
@@ -46,7 +46,7 @@ The following commands are available for usage
 - `exit` - Self explanatory
 
 
-## Am I Getting Banned
+## Am I Getting Banned?
 Riot Dev confirmed:
 > Using the client API to modify loadouts does not seem ban worthy. The client API isn't officially supported for third party use, so don't expect future compatibility.
 

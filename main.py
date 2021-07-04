@@ -12,13 +12,22 @@ from src.flair_loader.skin_loader import Loader
 from src.utility.config_manager import Config
 from src.utility.onboarding import Onboarder
 
+'''
+TODO:
 
-# TODO:
-# - launch with valorant
-# - taskbar icon
-
+- launch with valorant
+- taskbar icon
+'''
 
 if __name__ == "__main__":
+
+    cprint(
+'''     _   _____   __   ____  ___  ___   _  ________        __    _              ___ 
+    | | / / _ | / /  / __ \/ _ \/ _ | / |/ /_  __/______ / /__ (_)__  ________/ (_)
+    | |/ / __ |/ /__/ /_/ / , _/ __ |/    / / / /___(_-</  '_// / _ \/___/ __/ / / 
+    |___/_/ |_/____/\____/_/|_/_/ |_/_/|_/ /_/     /___/_/\_\/_/_//_/    \__/_/_/  
+''',"red",
+    )
 
     config = Config.fetch_config()
 
