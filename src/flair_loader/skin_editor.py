@@ -5,7 +5,7 @@ from termcolor import cprint, colored
 from InquirerPy import prompt, inquirer
 from InquirerPy.separator import Separator
 
-from skin_loader import Loader
+from .skin_loader import Loader
 
 
 class Editor:
