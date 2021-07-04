@@ -12,12 +12,11 @@ from src.flair_loader.skin_loader import Loader
 from src.utility.config_manager import Config
 from src.utility.onboarding import Onboarder
 
-'''
-TODO:
 
-- launch with valorant
-- taskbar icon
-'''
+# TODO:
+# - launch with valorant
+# - taskbar icon
+
 
 if __name__ == "__main__":
 

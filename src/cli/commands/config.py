@@ -60,7 +60,7 @@ class Config_Editor:
             choice = choice.execute()
             return choice
 
-        elif type(option) is int:
+        if type(option) is int:
             choice = inquirer.text(
                 message=f"set value for {name} (expecting int)",
                 default=str(option),
@@ -70,7 +70,7 @@ class Config_Editor:
             choice = choice.execute()
             return choice
 
-        elif type(option) is bool:
+        if type(option) is bool:
             choice = inquirer.select(
                 message=f"set value for {name}",
                 default=option,
