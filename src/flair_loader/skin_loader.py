@@ -161,7 +161,7 @@ class Loader:
 
                         if chroma["displayName"] == skin["displayName"].replace("Standard ",""):
                             process_chroma()
-                        elif chroma["displayName"] == skin["displayName"] or chroma["displayName"] == None:
+                        elif chroma["displayName"] == skin["displayName"] or chroma["displayName"] is None:
                             process_chroma()
                         else:
                             for entitlement in skin_chroma_entitlements["Entitlements"]:
