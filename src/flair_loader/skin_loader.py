@@ -1,6 +1,6 @@
 import json
 import os
-from termcolor import cprint
+from InquirerPy.utils import color_print
 
 from ..content.skin_content import Skin_Content
 from ..entitlements.entitlement_manager import Entitlement_Manager
@@ -68,13 +68,13 @@ class Loader:
         try:
             existing_skin_data = Loader.fetch_skin_data()
         except:
-            cprint("[!] integrity check of skin data file failed; generating fresh data", "yellow", attrs=["bold"])
+            color_print([("Yellow bold","[!] integrity check of skin data file failed; generating fresh data")])
             existing_skin_data = Loader.generate_blank_skin_file()
 
         new_skin_data = {}
 
         for weapon in all_weapon_content:
-            # cprint(f"[{weapon['displayName']}] generating skin data","green",attrs=["bold"])
+            # color_print([((f"[{weapon['displayName']}] generating skin data","green",attrs=["bold"])
 
             weapon_uuid = weapon["uuid"]
             weapon_data = {
@@ -115,12 +115,11 @@ class Loader:
                 if skin_owned:
 
                     if not skin_previously_owned:
-                        cprint(f"[{weapon['displayName']}] new skin found -> {skin['displayName']}", "blue")
+                        color_print([("#00b0ff",f"[{weapon['displayName']}] new skin found -> {skin['displayName']}")])
 
                     weapon_data["skins"][skin_uuid] = {
                         "display_name": skin["displayName"],
-                        "enabled": False if not skin_previously_owned else
-                        existing_skin_data[weapon_uuid]["skins"][skin_uuid]['enabled'],
+                        "enabled": False if not skin_previously_owned else existing_skin_data[weapon_uuid]["skins"][skin_uuid]['enabled'],
                         "tier": {
                             "display_name": skin_tier_data["devName"],
                             "color": skin_tier_data["highlightColor"],
@@ -151,7 +150,7 @@ class Loader:
                                                                                                                      'displayName'] else ""),
                                     "enabled": False
                                 }
-                                cprint(f"[{skin['displayName']}] found new level data ({level['displayName']})", "cyan")
+                                color_print([("DarkBlue",f"[{skin['displayName']}] found new level data ({level['displayName']})")])
 
                         if level is not None and level["displayName"] == skin["displayName"].replace("Standard ", ""):
                             # if skin is standard
@@ -175,9 +174,7 @@ class Loader:
                                                                                 weapon["displayName"]),
                                     "enabled": False
                                 }
-                                cprint(
-                                    f"[{skin['displayName']}] found new chroma data ({Loader.sanitize_chroma_name(skin, chroma['displayName'], weapon['displayName'])})",
-                                    "cyan")
+                                color_print([("DarkBlue",f"[{skin['displayName']}] found new chroma data ({Loader.sanitize_chroma_name(skin, chroma['displayName'], weapon['displayName'])})")])
 
                         if chroma["displayName"] == skin["displayName"].replace("Standard ", ""):
                             process_chroma()
@@ -202,7 +199,7 @@ class Loader:
 
         with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'skin_data.json')), 'w') as f:
             json.dump(new_skin_data, f)
-            cprint("skins loaded!", "green", attrs=["bold"])
+            color_print([("Lime","skins loaded!")])
 
     @staticmethod
     def generate_blank_skin_file():

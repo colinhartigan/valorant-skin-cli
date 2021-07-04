@@ -1,5 +1,4 @@
-from termcolor import cprint
-from ...content.skin_content import Skin_Content
+from InquirerPy.utils import color_print
 from ...flair_loader.skin_loader import Loader
 import random
 
@@ -28,9 +27,9 @@ class Randomize:
                 weapon['SkinLevelID'] = list(skin['levels'].keys())[level_index]
                 weapon['ChromaID'] = list(skin['chromas'].keys())[chroma_index]
             else:
-                cprint(f"[!] {all_skins[weapon['ID']]['display_name']} has no skins in the randomizer pool, using currently equipped skin", "yellow")
+                color_print([("Yellow bold", f"[!] {all_skins[weapon['ID']]['display_name']} has no skins in the randomizer pool, using currently equipped skin")])
             
         new = manager.put_loadout(loadout=loadout)
         
-        cprint("randomized skins", "green", attrs=["bold"])
+        color_print([("Lime", "randomized skins")])
         

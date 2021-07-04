@@ -1,6 +1,6 @@
 import json
 import os
-from termcolor import cprint, colored
+from InquirerPy.utils import color_print
 
 from InquirerPy import inquirer
 from InquirerPy.separator import Separator
@@ -38,7 +38,7 @@ class Config_Editor:
                 callback(*callback_args)
             elif callback is None:
                 app_config.modify_config(self.config)
-                cprint("config saved!", "green")
+                color_print([("LimeGreen","config saved!")])
                 return
         else:
             if isinstance(choices[choice], dict):

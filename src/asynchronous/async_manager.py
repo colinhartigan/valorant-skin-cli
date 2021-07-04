@@ -1,4 +1,4 @@
-from termcolor import cprint
+from InquirerPy.utils import color_print
 import asyncio
 from time import sleep
 
@@ -15,7 +15,7 @@ class Async_Manager:
         self.coregame_manager = Coregame_Manager(self.client)
 
     def init_loop(self):
-        cprint("async thread running!","grey","on_white")
+        color_print([("LimeGreen","async thread running!")])
         self.loop.run_until_complete(self.main_loop())
 
     async def main_loop(self):

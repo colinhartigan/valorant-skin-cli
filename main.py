@@ -1,6 +1,6 @@
 from valclient.client import Client
 import threading
-from termcolor import cprint
+from InquirerPy.utils import color_print
 import sys
 
 from src.cli.command_prompt import Prompt
@@ -20,6 +20,14 @@ from src.utility.onboarding import Onboarder
 
 if __name__ == "__main__":
 
+    color_print([("Tomato",'''
+      _   _____   __   ____  ___  ___   _  ________        __    _              ___    
+     | | / / _ | / /  / __ \/ _ \/ _ | / |/ /_  __/______ / /__ (_)__  ________/ (_)   
+     | |/ / __ |/ /__/ /_/ / , _/ __ |/    / / / /___(_-</  '_// / _ \/___/ __/ / /    
+     |___/_/ |_/____/\____/_/|_/_/ |_/_/|_/ /_/     /___/_/\_\/_/_//_/    \__/_/_/     
+    ''')])
+
+
     config = Config.fetch_config()
 
     region = config["region"].lower()
@@ -27,7 +35,7 @@ if __name__ == "__main__":
     try:
         client.hook()
     except Exception as e:
-        cprint(f"unable to launch: {e}", "red", "on_white", attrs=["bold"])
+        color_print([("Tomato",f"unable to launch: {e}")])
         sys.exit()
 
     if not config["meta"]["onboarding_completed"]:

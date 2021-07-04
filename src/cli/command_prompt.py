@@ -1,6 +1,4 @@
-from termcolor import colored, cprint
 import sys
-import os
 from InquirerPy import prompt, inquirer
 from InquirerPy.separator import Separator
 
@@ -27,9 +25,6 @@ class Prompt:
         self.skin_data = self.skin_manager.fetch_inventory_data()
 
         self.session = Session(client, self.skin_manager)
-
-        # configuration stuffs
-        self.auto_randomize = False
 
         self.commands = Completer.generate_completer_dict()
 
