@@ -1,6 +1,5 @@
 import os 
 import json
-from termcolor import colored, cprint
 
 from ...utility.config_manager import Config
 from ...content.skin_content import Skin_Content
