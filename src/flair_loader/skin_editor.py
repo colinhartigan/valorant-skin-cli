@@ -105,8 +105,15 @@ class Editor:
         for uuid, skin in weapon_data["skins"].items():
             if not "Standard" in skin["display_name"]:
                 skin["enabled"] = not disable
+                # disable all levels except for max level
+                for uuid, level in skin["levels"].items():
+                    level["enabled"] = False
+                skin['levels'][list(skin['levels'].keys())[-1]]['enabled'] = True
+
                 for uuid, chroma in skin["chromas"].items():
                     chroma["enabled"] = not disable
+            
+            # make sure theres still at least 1 chroma enabled (on disable)
             enabled_chromas = [chroma for _, chroma in skin['chromas'].items() if chroma['enabled']]
             if len(enabled_chromas) == 0:
                 skin['chromas'][list(skin['chromas'].keys())[-1]]['enabled'] = True
