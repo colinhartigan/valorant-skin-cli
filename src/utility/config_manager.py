@@ -12,8 +12,7 @@ class Config:
                 config = json.load(f)
                 return config
         except:
-            color_print(
-                [("Yellow bold", f"[!] integrity check of config file failed; generating fresh config")])
+            #color_print([("Yellow bold", f"[!] integrity check of config file failed; generating fresh config")])
             return Config.create_blank_config()
 
     @staticmethod

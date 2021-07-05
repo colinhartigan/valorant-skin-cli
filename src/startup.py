@@ -15,6 +15,7 @@ class Startup:
 
     @staticmethod
     def run():
+        Startup.check_for_data_folder()
         config = Config.fetch_config()
 
         region = config["region"].lower()
@@ -43,3 +44,9 @@ class Startup:
         cli_thread = threading.Thread(target=prompt.main_loop)
         cli_thread.start()
         cli_thread.join()
+
+    @staticmethod 
+    def check_for_data_folder():
+        data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data'))
+        if not os.path.isdir(data_path):
+            os.makedirs(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')))

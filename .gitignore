@@ -1,5 +1,6 @@
 data/config.json 
 data/skin_data.json
+valorant-skin-cli.bat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
