@@ -1,6 +1,6 @@
 from re import L
 import time
-from InquirerPy import prompt,inquirer
+from InquirerPy import prompt, inquirer
 from InquirerPy.utils import color_print
 
 from .config_manager import Config as app_config
@@ -9,9 +9,10 @@ from ..cli.commands.config import Config_Editor
 from ..flair_loader.skin_loader import Loader
 from ..flair_loader.skin_editor import Editor
 
+
 class Onboarder:
 
-    def __init__(self,client):
+    def __init__(self, client):
         self.client = client
         self.config = app_config.fetch_config()
 
@@ -41,15 +42,15 @@ class Onboarder:
         self.run()
 
     def run(self):
-        
+
         for item in self.procedure:
             returned = None
-            color_print([("Green",item["text"])])
+            color_print([("Green", item["text"])])
             if item["args"] is not None:
                 returned = item["method"](item["args"])
             else:
                 returned = item["method"]()
-            
+
             if "callback" in item.keys():
                 item["callback"](returned)
 
@@ -57,6 +58,6 @@ class Onboarder:
         app_config.modify_config(self.config)
         color_print([("Lime bold", "onboarding completed!")])
 
-    def update_region(self,region):
+    def update_region(self, region):
         self.config["region"] = region
         app_config.modify_config(self.config)

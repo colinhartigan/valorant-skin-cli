@@ -1,5 +1,5 @@
-import json
 import os
+import sys
 from InquirerPy.utils import color_print
 
 from InquirerPy import inquirer
@@ -38,7 +38,8 @@ class Config_Editor:
                 callback(*callback_args)
             elif callback is None:
                 app_config.modify_config(self.config)
-                color_print([("LimeGreen","config saved!")])
+                color_print(
+                    [("LimeGreen", "config saved! restart the program if you changed your region...")])
                 return
         else:
             if isinstance(choices[choice], dict):
@@ -77,7 +78,8 @@ class Config_Editor:
             choice = inquirer.select(
                 message=f"set value for {name}",
                 default=option,
-                choices=[{"name": "true", "value": True}, {"name": "false", "value": False}]
+                choices=[{"name": "true", "value": True},
+                         {"name": "false", "value": False}]
             )
             choice = choice.execute()
             return choice
