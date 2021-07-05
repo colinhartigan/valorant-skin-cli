@@ -36,22 +36,6 @@ class Skin_Manager:
                 return i
 
     @staticmethod
-    def fetch_max_level_for_skin(gun_pool,weapon_uuid,skin_uuid):
-        for gun,data in gun_pool.items():
-            if gun == weapon_uuid:
-                for skin,skin_data in data.items():
-                    if skin_data["uuid"] == skin_uuid:
-                        return list(skin_data["levels"].items())[-1][0],list(skin_data["levels"].items())[-1][1]
-
-    @staticmethod
-    def fetch_default_chroma_for_skin(gun_pool,weapon_uuid,skin_uuid):
-        for gun,data in gun_pool.items():
-            if gun == weapon_uuid:
-                for skin,skin_data in data.items():
-                    if skin_data["uuid"] == skin_uuid:
-                        return list(skin_data["chromas"].items())[0][0],list(skin_data["chromas"].items())[0][1]
-
-    @staticmethod
     def fetch_weapon_by_name(name):
         return Skin_Content.fetch_weapon_by_name(name)
 
