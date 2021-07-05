@@ -9,12 +9,15 @@ from .utility.onboarding import Onboarder
 from .flair_loader.skin_loader import Loader
 from .asynchronous.async_manager import Async_Manager
 from .cli.command_prompt import Prompt
+from .utility.logging import Logger
 
 
 class Startup:
 
     @staticmethod
     def run():
+        Logger.create_logger()
+        
         Startup.check_for_data_folder()
         config = Config.fetch_config()
 

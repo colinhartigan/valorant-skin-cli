@@ -39,7 +39,7 @@ class Config_Editor:
             elif callback is None:
                 app_config.modify_config(self.config)
                 color_print(
-                    [("LimeGreen", "config saved! restart the program if you changed your region...")])
+                    [("LimeGreen", "config saved! restart the program if you changed your region.")])
                 return
         else:
             if isinstance(choices[choice], dict):
