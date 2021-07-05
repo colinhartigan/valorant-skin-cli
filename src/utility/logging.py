@@ -7,7 +7,7 @@ class Logger:
         # create logger
         logging.basicConfig(filename='skincli.log',
                             filemode='w',
-                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            format='%(asctime)s.%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%H:%M:%S',
                             level=logging.DEBUG)
 
