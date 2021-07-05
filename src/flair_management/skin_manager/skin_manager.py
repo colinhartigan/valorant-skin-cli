@@ -1,6 +1,5 @@
 import os 
 import json
-from termcolor import colored, cprint
 
 from ...utility.config_manager import Config
 from ...content.skin_content import Skin_Content
@@ -18,36 +17,42 @@ class Skin_Manager:
     def put_loadout(self,loadout):
         return self.client.put_player_loadout(loadout=loadout)
 
-    def fetch_inventory_data(self):
+    @staticmethod
+    def fetch_inventory_data():
         with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../data', 'skin_data.json'))) as f:
             gun_pool = json.load(f)
             return gun_pool
 
-    def fetch_weapon_data(self,weapon_uuid,weapon_datas):
+    @staticmethod
+    def fetch_weapon_data(weapon_uuid,weapon_datas):
         for i in weapon_datas:
             if i['uuid'] == weapon_uuid:
                 return i
 
-    def fetch_skin_data(self,skin_uuid,skin_datas):
+    @staticmethod
+    def fetch_skin_data(skin_uuid,skin_datas):
         for i in skin_datas:
             if i['uuid'] == skin_uuid:
                 return i
 
-    def fetch_max_level_for_skin(self,gun_pool,weapon_uuid,skin_uuid):
+    @staticmethod
+    def fetch_max_level_for_skin(gun_pool,weapon_uuid,skin_uuid):
         for gun,data in gun_pool.items():
             if gun == weapon_uuid:
                 for skin,skin_data in data.items():
                     if skin_data["uuid"] == skin_uuid:
                         return list(skin_data["levels"].items())[-1][0],list(skin_data["levels"].items())[-1][1]
 
-    def fetch_default_chroma_for_skin(self,gun_pool,weapon_uuid,skin_uuid):
+    @staticmethod
+    def fetch_default_chroma_for_skin(gun_pool,weapon_uuid,skin_uuid):
         for gun,data in gun_pool.items():
             if gun == weapon_uuid:
                 for skin,skin_data in data.items():
                     if skin_data["uuid"] == skin_uuid:
                         return list(skin_data["chromas"].items())[0][0],list(skin_data["chromas"].items())[0][1]
 
-    def fetch_weapon_by_name(self,name):
+    @staticmethod
+    def fetch_weapon_by_name(name):
         return Skin_Content.fetch_weapon_by_name(name)
 
     def fetch_skin_table(self):

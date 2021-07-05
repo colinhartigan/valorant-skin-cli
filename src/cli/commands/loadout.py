@@ -1,7 +1,7 @@
-from termcolor import cprint
+from InquirerPy.utils import color_print
 
 class Loadout:
 
     def __init__(self,manager):
         table, longest = manager.fetch_skin_table()
-        cprint(table.expandtabs(longest+3),"green")
+        color_print([("LimeGreen",table.expandtabs(longest+3))])

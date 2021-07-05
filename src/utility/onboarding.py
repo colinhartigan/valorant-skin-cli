@@ -1,7 +1,7 @@
 from re import L
 import time
 from InquirerPy import prompt,inquirer
-from termcolor import cprint
+from InquirerPy.utils import color_print
 
 from .config_manager import Config as app_config
 
@@ -44,7 +44,7 @@ class Onboarder:
         
         for item in self.procedure:
             returned = None
-            cprint(item["text"],"green")
+            color_print([("Green",item["text"])])
             if item["args"] is not None:
                 returned = item["method"](item["args"])
             else:
@@ -55,7 +55,7 @@ class Onboarder:
 
         self.config["meta"]["onboarding_completed"] = True
         app_config.modify_config(self.config)
-        cprint("onboarding completed!","green")
+        color_print([("Lime bold", "onboarding completed!")])
 
     def update_region(self,region):
         self.config["region"] = region

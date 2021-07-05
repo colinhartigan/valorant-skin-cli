@@ -1,11 +1,11 @@
-from termcolor import cprint
+from InquirerPy.utils import color_print
 
 class Set_Skin:
     def __init__(self,command,manager,inventory_data):
 
         # format: set weanpon_name skin_name level chroma
         if len(command) < 3:
-            cprint("command missing required params", "red")
+            color_print([("#f44336","command missing required params")])
             return
         weapon_name = str(command[1])
         skin_name = str(command[2]).replace("-"," ")
@@ -26,7 +26,7 @@ class Set_Skin:
             # missing level
             level_data = (list(skin_data[1]["levels"].keys())[-1],skin_data[1]["levels"][list(skin_data[1]["levels"].keys())[-1]])
             if len(skin_data[1]["levels"]) > 1:
-                cprint(f"no level provided, using default ({level_data[1]['display_name']})", "yellow")
+                color_print([("Yellow italic",f"no level provided, using default ({level_data[1]['display_name']})")])
         else:
             level_name = command[3].replace("-"," ")
             for uuid,level in skin_data[1]["levels"].items():
@@ -37,7 +37,7 @@ class Set_Skin:
             # missing chroma
             chroma_data = (list(skin_data[1]["chromas"].keys())[-1],skin_data[1]["chromas"][list(skin_data[1]["chromas"].keys())[-1]])
             if len(skin_data[1]["chromas"]) > 1:
-                cprint(f"no chroma provided, using default ({chroma_data[1]['display_name']})", "yellow")
+                color_print([("Yellow italic",f"no chroma provided, using default ({chroma_data[1]['display_name']})")])
         else:
             chroma_name = command[4].replace("-"," ") 
             for uuid,chroma in skin_data[1]["chromas"].items():
@@ -46,5 +46,5 @@ class Set_Skin:
 
 
         manager.modify_skin(weapon_data[0], skin_data[0], level_data[0], chroma_data[0])
-        cprint(f"{weapon_data[1]['display_name']} -> {skin_data[1]['display_name']} ({level_data[1]['display_name']}/{chroma_data[1]['display_name']})", "green", attrs=["bold"])
+        color_print([("Lime bold",f"{weapon_data[1]['display_name']} -> {skin_data[1]['display_name']} ({level_data[1]['display_name']}/{chroma_data[1]['display_name']})")])
         

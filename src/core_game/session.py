@@ -1,6 +1,6 @@
 import asyncio
 import sys
-from termcolor import cprint
+from InquirerPy.utils import color_print
 
 from .async_tasks.randomize import Randomizer
 
@@ -27,7 +27,7 @@ class Session:
             if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
                 Randomizer(self.skin_manager)
         except:
-            cprint("VALORANT is no longer running, terminating thread!","red")
+            color_print([("Tomato","VALORANT is no longer running, terminating thread!")])
             sys.exit()
 
 
