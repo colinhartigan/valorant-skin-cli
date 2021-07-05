@@ -1,3 +1,10 @@
+Please note this project is still in an unfinished state.
+
+By using it before V1.0 is released, you are acting as a beta tester; therefore, __there will be bugs and glitches__.
+
+Should you encounter a bug or if you have a suggestion, please create an [issue](https://github.com/colinhartigan/valorant-skin-cli/issues) or share it in the [Discord server](https://discord.gg/uGuswsZwAT)
+
+
 # VALORANT Skin Manager CLI
 
 > Simple command line interface to manage VALORANT skins, including a skin randomizer
@@ -14,7 +21,7 @@
 ### Table of Contents
 1. [Demo](#demo)
 2. [Installation and usage](#installation-and-usage)
-3. [FAQ: Ban or no ban?](#will-i-get-banned-for-using-this)
+3. [Will I get banned for using this?](#will-i-get-banned-for-using-this)
 4. [TODOs](#todos)
 5. [Dependencies](#dependencies)
 6. [Contribute](#contribute)
