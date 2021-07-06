@@ -10,6 +10,7 @@ from .flair_loader.skin_loader import Loader
 from .asynchronous.async_manager import Async_Manager
 from .cli.command_prompt import Prompt
 from .utility.logging import Logger
+from .utility.filepath import Filepath
 
 
 class Startup:
@@ -50,6 +51,6 @@ class Startup:
 
     @staticmethod 
     def check_for_data_folder():
-        data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data'))
+        data_path = Filepath.get_appdata_folder()
         if not os.path.isdir(data_path):
-            os.makedirs(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')))
+            os.makedirs(data_path)

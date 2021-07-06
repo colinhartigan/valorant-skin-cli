@@ -1,14 +1,14 @@
 import json
 import os
 from InquirerPy.utils import color_print
-
+from .filepath import Filepath
 
 class Config:
 
     @staticmethod
     def fetch_config():
         try:
-            with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'config.json'))) as f:
+            with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'config.json'))) as f:
                 config = json.load(f)
                 return config
         except:
@@ -17,7 +17,7 @@ class Config:
 
     @staticmethod
     def modify_config(new_config):
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'config.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'config.json')), 'w') as f:
             json.dump(new_config, f)
 
         return Config.fetch_config()
@@ -34,6 +34,6 @@ class Config:
                 "onboarding_completed": False
             }
         }
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'config.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'config.json')), 'w') as f:
             json.dump(config, f)
         return Config.fetch_config()

@@ -5,6 +5,7 @@ from InquirerPy.utils import color_print
 from ..content.skin_content import Skin_Content
 from ..entitlements.entitlement_manager import Entitlement_Manager
 from ..utility.logging import Logger
+from ..utility.filepath import Filepath
 debug = Logger.debug
 
 
@@ -130,7 +131,7 @@ class Loader:
 
                     if not skin_previously_owned:
                         color_print(
-                            [("#00b0ff", f"[{weapon['displayName']}] new skin found -> {skin['displayName']}")])
+                            [("Purple", f"[{weapon['displayName']}] new skin found -> {skin['displayName']}")])
 
                     weapon_data["skins"][skin_uuid] = {
                         "display_name": skin["displayName"],
@@ -194,7 +195,7 @@ class Loader:
                                     "enabled": False
                                 }
                                 color_print(
-                                    [("DarkBlue", f"[{skin['displayName']}] found new chroma data ({sanitized_chroma_name})")])
+                                    [("#00b0ff", f"[{skin['displayName']}] found new chroma data ({sanitized_chroma_name})")])
 
                         if chroma["displayName"] == skin["displayName"].replace("Standard ", ""):
                             process_chroma()
@@ -217,14 +218,14 @@ class Loader:
                 sorted(weapon_data["skins"].items(), key=lambda skin: skin[1]['tier']['tier_index'], reverse=True))
             new_skin_data[weapon_uuid] = weapon_data
 
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'skin_data.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
             json.dump(new_skin_data, f)
             color_print([("Lime", "skins loaded!")])
 
     @staticmethod
     def generate_blank_skin_file():
         debug("generating blank skin file")
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'skin_data.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
             new_data = {}
 
             all_weapon_content = Skin_Content.fetch_weapon_datas()
@@ -243,10 +244,10 @@ class Loader:
 
     @staticmethod
     def modify_skin_data(new_data):
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'skin_data.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
             json.dump(new_data, f)
 
     @staticmethod
     def fetch_skin_data():
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data', 'skin_data.json'))) as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json'))) as f:
             return json.load(f)

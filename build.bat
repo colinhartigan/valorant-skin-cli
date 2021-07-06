@@ -1,2 +1,2 @@
-pyinstaller --name="valorant-skin-cli" --noconfirm valorant-skin-cli.spec
+python -m PyInstaller main.py --noconfirm --name="valorant-skin-cli" --onefile 
 pause

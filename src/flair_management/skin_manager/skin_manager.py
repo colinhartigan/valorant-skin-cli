@@ -3,6 +3,7 @@ import json
 
 from ...utility.config_manager import Config
 from ...content.skin_content import Skin_Content
+from ...utility.filepath import Filepath
 #from .skin_loader import Loader
 from .randomizer import Randomize
 
@@ -19,7 +20,7 @@ class Skin_Manager:
 
     @staticmethod
     def fetch_inventory_data():
-        with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../data', 'skin_data.json'))) as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json'))) as f:
             gun_pool = json.load(f)
             return gun_pool
 
