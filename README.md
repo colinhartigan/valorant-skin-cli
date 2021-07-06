@@ -1,6 +1,6 @@
-# VALORANT Skin Manager CLI
+![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
-> Simple command line interface to manage VALORANT skins, including a skin randomizer
+> A simple command line interface to manage VALORANT skins, including a skin randomizer
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![GitHub License](https://img.shields.io/github/license/colinhartigan/valorant-skin-cli)](https://github.com/colinhartigan/valorant-skin-cli/blob/master/LICENSE)
