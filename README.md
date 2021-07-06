@@ -15,7 +15,7 @@
 1. [Demo](#demo)
 2. [Installation and usage](#installation-and-usage)
 3. [Will I get banned for using this?](#will-i-get-banned-for-using-this)
-4. [TODOs](#todos)
+4. [What's next](#whats-next)
 5. [Dependencies](#dependencies)
 6. [Contribute](#contribute)
 
@@ -44,14 +44,11 @@ The following commands are available for usage
 > Using the client API to modify loadouts does not seem ban worthy. The client API isn't officially supported for third party use, so don't expect future compatibility.
 
 
-## TODOs
-- [x] [Onboarding Experience](https://github.com/colinhartigan/valorant-skin-cli/commit/79739958c8bc632a2e8ec91f533c4fe2fba607dd#diff-bd516d79afd4ace3e4372b8ccab756b47b74da5ac479f373258ddcb3c4159ff2)
-- [x] [Configuraion Command](https://github.com/colinhartigan/valorant-skin-cli/commit/973dee78becbfbda1c6f3cfd9f7e929f823ae8ec#diff-77765503b3f273fa49a93e1c5bfa59786213a26f2143d7a6ad75fbd2c38d5cd2)
-  - Set refresh interval 
-  - Set region
-  - ~~Reset/Regen skin inventory~~ (coming in a future update after v1)
-- [ ] Documentation
-
+## What's next
+- [ ] loadout creator
+  - [ ] loadout randomizer
+- [ ] spray randomizer 
+- [ ] gun buddy randomizer
 
 ## Dependencies
 Check [requirements.txt](https://github.com/colinhartigan/valorant-skin-cli/blob/master/requirements.txt) for updated infomation
