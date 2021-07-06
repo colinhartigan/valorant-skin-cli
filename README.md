@@ -72,3 +72,8 @@ InquirerPy
 
 ## Contribute
 Have an idea or a suggestion? Drop an issue or create a pull request!
+
+## Legal
+This project is not affiliated with Riot Games or any of its employees and therefore does not reflect the views of said parties. This is purely a fan-made project to enhance VALORANT's skin inventory management.
+
+Riot Games does not endorse or sponsor this project. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
