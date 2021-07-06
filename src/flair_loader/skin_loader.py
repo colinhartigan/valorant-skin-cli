@@ -146,65 +146,69 @@ class Loader:
                     }
 
                     for level in skin["levels"]:
-                        debug(
-                            f"{skin['displayName']}/LEVEL: beginning processing of {level['displayName']} ({level['uuid']}) - {level}")
-
-                        level_already_exists = skin_previously_owned and level["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
-
-                        def process_skin_level():
+                        if level is not None:
                             debug(
-                                f"{skin['displayName']}/LEVEL: {level['displayName']} ({level['uuid']}) is verified")
-                            if level_already_exists:
-                                weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = \
-                                    existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"][level["uuid"]]
+                                f"{skin['displayName']}/LEVEL: beginning processing of {level['displayName']} ({level['uuid']}) - {level}")
 
+                            level_already_exists = skin_previously_owned and level["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
+
+                            def process_skin_level():
+                                debug(
+                                    f"{skin['displayName']}/LEVEL: {level['displayName']} ({level['uuid']}) is verified")
+                                if level_already_exists:
+                                    weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = \
+                                        existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"][level["uuid"]]
+
+                                else:
+                                    weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = {
+                                        "display_name": f"{level['displayName']}" + (
+                                            f" ({level['levelItem'].replace('EEquippableSkinLevelItem::', '')})" if level[
+                                                'levelItem'] is not None else "" if
+                                            level["displayName"] == skin["displayName"].replace("Standard ", "") else " (VFX)" if level['displayName'] != skin['displayName'] else ""),
+                                        "enabled": False
+                                    }
+                                    color_print(
+                                        [("DarkBlue", f"[{skin['displayName']}] found new level data ({level['displayName']})")])
+
+                            if level is not None and level["displayName"] == skin["displayName"].replace("Standard ", ""):
+                                # if skin is standard
+                                process_skin_level()
                             else:
-                                weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = {
-                                    "display_name": f"{level['displayName']}" + (
-                                        f" ({level['levelItem'].replace('EEquippableSkinLevelItem::', '')})" if level[
-                                            'levelItem'] is not None else "" if
-                                        level["displayName"] == skin["displayName"].replace("Standard ", "") else " (VFX)" if level['displayName'] != skin['displayName'] else ""),
-                                    "enabled": False
-                                }
-                                color_print(
-                                    [("DarkBlue", f"[{skin['displayName']}] found new level data ({level['displayName']})")])
-
-                        if level is not None and level["displayName"] == skin["displayName"].replace("Standard ", ""):
-                            # if skin is standard
-                            process_skin_level()
-                        else:
-                            for entitlement in skin_level_entitlements["Entitlements"]:
-                                if level is not None and entitlement["ItemID"] == level["uuid"]:
-                                    process_skin_level()
+                                for entitlement in skin_level_entitlements["Entitlements"]:
+                                    if level is not None and entitlement["ItemID"] == level["uuid"]:
+                                        process_skin_level()
 
                     for chroma in skin["chromas"]:
-                        sanitized_chroma_name = Loader.sanitize_chroma_name(skin, chroma["displayName"], weapon["displayName"])
-                        debug(
-                            f"{skin['displayName']}/CHROMA: beginning processing of {sanitized_chroma_name} ({chroma['uuid']}) - {chroma}")
-                        chroma_already_exists = skin_previously_owned and chroma["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
-
-                        def process_chroma():
+                        if chroma is not None:
+                            sanitized_chroma_name = Loader.sanitize_chroma_name(skin, chroma["displayName"], weapon["displayName"])
                             debug(
-                                f"{skin['displayName']}/CHROMA: {sanitized_chroma_name} ({chroma['uuid']}) is verified")
-                            if chroma_already_exists:
-                                weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = \
-                                    existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"][chroma["uuid"]]
-                            else:
-                                weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = {
-                                    "display_name": sanitized_chroma_name,
-                                    "enabled": False
-                                }
-                                color_print(
-                                    [("#00b0ff", f"[{skin['displayName']}] found new chroma data ({sanitized_chroma_name})")])
+                                f"{skin['displayName']}/CHROMA: beginning processing of {sanitized_chroma_name} ({chroma['uuid']}) - {chroma}")
+                            chroma_already_exists = skin_previously_owned and chroma["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
 
-                        if chroma["displayName"] == skin["displayName"].replace("Standard ", ""):
-                            process_chroma()
-                        elif chroma["displayName"] in (skin["displayName"], None):
-                            process_chroma()
-                        else:
-                            for entitlement in skin_chroma_entitlements["Entitlements"]:
-                                if chroma is not None and entitlement["ItemID"] == chroma["uuid"]:
-                                    process_chroma()
+                            def process_chroma():
+                                debug(
+                                    f"{skin['displayName']}/CHROMA: {sanitized_chroma_name} ({chroma['uuid']}) is verified")
+                                if chroma_already_exists:
+                                    weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = \
+                                        existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"][chroma["uuid"]]
+                                else:
+                                    weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = {
+                                        "display_name": sanitized_chroma_name,
+                                        "enabled": False
+                                    }
+                                    color_print(
+                                        [("#00b0ff", f"[{skin['displayName']}] found new chroma data ({sanitized_chroma_name})")])
+
+                            if chroma["displayName"] == skin["displayName"].replace("Standard ", ""):
+                                process_chroma()
+                            elif chroma["displayName"] in (skin["displayName"], None):
+                                process_chroma()
+                            elif len(skin["chromas"]) == 1:
+                                process_chroma()
+                            else:
+                                for entitlement in skin_chroma_entitlements["Entitlements"]:
+                                    if chroma is not None and entitlement["ItemID"] == chroma["uuid"]:
+                                        process_chroma()
 
                     # enable base level/chroma
                     # print(weapon_data["skins"][skin_uuid])

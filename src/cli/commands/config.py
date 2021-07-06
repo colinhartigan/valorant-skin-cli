@@ -30,6 +30,7 @@ class Config_Editor:
         choice = inquirer.select(
             message=f"[{section}] select a configuration option",
             choices=prompt_choices,
+            pointer=">"
         )
         choice = choice.execute()
 
@@ -79,7 +80,8 @@ class Config_Editor:
                 message=f"set value for {name}",
                 default=option,
                 choices=[{"name": "true", "value": True},
-                         {"name": "false", "value": False}]
+                         {"name": "false", "value": False}],
+                pointer=">"
             )
             choice = choice.execute()
             return choice
@@ -90,7 +92,8 @@ class Config_Editor:
         choice = inquirer.select(
             message="select your region",
             choices=[{"name": region, "value": region} for region in regions],
-            default=option
+            default=option,
+            pointer=">"
         )
         choice = choice.execute()
         return choice

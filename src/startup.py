@@ -16,10 +16,11 @@ from .utility.filepath import Filepath
 class Startup:
 
     @staticmethod
-    def run():
-        Logger.create_logger()
-        
+    def run():        
         Startup.check_for_data_folder()
+        Startup.setup_inquirer()
+
+        Logger.create_logger()
         config = Config.fetch_config()
 
         region = config["region"].lower()
@@ -48,6 +49,10 @@ class Startup:
         cli_thread = threading.Thread(target=prompt.main_loop)
         cli_thread.start()
         cli_thread.join()
+
+    @staticmethod
+    def setup_inquirer():
+        os.environ["INQUIRERPY_NO_RAISE_KBI"] = "true"
 
     @staticmethod 
     def check_for_data_folder():

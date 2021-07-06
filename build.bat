@@ -1,2 +1,2 @@
-python -m PyInstaller main.py --noconfirm --name="valorant-skin-cli" --onefile 
+python -m PyInstaller main.py --noconfirm --icon=favicon.ico --name="valorant-skin-cli" --onefile 
 pause

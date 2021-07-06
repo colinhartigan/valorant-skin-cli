@@ -27,6 +27,7 @@ class Editor:
         type_choice = inquirer.select(
             message='[randomizer pool editor] select a weapon type',
             choices=type_choices,
+            pointer=">"
         )
         type_choice = type_choice.execute()
 
@@ -49,6 +50,7 @@ class Editor:
         weapon_choice = inquirer.select(
             message=f"[{weapon_type}] select a weapon to view the skins of",
             choices=weapon_choices,
+            pointer=">"
         )
         weapon_choice = weapon_choice.execute()
 
@@ -75,13 +77,14 @@ class Editor:
         total_skins = len([skin for uuid,skin in weapon_data['skins'].items() if not 'Standard' in skin['display_name']])
 
         skin_choices = [
-            {"name": f"{'☑' if data['enabled'] else '☒'} [{tier_aliases[data['tier']['display_name']]}] {data['display_name']} ({len(data['levels'])} levels, {len(data['chromas'])} chromas)", "value": uuid} for uuid, data in weapon_data['skins'].items()]
+            {"name": f"{'√' if data['enabled'] else 'x'} [{tier_aliases[data['tier']['display_name']]}] {data['display_name']} ({len(data['levels'])} levels, {len(data['chromas'])} chromas)", "value": uuid} for uuid, data in weapon_data['skins'].items()]
         skin_choices.insert(0, {"name": "back", "value": "back"})
         skin_choices.insert(1, {"name": ("disable" if skins_enabled == total_skins else "enable") + " all skins/chromas", "value": "change_all"})
 
         skin_choice = inquirer.select(
             message=f"[{weapon_data['display_name']}] select a skin to modify",
             choices=skin_choices,
+            pointer=">"
         ).execute()
 
         if skin_choice == "back":
@@ -144,7 +147,10 @@ class Editor:
         skin_preferences = inquirer.checkbox(
             message=f"modify skin preferences for {skin_data['display_name']}",
             choices=preferences,
-            instruction='(space - toggle, enter - finish)'
+            instruction='(space - toggle, enter - finish)',
+            pointer='>',
+            enabled_symbol='√ ',
+            disabled_symbol='x '
         ).execute()
 
         # clear out all old preferences
