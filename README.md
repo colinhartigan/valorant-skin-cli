@@ -26,16 +26,9 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 
 ## Installation and Usage
 ### Installation
-Clone the repo, or simply download the `.zip` file.
+Download the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/) and run it!
 
-Install [__Python 3.9__](https://www.python.org/downloads/release/python-377/) and open the command line in the repo folder
-
-```shell
-python3 -m pip install -r requirements.txt
-python3 main.py
-```
-
-Note: Using `python3` on Windows 8/10 may open the Store, in that case use `python`
+__NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. If you'd rather build the executable yourself, clone the repo and run `build.bat`
 
 ### Usage
 The following commands are available for usage
@@ -66,7 +59,6 @@ Check [requirements.txt](https://github.com/colinhartigan/valorant-skin-cli/blob
 ```
 valclient
 requests
-termcolor
 InquirerPy
 ```
 
