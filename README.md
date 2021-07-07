@@ -24,7 +24,7 @@
 https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-8cea-724e6150978f.mp4
 
 
-## Installation and Usage
+## Installation and usage
 ### Installation
 Download the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/) and run it!
 
