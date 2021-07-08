@@ -31,12 +31,8 @@ Download the [latest release](https://github.com/colinhartigan/valorant-skin-cli
 __NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. If you'd rather build the executable yourself, clone the repo and run `build.bat`
 
 ### Usage
-The following commands are available for usage
 
-- `randomize` - Randomizes your skins manually (will still automatically happen after each match)
-- `modify` - Modify which skins enabled for randomization (use arrow keys and enter to select)
-- `set <gun> <skin>` - Manually set a skin, eg. `set Phantom Oni Phantom`
-- `exit` - Self explanatory
+Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the wiki
 
 
 ## Will I get banned for using this?

@@ -32,4 +32,3 @@ class Randomize:
         new = manager.put_loadout(loadout=loadout)
         
         color_print([("Lime", "randomized skins")])
-        

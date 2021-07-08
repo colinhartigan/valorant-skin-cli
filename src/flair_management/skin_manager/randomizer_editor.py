@@ -1,7 +1,7 @@
 from InquirerPy import prompt, inquirer
 from InquirerPy.separator import Separator
 
-from .skin_loader import Loader
+from ...flair_loader.skin_loader import Loader
 
 
 class Editor:
@@ -43,7 +43,7 @@ class Editor:
     def select_weapon(skin_data, weapon_type):
 
         weapon_choices = [{
-            "name": f"{data['display_name']} ({len(data['skins'])} skins, {len([skin for skin in data['skins'].keys() if data['skins'][skin]['enabled']])} enabled)",
+            "name": f"{data['display_name']} ({len(data['skins'])-1} skins, {len([skin for skin in data['skins'].keys() if data['skins'][skin]['enabled']])} enabled)",
             "value": uuid} for uuid, data in skin_data.items() if data['weapon_type'] == weapon_type]
         weapon_choices.insert(0, {"name": "back", "value": "back"})
 
@@ -166,11 +166,9 @@ class Editor:
         for preference in skin_preferences:
             if "level_" in preference or "chroma_" in preference:
                 if "level_" in preference:
-                    skin_data['levels'][preference.removeprefix(
-                        'level_')]['enabled'] = True
+                    skin_data['levels'][preference[len('level_'):]]['enabled'] = True
                 if "chroma_" in preference:
-                    skin_data['chromas'][preference.removeprefix(
-                        'chroma_')]['enabled'] = True
+                    skin_data['chromas'][preference[len('chroma_'):]]['enabled'] = True
 
             if preference == "skin_enabled":
                 skin_data['enabled'] = True

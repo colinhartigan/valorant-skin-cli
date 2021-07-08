@@ -7,7 +7,7 @@ from .config_manager import Config as app_config
 
 from ..cli.commands.config import Config_Editor
 from ..flair_loader.skin_loader import Loader
-from ..flair_loader.skin_editor import Editor
+from ..flair_management.skin_manager.randomizer_editor import Editor
 
 
 class Onboarder:

@@ -4,7 +4,7 @@ from InquirerPy.separator import Separator
 
 from ..utility.config_manager import Config
 
-from ..flair_loader.skin_editor import Editor
+from ..flair_management.skin_manager.randomizer_editor import Editor
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 
