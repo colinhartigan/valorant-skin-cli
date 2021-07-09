@@ -1,6 +1,6 @@
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
-> A simple command line interface to manage VALORANT skins, including a skin randomizer.
+> A simple command line interface to manage VALORANT skins, including a skin randomizer
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![GitHub License](https://img.shields.io/github/license/colinhartigan/valorant-skin-cli)](https://github.com/colinhartigan/valorant-skin-cli/blob/master/LICENSE)
@@ -29,13 +29,14 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 __Download the `.exe` file from the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/latest) page and run it!__
 
 __NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. 
+_I've rebuilt the executables with Python 3.7 and it seems they aren't being marked as malware anymore!_
 
 If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly.
 
-To test the bleeding edge features, clone the repository.
+To test the latest features, clone the repository.
 
 ### Usage
-Check out the [Commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the Wiki.
+Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the Wiki.
 
 
 ## Will I get banned for using this?
