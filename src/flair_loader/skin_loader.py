@@ -63,6 +63,9 @@ class Loader:
             client, "skin_level")
         skin_chroma_entitlements = Entitlement_Manager.fetch_entitlements(
             client, "skin_chroma")
+
+        debug(f"skin entitlements: {skin_level_entitlements}")
+        debug(f"chroma entitlements: {skin_chroma_entitlements}")
         content_tiers = Skin_Content.fetch_content_tiers()
         all_weapon_content = Skin_Content.fetch_weapon_datas()
 
@@ -178,7 +181,7 @@ class Loader:
                                     if level is not None and entitlement["ItemID"] == level["uuid"]:
                                         process_skin_level()
 
-                    for chroma in skin["chromas"]:
+                    for index,chroma in enumerate(skin["chromas"]):
                         if chroma is not None:
                             sanitized_chroma_name = Loader.sanitize_chroma_name(skin, chroma["displayName"], weapon["displayName"])
                             debug(
@@ -204,6 +207,8 @@ class Loader:
                             elif chroma["displayName"] in (skin["displayName"], None):
                                 process_chroma()
                             elif len(skin["chromas"]) == 1:
+                                process_chroma()
+                            elif index == 0:
                                 process_chroma()
                             else:
                                 for entitlement in skin_chroma_entitlements["Entitlements"]:
