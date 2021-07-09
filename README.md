@@ -36,7 +36,7 @@ Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli
 
 
 ## Will I get banned for using this?
-[u/Riot_Giraffy confirmed:](https://www.reddit.com/r/VALORANT/comments/oae5g6/i_got_tired_of_waiting_for_riot_to_add_a_skin/)
+[u/Riot_Giraffy confirmed:](https://www.reddit.com/r/VALORANT/comments/oae5g6/i_got_tired_of_waiting_for_riot_to_add_a_skin/h3hwxtf?utm_source=share&utm_medium=web2x&context=3)
 > Using the client API to modify loadouts does not seem ban worthy. The client API isn't officially supported for third party use, so don't expect future compatibility.
 
 
