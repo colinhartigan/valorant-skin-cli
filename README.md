@@ -1,3 +1,5 @@
+## This only works if you own skins btw
+
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
 > A simple command line interface to manage VALORANT skins, including a skin randomizer
