@@ -26,13 +26,17 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 
 ## Installation and usage
 ### Installation
-Download the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/) and run it!
+__Download the `.exe` file from the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/latest) page and run it!__
 
-__NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. If you'd rather build the executable yourself, clone the repo and run `build.bat`
+__NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. 
+_I've rebuilt the executables with Python 3.7 and it seems they aren't being marked as malware anymore!_
+
+If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly.
+
+To test the latest features, clone the repository.
 
 ### Usage
-
-Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the wiki
+Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the Wiki.
 
 
 ## Will I get banned for using this?
@@ -47,12 +51,13 @@ Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli
 - [ ] gun buddy randomizer
 
 ## Dependencies
-Check [requirements.txt](https://github.com/colinhartigan/valorant-skin-cli/blob/master/requirements.txt) for updated infomation
+Check [requirements.txt](https://github.com/colinhartigan/valorant-skin-cli/blob/master/requirements.txt) for updated infomation!
 
 ```
 valclient
 requests
 InquirerPy
+PyInstaller
 ```
 
 ## Contribute
