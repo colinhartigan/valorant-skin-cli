@@ -1,10 +1,7 @@
-import asyncio
 import sys
 from InquirerPy.utils import color_print
 
 from .async_tasks.randomize import Randomizer
-
-from ..content.coregame_content import Coregame_Content
 
 class Session:
     '''

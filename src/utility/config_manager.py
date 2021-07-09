@@ -1,6 +1,5 @@
 import json
 import os
-from InquirerPy.utils import color_print
 from .filepath import Filepath
 
 class Config:

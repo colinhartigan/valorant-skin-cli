@@ -1,14 +1,16 @@
 from valclient.client import Client
-import threading
 from InquirerPy.utils import color_print
-import sys
 
 from src.startup import Startup
 
 
 # TODO:
 # - launch with valorant
-# - taskbar icon
+# - detect new releases on github
+# - clarify some prompts
+
+# TODO LATER:
+# - loadouts
 
 
 if __name__ == "__main__":

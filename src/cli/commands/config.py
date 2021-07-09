@@ -1,9 +1,6 @@
-import os
-import sys
 from InquirerPy.utils import color_print
 
 from InquirerPy import inquirer
-from InquirerPy.separator import Separator
 
 from ...utility.config_manager import Config as app_config
 

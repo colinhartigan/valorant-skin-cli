@@ -1,6 +1,3 @@
-from re import L
-import time
-from InquirerPy import prompt, inquirer
 from InquirerPy.utils import color_print
 
 from .config_manager import Config as app_config

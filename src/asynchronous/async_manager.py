@@ -1,6 +1,5 @@
 from InquirerPy.utils import color_print
 import asyncio
-from time import sleep
 
 from ..utility.config_manager import Config
 from ..core_game.coregame_manager import Coregame_Manager

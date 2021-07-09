@@ -1,8 +1,5 @@
 import sys
-from InquirerPy import prompt, inquirer
-from InquirerPy.separator import Separator
-
-from ..utility.config_manager import Config
+from InquirerPy import inquirer 
 
 from ..flair_management.skin_manager.randomizer_editor import Editor
 
