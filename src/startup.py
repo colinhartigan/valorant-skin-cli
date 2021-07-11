@@ -11,6 +11,7 @@ from .asynchronous.async_manager import Async_Manager
 from .cli.command_prompt import Prompt
 from .utility.logging import Logger
 from .utility.filepath import Filepath
+from .utility.version_checker import Checker
 
 
 class Startup:
@@ -21,7 +22,9 @@ class Startup:
         Startup.setup_inquirer()
 
         Logger.create_logger()
+        Config.check_config()
         config = Config.fetch_config()
+        Checker.check_version(config)
 
         region = config["region"].lower()
         client = Client(region=region)
