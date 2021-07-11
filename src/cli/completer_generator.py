@@ -12,6 +12,7 @@ class Completer:
             "loadout": None,
             "config": None,
             "set": {},
+            "reload": None,
             "exit": None,
         }
 

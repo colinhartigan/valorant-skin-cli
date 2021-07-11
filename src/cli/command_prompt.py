@@ -10,7 +10,7 @@ from ..core_game.session import Session
 # command imports
 from .completer_generator import Completer
 from .validator import Command_Validator
-from .commands import (loadout, set_skin, config)
+from .commands import (loadout, set_skin, config, reload)
 
 
 class Prompt:
@@ -56,5 +56,9 @@ class Prompt:
 
             if command[0] == "config":
                 config.Config_Editor()
+
+            if command[0] == "reload": 
+                reload.Reload()
+                sys.exit()
 
         sys.exit()
