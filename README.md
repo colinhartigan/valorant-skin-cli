@@ -38,6 +38,8 @@ If you'd rather build the executable yourself, download the release `.zip` file 
 To test the latest features, clone the repository.
 
 ### Usage
+Run the executable when you start VALORANT. The app must be running for your skins to be randomized.
+
 Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the Wiki.
 
 
