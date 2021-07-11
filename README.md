@@ -1,3 +1,5 @@
+## NOTE: This does not grant free skins; it only works with skins you already own.
+
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
 > A simple command line interface to manage VALORANT skins, including a skin randomizer
@@ -26,17 +28,23 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 
 ## Installation and usage
 ### Installation
-Download the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/) and run it!
+__Download the `.exe` file from the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/latest) page and run it!__
 
-__NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. If you'd rather build the executable yourself, clone the repo and run `build.bat`
+__NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. 
+_I've rebuilt the executables with Python 3.7 and it seems they aren't being marked as malware anymore!_
+
+If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly.
+
+To test the latest features, clone the repository.
 
 ### Usage
+Run the executable when you start VALORANT. The app must be running for your skins to be randomized.
 
-Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the wiki
+Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli/wiki/Commands) in the Wiki.
 
 
 ## Will I get banned for using this?
-[u/Riot_Giraffy confirmed:](https://www.reddit.com/r/VALORANT/comments/oae5g6/i_got_tired_of_waiting_for_riot_to_add_a_skin/)
+[u/Riot_Giraffy confirmed:](https://www.reddit.com/r/VALORANT/comments/oae5g6/i_got_tired_of_waiting_for_riot_to_add_a_skin/h3hwxtf?utm_source=share&utm_medium=web2x&context=3)
 > Using the client API to modify loadouts does not seem ban worthy. The client API isn't officially supported for third party use, so don't expect future compatibility.
 
 
@@ -47,12 +55,13 @@ Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli
 - [ ] gun buddy randomizer
 
 ## Dependencies
-Check [requirements.txt](https://github.com/colinhartigan/valorant-skin-cli/blob/master/requirements.txt) for updated infomation
+Check [requirements.txt](https://github.com/colinhartigan/valorant-skin-cli/blob/master/requirements.txt) for updated infomation!
 
 ```
 valclient
 requests
 InquirerPy
+PyInstaller
 ```
 
 ## Contribute
