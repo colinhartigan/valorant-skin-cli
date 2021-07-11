@@ -35,7 +35,7 @@ class Prompt:
                 qmark="",
                 completer=self.commands,
                 validate=Command_Validator(),
-                transformer=lambda result: result.replace("-", " "),
+                #transformer=lambda result: result.replace("-", " "),
                 filter=lambda result: [i.strip() for i in result.split()],
                 multicolumn_complete=True,
                 invalid_message="invalid command"

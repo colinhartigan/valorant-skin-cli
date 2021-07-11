@@ -31,19 +31,21 @@ class Command_Validator(Validator):
 
                     # who knew something so simple could make my life so easy
                     next_data = completer_data
-                    for index in range(0, len(args)):
-                        if args[index] in next_data.keys():
-                            next_data = next_data[args[index]]
-                            valid = True
-                        else:
-                            valid = False
-                    if valid:
-                        return True
-
-                    raise ValidationError(
-                        message="Syntax error, ensure you entered a valid weapon/skin",
-                        cursor_position=len(document.text)
-                    )
+                    try:
+                        for index in range(0, len(args)):
+                            if args[index] in next_data.keys():
+                                next_data = next_data[args[index]]
+                                valid = True
+                            else:
+                                valid = False
+                        if valid:
+                            return True
+                        raise Exception
+                    except Exception:
+                        raise ValidationError(
+                            message="Syntax error, ensure you entered a valid weapon/skin",
+                            cursor_position=len(document.text)
+                        )
         else:
             raise ValidationError(
                 message="Enter a command",

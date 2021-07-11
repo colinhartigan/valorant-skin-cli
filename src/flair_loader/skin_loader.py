@@ -25,6 +25,20 @@ class Loader:
             return "Base"
 
     @staticmethod
+    def sanitize_level_name(level, skin_name):
+        try:
+            if not "Standard" in skin_name:
+                new = level 
+                new = level.replace(skin_name,"").strip()
+                if new == "":
+                    return "Level 1"
+                return new 
+            else:
+                return "Level 1"
+        except:
+            return "Level 1"
+
+    @staticmethod
     def fetch_content_tier(tiers, uuid):
 
         # define skin tier indices for sorting skins
@@ -148,12 +162,13 @@ class Loader:
                         "chromas": {},
                     }
 
-                    for level in skin["levels"]:
+                    for index, level in enumerate(skin["levels"]):
                         if level is not None:
                             debug(
                                 f"{skin['displayName']}/LEVEL: beginning processing of {level['displayName']} ({level['uuid']}) - {level}")
 
-                            level_already_exists = skin_previously_owned and level["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
+                            level_already_exists = skin_previously_owned and level[
+                                "uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
 
                             def process_skin_level():
                                 debug(
@@ -164,10 +179,8 @@ class Loader:
 
                                 else:
                                     weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = {
-                                        "display_name": f"{level['displayName']}" + (
-                                            f" ({level['levelItem'].replace('EEquippableSkinLevelItem::', '')})" if level[
-                                                'levelItem'] is not None else "" if
-                                            level["displayName"] == skin["displayName"].replace("Standard ", "") else " (VFX)" if level['displayName'] != skin['displayName'] else ""),
+                                        "display_name": f"{Loader.sanitize_level_name(level['displayName'],skin['displayName'])}" + (
+                                            f" ({level['levelItem'].replace('EEquippableSkinLevelItem::', '')})" if level['levelItem'] is not None else "" if level["displayName"] == skin["displayName"].replace("Standard ", "") else " (VFX)" if level['displayName'] != skin['displayName'] else ""),
                                         "enabled": False
                                     }
                                     color_print(
@@ -181,12 +194,14 @@ class Loader:
                                     if level is not None and entitlement["ItemID"] == level["uuid"]:
                                         process_skin_level()
 
-                    for index,chroma in enumerate(skin["chromas"]):
+                    for index, chroma in enumerate(skin["chromas"]):
                         if chroma is not None:
-                            sanitized_chroma_name = Loader.sanitize_chroma_name(skin, chroma["displayName"], weapon["displayName"])
+                            sanitized_chroma_name = Loader.sanitize_chroma_name(
+                                skin, chroma["displayName"], weapon["displayName"])
                             debug(
                                 f"{skin['displayName']}/CHROMA: beginning processing of {sanitized_chroma_name} ({chroma['uuid']}) - {chroma}")
-                            chroma_already_exists = skin_previously_owned and chroma["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
+                            chroma_already_exists = skin_previously_owned and chroma[
+                                "uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
 
                             def process_chroma():
                                 debug(

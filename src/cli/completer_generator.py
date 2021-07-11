@@ -27,7 +27,7 @@ class Completer:
                    level['display_name'].replace(" ","-"): {
                        chroma['display_name'].replace(" ","-"): {} for _,chroma in skin['chromas'].items()
                    } for _,level in skin['levels'].items()
-               } for _,skin in weapon['skins'].items()
+               } if ((len(skin['levels']) > 1 and len(skin['chromas']) > 1) or (len(skin['levels']) == 1 and len(skin['chromas']) > 1)) else None for _,skin in weapon['skins'].items()
             }
         data['set'] = weapons
 
