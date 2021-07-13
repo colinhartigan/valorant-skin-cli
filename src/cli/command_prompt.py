@@ -1,4 +1,4 @@
-import sys
+import sys, ctypes
 from InquirerPy import inquirer 
 
 from ..flair_management.skin_manager.randomizer_editor import Editor
@@ -11,6 +11,12 @@ from ..core_game.session import Session
 from .completer_generator import Completer
 from .validator import Command_Validator
 from .commands import (loadout, set_skin, config, reload)
+
+kernel32 = ctypes.WinDLL('kernel32')
+user32 = ctypes.WinDLL('user32')
+hWnd = kernel32.GetConsoleWindow()
+kernel32 = ctypes.windll.kernel32
+kernel32.SetConsoleMode(kernel32.GetStdHandle(-10), 128) #disable inputs to console
 
 
 class Prompt:

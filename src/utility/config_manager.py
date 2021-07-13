@@ -3,7 +3,7 @@ import os
 from .filepath import Filepath
 
 default_config = {
-    "version": "v1.0.3",
+    "version": "v1.0.4",
     "region": "na",
     "async_refresh_interval": 5,
     "skin_manager": {

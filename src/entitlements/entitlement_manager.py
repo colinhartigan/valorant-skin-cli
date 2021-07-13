@@ -16,6 +16,6 @@ class Entitlement_Manager:
         for i,v in conversions.items():
             if entitlement_type.lower() in v:
                 item_type = i
-                entitlements = client.fetch_store_entitlements(item_type=item_type)
+                entitlements = client.store_fetch_entitlements(item_type=item_type)
                 return entitlements
         return None

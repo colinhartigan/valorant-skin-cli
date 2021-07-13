@@ -1,4 +1,4 @@
-valclient~=1.7.8
+valclient~=2.2
 requests~=2.25.1
 InquirerPy~=0.2.0
 PyInstaller

@@ -29,7 +29,7 @@ class Startup:
         region = config["region"].lower()
         client = Client(region=region)
         try:
-            client.hook()
+            client.activate()
         except Exception as e:
             color_print([("Tomato", f"unable to launch: {e}")])
             sys.exit()
@@ -39,7 +39,7 @@ class Startup:
             # reset the client if region changed during onboarding
             config = Config.fetch_config()
             client = Client(region=region)
-            client.hook()
+            client.activate()
 
         # load skin data
         Loader.generate_skin_data(client)
