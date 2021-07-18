@@ -1,4 +1,4 @@
-import sys, ctypes
+import os, ctypes
 from InquirerPy import inquirer 
 
 from ..flair_management.skin_manager.randomizer_editor import Editor
@@ -32,9 +32,9 @@ class Prompt:
         self.commands = Completer.generate_completer_dict()
 
     def main_loop(self):
-        command = ""
+        command = [""]
 
-        while command != "exit":
+        while command[0] != "exit":
 
             command = inquirer.text(
                 message=">",
@@ -65,6 +65,6 @@ class Prompt:
 
             if command[0] == "reload": 
                 reload.Reload()
-                sys.exit()
+                os._exit(1)
 
-        sys.exit()
+        os._exit(1)

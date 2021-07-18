@@ -1,5 +1,4 @@
 import os
-import sys
 from valclient.client import Client
 import threading
 from InquirerPy.utils import color_print
@@ -26,13 +25,14 @@ class Startup:
         config = Config.fetch_config()
         Checker.check_version(config)
 
-        region = config["region"].lower()
+        region = config["region"][0].lower()
         client = Client(region=region)
         try:
             client.activate()
         except Exception as e:
             color_print([("Tomato", f"unable to launch: {e}")])
-            sys.exit()
+            input("press enter to exit...")
+            os._exit(1)
 
         if not config["meta"]["onboarding_completed"]:
             Onboarder(client)

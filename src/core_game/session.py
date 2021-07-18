@@ -1,4 +1,4 @@
-import sys
+import os
 from InquirerPy.utils import color_print
 
 from .async_tasks.randomize import Randomizer
@@ -20,19 +20,17 @@ class Session:
         self.ingame = False
 
     async def randomizer_check(self):
-        try:
-            if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
-                Randomizer(self.skin_manager)
-        except:
-            color_print([("Tomato","VALORANT is no longer running, terminating thread!")])
-            sys.exit()
-
-
+        if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
+            Randomizer(self.skin_manager)
+        
     async def update_presence(self):
         self.previous_presence = self.presence 
 
-        self.presence = self.client.fetch_presence()
-
-        await self.randomizer_check()
+        try:
+            self.presence = self.client.fetch_presence()
+            await self.randomizer_check()
+        except:
+            color_print([("Tomato","VALORANT is no longer running, terminating thread!")])
+            os._exit(1)
 
         return self.presence

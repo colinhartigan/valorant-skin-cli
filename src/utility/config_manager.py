@@ -1,10 +1,11 @@
 import json
 import os
 from .filepath import Filepath
+from valclient import Client
 
 default_config = {
-    "version": "v1.0.4",
-    "region": "na",
+    "version": "v1.0.5",
+    "region": ["na",Client.fetch_regions()],
     "async_refresh_interval": 5,
     "skin_manager": {
         "randomize_after_each_game": True
@@ -19,16 +20,15 @@ class Config:
     @staticmethod
     def fetch_config():
         try:
-            with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'config.json'))) as f:
+            with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), "config.json"))) as f:
                 config = json.load(f)
                 return config
         except:
-            #color_print([("Yellow bold", f"[!] integrity check of config file failed; generating fresh config")])
-            return Config.create_blank_config()
+            return Config.create_default_config()
 
     @staticmethod
     def modify_config(new_config):
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'config.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), "config.json")), "w") as f:
             json.dump(new_config, f)
 
         return Config.fetch_config()
@@ -44,8 +44,16 @@ class Config:
             for key,value in blank.items():
                 if not key in current.keys():
                     current[key] = value
-                if key == "version": 
+                if type(value) != type(current[key]):
+                    # if type of option is changed
                     current[key] = value
+                if key == "version": 
+                    # version can't be changed by the user lmao
+                    current[key] = value
+                if key == "region": 
+                    current[key][1] = Client.fetch_regions() # update regions jic ya know
+                if isinstance(value,list):
+                    current[key][1] = blank[key][1]
                 if isinstance(value,dict):
                     check_for_new_vars(value,current[key])
             
@@ -65,7 +73,9 @@ class Config:
         Config.modify_config(config)
 
     @staticmethod
-    def create_blank_config():
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'config.json')), 'w') as f:
+    def create_default_config():
+        if not os.path.exists(Filepath.get_appdata_folder()):
+            os.mkdir(Filepath.get_appdata_folder())
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), "config.json")), "w") as f:
             json.dump(default_config, f)
         return Config.fetch_config()
