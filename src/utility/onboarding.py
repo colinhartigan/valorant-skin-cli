@@ -16,8 +16,8 @@ class Onboarder:
         self.procedure = [
             {
                 "text": "set region:",
-                "method": Config_Editor.set_region,
-                "args": (self.config["region"]),
+                "method": Config_Editor.config_set,
+                "args": ("region",self.config["region"]),
                 "callback": self.update_region
             },
             {
@@ -28,15 +28,16 @@ class Onboarder:
             {
                 "text": "loading your skins...",
                 "method": Loader.generate_skin_data,
-                "args": (self.client),
+                "args": (self.client, ),
             },
             {
                 "text": "set your skin preferences:",
                 "method": Editor.select_weapon_type,
-                "args": None,
+                "args": (None),
             }
         ]
         self.run()
+
 
     def run(self):
 
@@ -44,7 +45,7 @@ class Onboarder:
             returned = None
             color_print([("Green", item["text"])])
             if item["args"] is not None:
-                returned = item["method"](item["args"])
+                returned = item["method"](*item["args"])
             else:
                 returned = item["method"]()
 

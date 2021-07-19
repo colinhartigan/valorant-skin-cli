@@ -1,6 +1,5 @@
-import os
+import os, threading, ctypes
 from valclient.client import Client
-import threading
 from InquirerPy.utils import color_print
 
 from .utility.config_manager import Config
@@ -12,6 +11,7 @@ from .utility.logging import Logger
 from .utility.filepath import Filepath
 from .utility.version_checker import Checker
 
+kernel32 = ctypes.WinDLL('kernel32')
 
 class Startup:
 
@@ -25,12 +25,15 @@ class Startup:
         config = Config.fetch_config()
         Checker.check_version(config)
 
+        ctypes.windll.kernel32.SetConsoleTitleW(f"valorant-skin-cli {config['version']}") 
+
         region = config["region"][0].lower()
         client = Client(region=region)
         try:
             client.activate()
         except Exception as e:
             color_print([("Tomato", f"unable to launch: {e}")])
+            kernel32.SetConsoleMode(kernel32.GetStdHandle(-10), (0x4|0x80|0x20|0x2|0x10|0x1|0x40|0x100))
             input("press enter to exit...")
             os._exit(1)
 
