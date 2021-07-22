@@ -1,4 +1,4 @@
-from ..flair_loader.skin_loader import Loader
+from ..flair_loader.skin_loader_withcheck import Loader
 
 
 class Completer:

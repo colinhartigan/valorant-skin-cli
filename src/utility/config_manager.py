@@ -4,14 +4,15 @@ from .filepath import Filepath
 from valclient import Client
 
 default_config = {
-    "version": "v1.0.6",
-    "region": ["na",Client.fetch_regions()],
+    "version": "v1.0.7",
+    "region": ["",Client.fetch_regions()],
     "async_refresh_interval": 5,
     "skin_manager": {
         "randomize_after_each_game": True
     },
     "meta": {
-        "onboarding_completed": False
+        "onboarding_completed": False,
+        "surpress_update_notifications": False,
     }
 }
 

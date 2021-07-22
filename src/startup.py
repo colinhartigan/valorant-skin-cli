@@ -1,12 +1,13 @@
-import os, threading, ctypes
+import os, threading, ctypes, time
 from valclient.client import Client
 from InquirerPy.utils import color_print
 
 from .utility.config_manager import Config
 from .utility.onboarding import Onboarder
-from .flair_loader.skin_loader import Loader
+from .flair_loader.skin_loader_withcheck import Loader
 from .asynchronous.async_manager import Async_Manager
 from .cli.command_prompt import Prompt
+from .cli.commands.reload import Reload
 from .utility.logging import Logger
 from .utility.filepath import Filepath
 from .utility.version_checker import Checker
@@ -23,6 +24,12 @@ class Startup:
         Logger.create_logger()
         Config.check_config()
         config = Config.fetch_config()
+
+        if not config["meta"]["onboarding_completed"]:
+            Onboarder()
+            # reset the client if region changed during onboarding
+            Reload()
+
         Checker.check_version(config)
 
         ctypes.windll.kernel32.SetConsoleTitleW(f"valorant-skin-cli {config['version']}") 
@@ -36,13 +43,6 @@ class Startup:
             kernel32.SetConsoleMode(kernel32.GetStdHandle(-10), (0x4|0x80|0x20|0x2|0x10|0x1|0x40|0x100))
             input("press enter to exit...")
             os._exit(1)
-
-        if not config["meta"]["onboarding_completed"]:
-            Onboarder(client)
-            # reset the client if region changed during onboarding
-            config = Config.fetch_config()
-            client = Client(region=region)
-            client.activate()
 
         # load skin data
         Loader.generate_skin_data(client)

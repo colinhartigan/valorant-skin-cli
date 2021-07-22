@@ -1,6 +1,8 @@
 data/config.json 
 data/skin_data.json
 valorant-skin-cli.bat
+skin_loader_nocheck.py
+build_nocheck.bat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,7 +1,7 @@
 from InquirerPy import prompt, inquirer
 from InquirerPy.separator import Separator
 
-from ...flair_loader.skin_loader import Loader
+from ...flair_loader.skin_loader_withcheck import Loader
 
 
 class Editor:

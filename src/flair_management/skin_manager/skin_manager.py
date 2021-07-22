@@ -3,7 +3,7 @@ import json
 
 from ...content.skin_content import Skin_Content
 from ...utility.filepath import Filepath
-#from .skin_loader import Loader
+#from .skin_loader_withcheck import Loader
 from .randomizer import Randomize
 
 class Skin_Manager:

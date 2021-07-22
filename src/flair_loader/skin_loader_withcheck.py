@@ -8,7 +8,6 @@ from ..utility.logging import Logger
 from ..utility.filepath import Filepath
 debug = Logger.debug
 
-
 class Loader:
 
     @staticmethod
@@ -166,9 +165,7 @@ class Loader:
                         if level is not None:
                             debug(
                                 f"{skin['displayName']}/LEVEL: beginning processing of {level['displayName']} ({level['uuid']}) - {level}")
-
-                            level_already_exists = skin_previously_owned and level[
-                                "uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
+                            level_already_exists = skin_previously_owned and level["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
 
                             def process_skin_level():
                                 debug(
@@ -200,8 +197,7 @@ class Loader:
                                 skin, chroma["displayName"], weapon["displayName"])
                             debug(
                                 f"{skin['displayName']}/CHROMA: beginning processing of {sanitized_chroma_name} ({chroma['uuid']}) - {chroma}")
-                            chroma_already_exists = skin_previously_owned and chroma[
-                                "uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
+                            chroma_already_exists = skin_previously_owned and chroma["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
 
                             def process_chroma():
                                 debug(

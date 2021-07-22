@@ -1,24 +1,26 @@
 from InquirerPy.utils import color_print
+from valclient.client import Client
+import time
 
 from .config_manager import Config as app_config
 
-from ..cli.commands.config import Config_Editor
-from ..flair_loader.skin_loader import Loader
+from ..cli.commands.reload import Reload
+from ..flair_loader.skin_loader_withcheck import Loader
 from ..flair_management.skin_manager.randomizer_editor import Editor
 
 
 class Onboarder:
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self):
         self.config = app_config.fetch_config()
+        self.client = Client(region="na" if self.config['region'][0] == "" else self.config['region'][0])
+        self.client.activate()
 
         self.procedure = [
             {
-                "text": "set region:",
-                "method": Config_Editor.config_set,
-                "args": ("region",self.config["region"]),
-                "callback": self.update_region
+                "text": "autodetecting region",
+                "method": self.autodetect_region,
+                "args": None,
             },
             {
                 "text": "generating fresh skin data file...",
@@ -28,12 +30,12 @@ class Onboarder:
             {
                 "text": "loading your skins...",
                 "method": Loader.generate_skin_data,
-                "args": (self.client, ),
+                "args": (self.client,),
             },
             {
                 "text": "set your skin preferences:",
                 "method": Editor.select_weapon_type,
-                "args": (None),
+                "args": None,
             }
         ]
         self.run()
@@ -56,6 +58,21 @@ class Onboarder:
         app_config.modify_config(self.config)
         color_print([("Lime bold", "onboarding completed!")])
 
-    def update_region(self, region):
-        self.config["region"] = region
-        app_config.modify_config(self.config)
+
+    def autodetect_region(self):
+        if self.config["region"][0] == "":
+            client = Client(region="na")
+            client.activate()
+            sessions = client.riotclient_session_fetch_sessions()
+            for _,session in sessions.items():
+                if session["productId"] == "valorant":
+                    launch_args = session["launchConfiguration"]["arguments"]
+                    for arg in launch_args:
+                        if "-ares-deployment" in arg:
+                            region = arg.replace("-ares-deployment=","")
+                            self.config["region"][0] = region
+                            app_config.modify_config(self.config)
+                            color_print([("LimeGreen",f"autodetected region: {self.config['region'][0]}")])
+                            Reload()
+        else:
+            color_print([("LimeGreen",f"autodetected region: {self.config['region'][0]}")])
