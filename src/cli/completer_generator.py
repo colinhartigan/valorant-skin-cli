@@ -9,6 +9,7 @@ class Completer:
         data = {
             "randomize": None,
             "modify": None,
+            "reset": None,
             "loadout": None,
             "config": None,
             "set": {},

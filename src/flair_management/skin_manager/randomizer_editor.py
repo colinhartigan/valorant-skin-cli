@@ -11,7 +11,7 @@ class Editor:
     '''
 
     @staticmethod
-    def select_weapon_type():
+    def select_weapon_type(default):
         skin_data = Loader.fetch_skin_data()
 
         type_choices = [
@@ -27,15 +27,15 @@ class Editor:
         type_choice = inquirer.select(
             message='[randomizer pool editor] select a weapon type',
             choices=type_choices,
-            pointer=">"
+            pointer=">",
+            default=default,
         )
         type_choice = type_choice.execute()
 
         if type_choice == "exit":
             return
         if type_choice == "Melee":
-            Editor.select_skin(
-                skin_data, "2f59173c-4bed-b6c3-2191-dea9b58be9c7")
+            Editor.select_skin(skin_data, "2f59173c-4bed-b6c3-2191-dea9b58be9c7")
         else:
             Editor.select_weapon(skin_data, type_choice)
 
@@ -55,7 +55,7 @@ class Editor:
         weapon_choice = weapon_choice.execute()
 
         if weapon_choice == "back":
-            Editor.select_weapon_type()
+            Editor.select_weapon_type(weapon_type)
             return
 
         Editor.select_skin(skin_data, weapon_choice)

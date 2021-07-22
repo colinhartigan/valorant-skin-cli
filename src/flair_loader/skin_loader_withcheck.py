@@ -186,6 +186,8 @@ class Loader:
                             if level is not None and level["displayName"] == skin["displayName"].replace("Standard ", ""):
                                 # if skin is standard
                                 process_skin_level()
+                            elif level_already_exists:
+                                process_skin_level()
                             else:
                                 for entitlement in skin_level_entitlements["Entitlements"]:
                                     if level is not None and entitlement["ItemID"] == level["uuid"]:
@@ -220,6 +222,8 @@ class Loader:
                             elif len(skin["chromas"]) == 1:
                                 process_chroma()
                             elif index == 0:
+                                process_chroma()
+                            elif chroma_already_exists:
                                 process_chroma()
                             else:
                                 for entitlement in skin_chroma_entitlements["Entitlements"]:

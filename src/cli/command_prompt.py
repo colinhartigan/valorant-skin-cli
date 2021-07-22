@@ -10,7 +10,7 @@ from ..core_game.session import Session
 # command imports
 from .completer_generator import Completer
 from .validator import Command_Validator
-from .commands import (loadout, set_skin, config, reload)
+from .commands import (loadout, set_skin, config, reload, reset)
 
 kernel32 = ctypes.WinDLL('kernel32')
 user32 = ctypes.WinDLL('user32')
@@ -52,10 +52,14 @@ class Prompt:
                 loadout.Loadout(self.skin_manager)
 
             if command[0] == "modify":
-                Editor.select_weapon_type()
+                Editor.select_weapon_type(None)
 
             if command[0] == "set":
                 set_skin.Set_Skin(command, self.skin_manager, self.skin_data)
+
+            if command[0] == "reset":
+                reset.Reset(self.client)
+                self.commands = Completer.generate_completer_dict()
 
             if command[0] == "loadout":
                 loadout.Loadout(self.skin_manager)
