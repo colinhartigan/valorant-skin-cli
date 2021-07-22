@@ -11,7 +11,7 @@ class Editor:
     '''
 
     @staticmethod
-    def select_weapon_type(default):
+    def select_weapon_type(default="exit"):
         skin_data = Loader.fetch_skin_data()
 
         type_choices = [
