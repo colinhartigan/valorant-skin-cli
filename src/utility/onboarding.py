@@ -75,4 +75,4 @@ class Onboarder:
                             color_print([("LimeGreen",f"autodetected region: {self.config['region'][0]}")])
                             Reload()
         else:
-            color_print([("LimeGreen",f"autodetected region: {self.config['region'][0]}")])
+            color_print([("LimeGreen",f"region: {self.config['region'][0]}")])

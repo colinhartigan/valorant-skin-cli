@@ -52,21 +52,32 @@ class Loader:
             "Ultra": 6,
         }
 
+        tier_colors = {
+            "Standard": "Grey",
+            "Battlepass": "White",
+            "Select": "Blue",
+            "Deluxe": "Lime",
+            "Premium": "Purple",
+            "Ultra": "Yellow",
+            "Exclusive": "DarkGoldenRod"
+        }
+
         if uuid not in ('standard', 'bp'):
             for tier in tiers:
                 if tier["uuid"] == uuid:
                     tier["index"] = tier_indices[tier["devName"]]
+                    tier["highlightColor"] = tier_colors[tier["devName"]]
                     return tier
         elif uuid == "standard":
             return {
                 "devName": "Standard",
-                "highlightColor": "474747",
+                "highlightColor": tier_colors["Standard"],
                 "index": tier_indices["Standard"]
             }
         elif uuid == "bp":
             return {
                 "devName": "Battlepass",
-                "highlightColor": "66C3A9",
+                "highlightColor": tier_colors["Battlepass"],
                 "index": tier_indices["Battlepass"]
             }
 

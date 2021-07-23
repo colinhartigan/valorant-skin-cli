@@ -1,9 +1,9 @@
-import os 
-import json
+import os, json
+from InquirerPy.utils import color_print
 
 from ...content.skin_content import Skin_Content
 from ...utility.filepath import Filepath
-#from .skin_loader_withcheck import Loader
+from ...flair_loader.skin_loader_withcheck import Loader
 from .randomizer import Randomize
 
 class Skin_Manager:
@@ -18,12 +18,6 @@ class Skin_Manager:
         return self.client.put_player_loadout(loadout=loadout)
 
     @staticmethod
-    def fetch_inventory_data():
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json'))) as f:
-            gun_pool = json.load(f)
-            return gun_pool
-
-    @staticmethod
     def fetch_weapon_data(weapon_uuid,weapon_datas):
         for i in weapon_datas:
             if i['uuid'] == weapon_uuid:
@@ -35,32 +29,62 @@ class Skin_Manager:
             if i['uuid'] == skin_uuid:
                 return i
 
-    @staticmethod
-    def fetch_weapon_by_name(name):
-        return Skin_Content.fetch_weapon_by_name(name)
 
     def fetch_skin_table(self):
-
         loadout = self.fetch_loadout()['Guns']
-        skins = {}
-        grid = {}
+        inventory = Loader.fetch_skin_data()
+        loadout_patched = {}
+
+        grid_order = [
+            ["Classic", "Stinger", "Bulldog", "Marshal"],
+            ["Shorty", "Spectre", "Guardian", "Operator"],
+            ["Frenzy", "Bucky", "Phantom", "Ares"],
+            ["Ghost", "Judge", "Vandal", "Odin"],
+            ["Sheriff", None, None, "Melee"],
+        ]
+        grid_built = [[] for i in range(15)]
 
         longest = 0
 
-        weapons_datas = Skin_Content.fetch_weapon_datas()
-        skins_datas = Skin_Content.fetch_skin_datas()
+        for weapon in loadout:
+            weapon_data = inventory[weapon["ID"]]
+            skin_data = weapon_data["skins"][weapon["SkinID"]]
+            level_data = skin_data["levels"][weapon["SkinLevelID"]]
+            chroma_data = skin_data["chromas"][weapon["ChromaID"]]
 
-        for skin in loadout:
-            skin_data = self.fetch_skin_data(skin['SkinID'],skins_datas)
-            weapon_data = self.fetch_weapon_data(skin['ID'],weapons_datas)
+            loadout_patched[weapon_data["display_name"]] = {
+                "ID": weapon["ID"],
+                "skin_name": skin_data["display_name"],
+                "level_name": level_data["display_name"],
+                "chroma_name": chroma_data["display_name"],
+                "color": skin_data["tier"]["color"]
+            }
+            if len(skin_data["display_name"]) > longest:
+                longest = len(skin_data["display_name"])
+            elif len(skin_data["display_name"]) > longest:
+                longest = len(level_data["display_name"])
+            elif len(skin_data["display_name"]) > longest:
+                longest = len(chroma_data["display_name"])
 
-            grid[weapon_data['displayName']] = skin_data['displayName']
-            if len(skin_data['displayName']) > longest:
-                longest = len(skin_data['displayName'])
+        realrow = 0
+        for row,guns in enumerate(grid_order):
+            for col,weapon_name in enumerate(guns):
+                if weapon_name is not None:
+                    weapon_data = loadout_patched[weapon_name]
+                    grid_built[realrow].append((f"{weapon_data['color']} bold",f"{weapon_data['skin_name']}\t".expandtabs(longest+4)))
+                    grid_built[realrow+1].append((weapon_data["color"],f"{weapon_data['level_name']}\t".expandtabs(longest+4)))
+                    grid_built[realrow+2].append((weapon_data["color"],f"{weapon_data['chroma_name']}\t".expandtabs(longest+4)))
+                else:
+                    grid_built[realrow].append(("White","\t".expandtabs(longest+4)))
+                    grid_built[realrow+1].append(("White","\t".expandtabs(longest+4)))
+                    grid_built[realrow+2].append(("White","\t".expandtabs(longest+4)))
+                
+            grid_built[realrow+2].append(("White","\n"))
+            realrow += 3
+
+        return grid_built
 
         # if only the api would return the guns in the right order :(
-        return f"{grid['Classic']}\t{grid['Stinger']}\t{grid['Bulldog']}\t{grid['Marshal']}\n{grid['Shorty']}\t{grid['Spectre']}\t{grid['Guardian']}\t{grid['Operator']}\n{grid['Frenzy']}\t{grid['Bucky']}\t{grid['Phantom']}\t{grid['Ares']}\n{grid['Ghost']}\t{grid['Judge']}\t{grid['Vandal']}\t{grid['Odin']}\n{grid['Sheriff']}\t\t\t{grid['Melee']}", longest
-
 
 
     def modify_skin(self,weapon_uuid,skin_uuid,level_uuid,chroma_uuid):

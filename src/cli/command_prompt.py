@@ -4,6 +4,7 @@ from InquirerPy import inquirer
 from ..flair_management.skin_manager.randomizer_editor import Editor
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
+from ..flair_loader.skin_loader_withcheck import Loader
 
 from ..core_game.session import Session
 
@@ -25,7 +26,7 @@ class Prompt:
         self.client = client
 
         self.skin_manager = Skin_Manager(client)
-        self.skin_data = self.skin_manager.fetch_inventory_data()
+        self.skin_data = Loader.fetch_skin_data()
 
         self.session = Session(client, self.skin_manager)
 
