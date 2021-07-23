@@ -20,7 +20,7 @@ class Session:
 
     async def randomizer_check(self):
         if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
-            Randomizer()
+            Randomizer.randomize(self.client)
         
     async def update_presence(self):
         self.previous_presence = self.presence 

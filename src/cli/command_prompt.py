@@ -4,6 +4,7 @@ from InquirerPy import inquirer
 from ..flair_management.skin_manager.randomizer_editor import Editor
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
+from ..flair_management.skin_manager.randomizer import Randomizer
 from ..flair_loader.skin_loader_withcheck import Loader
 
 from ..core_game.session import Session
@@ -11,7 +12,7 @@ from ..core_game.session import Session
 # command imports
 from .completer_generator import Completer
 from .validator import Command_Validator
-from .commands import (loadout, set_skin, config, reload, reset)
+from .commands import (loadout, set_skin, config, reload, reset, test)
 
 kernel32 = ctypes.WinDLL('kernel32')
 user32 = ctypes.WinDLL('user32')
@@ -46,8 +47,8 @@ class Prompt:
             ).execute()
 
             if command[0] == "randomize":
-                Skin_Manager.randomize_skins()
-                loadout.Loadout()
+                Randomizer.randomize(self.client)
+                loadout.Loadout(self.client)
 
             if command[0] == "modify":
                 Editor.select_weapon_type(None)
@@ -55,11 +56,15 @@ class Prompt:
             if command[0] == "set":
                 set_skin.Set_Skin(self.client, command, self.skin_data)
 
+            if command[0] == "loadout":
+                loadout.Loadout(self.client)
+
+            if command[0] == "test":
+                test.Test(self.client)
+
+
             if command[0] == "reset":
                 reset.Reset()
-
-            if command[0] == "loadout":
-                loadout.Loadout()
 
             if command[0] == "config":
                 config.Config_Editor()

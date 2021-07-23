@@ -1,11 +1,13 @@
 from InquirerPy.utils import color_print
 from ...flair_loader.skin_loader_withcheck import Loader
+from .skin_manager import Skin_Manager
 import random
 
-class Randomize:
+class Randomizer:
 
-    def __init__(self,manager):
-        loadout = manager.fetch_loadout()
+    @staticmethod
+    def randomize(client):
+        loadout = client.fetch_player_loadout()
         all_skins = Loader.fetch_skin_data()
 
         # this spawn of satan creates a streamlined dict of weapons enabled in the randomizer pool
@@ -29,6 +31,6 @@ class Randomize:
             else:
                 color_print([("Yellow bold", f"[!] {all_skins[weapon['ID']]['display_name']} has no skins in the randomizer pool, using currently equipped skin")])
             
-        new = manager.put_loadout(loadout=loadout)
+        new = client.put_player_loadout(loadout=loadout)
         
         color_print([("Lime", "randomized skins")])

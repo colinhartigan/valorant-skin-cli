@@ -29,8 +29,7 @@ class Editor:
             choices=type_choices,
             pointer=">",
             default=default,
-        )
-        type_choice = type_choice.execute()
+        ).execute()
 
         if type_choice == "exit":
             return
@@ -51,8 +50,7 @@ class Editor:
             message=f"[{weapon_type}] select a weapon to view the skins of",
             choices=weapon_choices,
             pointer=">"
-        )
-        weapon_choice = weapon_choice.execute()
+        ).execute()
 
         if weapon_choice == "back":
             Editor.select_weapon_type(weapon_type)

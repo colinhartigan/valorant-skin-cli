@@ -11,6 +11,7 @@ class Completer:
             "modify": None,
             "reset": None,
             "loadout": None,
+            "test": None,
             "config": None,
             "set": {},
             "reload": None,

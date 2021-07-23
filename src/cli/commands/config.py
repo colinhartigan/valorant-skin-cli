@@ -28,8 +28,7 @@ class Config_Editor:
             message=f"[{section}] select a configuration option",
             choices=prompt_choices,
             pointer=">"
-        )
-        choice = choice.execute()
+        ).execute()
 
         if choice == "back":
             if section != "main":
@@ -54,8 +53,7 @@ class Config_Editor:
                 default=str(option),
                 validate=lambda result: not result.isdigit(),
                 filter=lambda result: str(result)
-            )
-            choice = choice.execute()
+            ).execute()
             return choice
 
         if type(option) is int:
@@ -64,8 +62,7 @@ class Config_Editor:
                 default=str(option),
                 validate=lambda result: result.isdigit(),
                 filter=lambda result: int(result)
-            )
-            choice = choice.execute()
+            ).execute()
             return choice
 
         if type(option) is bool:
@@ -75,8 +72,7 @@ class Config_Editor:
                 choices=[{"name": "true", "value": True},
                          {"name": "false", "value": False}],
                 pointer=">"
-            )
-            choice = choice.execute()
+            ).execute()
             return choice
 
         if type(option) is list:
@@ -87,7 +83,6 @@ class Config_Editor:
                 default=current,
                 choices={option:option for option in options},
                 pointer=">"
-            )
-            choice = choice.execute()
+            ).execute()
             option[0] = choice 
             return option

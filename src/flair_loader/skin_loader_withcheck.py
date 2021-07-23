@@ -91,7 +91,7 @@ class Loader:
         debug(f"skin entitlements: {skin_level_entitlements}")
         debug(f"chroma entitlements: {skin_chroma_entitlements}")
         content_tiers = Skin_Content.fetch_content_tiers()
-        all_weapon_content = Skin_Content.fetch_weapon_datas()
+        all_weapon_content = Skin_Content.fetch_weapons_data()
 
         existing_skin_data = {}
         # check integrity of existing skin data and/or if it exists
@@ -263,7 +263,7 @@ class Loader:
         with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
             new_data = {}
 
-            all_weapon_content = Skin_Content.fetch_weapon_datas()
+            all_weapon_content = Skin_Content.fetch_weapons_data()
             for weapon in all_weapon_content:
                 weapon_uuid = weapon["uuid"]
                 weapon_data = {

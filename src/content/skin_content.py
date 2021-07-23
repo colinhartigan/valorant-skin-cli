@@ -8,23 +8,14 @@ class Skin_Content:
         return data.json()
 
     @staticmethod
-    def fetch_weapon_datas():
-        weapon_datas = Skin_Content.fetch(f"/weapons")
-        return weapon_datas["data"]
+    def fetch_weapons_data():
+        weapons_data = Skin_Content.fetch(f"/weapons")
+        return weapons_data["data"]
 
     @staticmethod
     def fetch_skin_datas():
         skin_datas = Skin_Content.fetch(f"/weapons/skins")
         return skin_datas["data"]
-
-    @staticmethod
-    def fetch_weapon_by_name(name):
-        weapons = Skin_Content.fetch(endpoint="/weapons")["data"]
-
-        for weapon in weapons:
-            if name.lower() in weapon['displayName'].lower():
-                return weapon
-        return None
 
     @staticmethod 
     def fetch_weapon_by_id(uuid):
@@ -50,3 +41,8 @@ class Skin_Content:
     def fetch_content_tiers():
         tiers = Skin_Content.fetch(endpoint=f"/contenttiers")
         return tiers["data"]
+
+    @staticmethod 
+    def fetch_gun_buddies():
+        buddies = Skin_Content.fetch(endpoint=f"/buddies")
+        return buddies["data"]
