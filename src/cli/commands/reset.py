@@ -5,7 +5,7 @@ from InquirerPy.utils import color_print
 
 class Reset:
 
-    def __init__(self,client):
+    def __init__(self):
         color_print([("Green bold", "resetting")])
         Config.create_default_config()
         Reload()

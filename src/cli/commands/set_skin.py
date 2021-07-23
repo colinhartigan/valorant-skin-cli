@@ -1,7 +1,8 @@
 from InquirerPy.utils import color_print
+from ...flair_management.skin_manager.skin_manager import Skin_Manager
 
 class Set_Skin:
-    def __init__(self,command,manager,inventory_data):
+    def __init__(self, client, command,inventory_data):
 
         # format: set weanpon_name skin_name level chroma
         if len(command) < 3:
@@ -45,6 +46,6 @@ class Set_Skin:
                     chroma_data = (uuid,chroma)
 
 
-        manager.modify_skin(weapon_data[0], skin_data[0], level_data[0], chroma_data[0])
+        Skin_Manager.modify_skin(client,weapon_data[0], skin_data[0], level_data[0], chroma_data[0])
         color_print([("Lime bold",f"{weapon_data[1]['display_name']} -> {skin_data[1]['display_name']} ({level_data[1]['display_name']}/{chroma_data[1]['display_name']})")])
         

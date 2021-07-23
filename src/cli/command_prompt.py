@@ -25,10 +25,7 @@ class Prompt:
     def __init__(self, auth_data=None, client=None):
         self.client = client
 
-        self.skin_manager = Skin_Manager(client)
         self.skin_data = Loader.fetch_skin_data()
-
-        self.session = Session(client, self.skin_manager)
 
         self.commands = Completer.generate_completer_dict()
 
@@ -49,21 +46,20 @@ class Prompt:
             ).execute()
 
             if command[0] == "randomize":
-                self.skin_manager.randomize_skins()
-                loadout.Loadout(self.skin_manager)
+                Skin_Manager.randomize_skins()
+                loadout.Loadout()
 
             if command[0] == "modify":
                 Editor.select_weapon_type(None)
 
             if command[0] == "set":
-                set_skin.Set_Skin(command, self.skin_manager, self.skin_data)
+                set_skin.Set_Skin(self.client, command, self.skin_data)
 
             if command[0] == "reset":
-                reset.Reset(self.client)
-                self.commands = Completer.generate_completer_dict()
+                reset.Reset()
 
             if command[0] == "loadout":
-                loadout.Loadout(self.skin_manager)
+                loadout.Loadout()
 
             if command[0] == "config":
                 config.Config_Editor()

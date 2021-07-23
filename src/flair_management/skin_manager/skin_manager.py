@@ -8,15 +8,6 @@ from .randomizer import Randomize
 
 class Skin_Manager:
 
-    def __init__(self,client=None):
-        self.client = client
-
-    def fetch_loadout(self):
-        return self.client.fetch_player_loadout()
-
-    def put_loadout(self,loadout):
-        return self.client.put_player_loadout(loadout=loadout)
-
     @staticmethod
     def fetch_weapon_data(weapon_uuid,weapon_datas):
         for i in weapon_datas:
@@ -30,6 +21,7 @@ class Skin_Manager:
                 return i
 
 
+    @staticmethod
     def fetch_skin_table(self):
         loadout = self.fetch_loadout()['Guns']
         inventory = Loader.fetch_skin_data()
@@ -66,29 +58,28 @@ class Skin_Manager:
             elif len(skin_data["display_name"]) > longest:
                 longest = len(chroma_data["display_name"])
 
-        realrow = 0
-        for row,guns in enumerate(grid_order):
-            for col,weapon_name in enumerate(guns):
+        row = 0
+        for _,guns in enumerate(grid_order):
+            for _,weapon_name in enumerate(guns):
                 if weapon_name is not None:
                     weapon_data = loadout_patched[weapon_name]
-                    grid_built[realrow].append((f"{weapon_data['color']} bold",f"{weapon_data['skin_name']}\t".expandtabs(longest+4)))
-                    grid_built[realrow+1].append((weapon_data["color"],f"{weapon_data['level_name']}\t".expandtabs(longest+4)))
-                    grid_built[realrow+2].append((weapon_data["color"],f"{weapon_data['chroma_name']}\t".expandtabs(longest+4)))
+                    grid_built[row].append((f"{weapon_data['color']} bold",f"{weapon_data['skin_name']}\t".expandtabs(longest+4)))
+                    grid_built[row+1].append((weapon_data["color"],f"{weapon_data['level_name']}\t".expandtabs(longest+4)))
+                    grid_built[row+2].append((weapon_data["color"],f"{weapon_data['chroma_name']}\t".expandtabs(longest+4)))
                 else:
-                    grid_built[realrow].append(("White","\t".expandtabs(longest+4)))
-                    grid_built[realrow+1].append(("White","\t".expandtabs(longest+4)))
-                    grid_built[realrow+2].append(("White","\t".expandtabs(longest+4)))
+                    grid_built[row].append(("White","\t".expandtabs(longest+4)))
+                    grid_built[row+1].append(("White","\t".expandtabs(longest+4)))
+                    grid_built[row+2].append(("White","\t".expandtabs(longest+4)))
                 
-            grid_built[realrow+2].append(("White","\n"))
-            realrow += 3
+            grid_built[row+2].append(("White","\n"))
+            row += 3
 
         return grid_built
 
-        # if only the api would return the guns in the right order :(
 
-
-    def modify_skin(self,weapon_uuid,skin_uuid,level_uuid,chroma_uuid):
-        loadout = self.fetch_loadout()
+    @staticmethod
+    def modify_skin(client,weapon_uuid,skin_uuid,level_uuid,chroma_uuid):
+        loadout = client.fetch_player_loadout()
         
         for weapon in loadout['Guns']:
             if weapon['ID'] == weapon_uuid:
@@ -96,9 +87,10 @@ class Skin_Manager:
                 weapon['SkinLevelID'] = level_uuid 
                 weapon['ChromaID'] = chroma_uuid     
                 
-        self.put_loadout(loadout=loadout)
+        client.put_player_loadout(loadout=loadout)
 
-
+    
+    @staticmethod
     def randomize_skins(self):
         Randomize(self)
         

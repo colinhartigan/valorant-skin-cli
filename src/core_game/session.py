@@ -8,9 +8,8 @@ class Session:
     this one's in charge of activating session-related tasks
     '''
 
-    def __init__(self,client,manager):
+    def __init__(self,client):
         self.client = client 
-        self.skin_manager = manager
 
         try:
             self.previous_presence = self.client.fetch_presence()
@@ -21,7 +20,7 @@ class Session:
 
     async def randomizer_check(self):
         if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
-            Randomizer(self.skin_manager)
+            Randomizer()
         
     async def update_presence(self):
         self.previous_presence = self.presence 

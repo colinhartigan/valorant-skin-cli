@@ -13,8 +13,7 @@ class Coregame_Manager:
 
     def __init__(self,client):
         self.client = client
-        self.skin_manager = Skin_Manager(self.client)
-        self.session = Session(self.client,self.skin_manager)
+        self.session = Session(self.client)
 
     async def main_loop(self):
         await self.session.update_presence()
