@@ -10,9 +10,10 @@ from ..flair_loader.skin_loader_withcheck import Loader
 from ..core_game.session import Session
 
 # command imports
+from . import completer_generator
 from .completer_generator import Completer
 from .validator import Command_Validator
-from .commands import (loadout, set_skin, config, reload, reset, test)
+from .commands import (loadout, set_skin, config, reload, reset)
 
 kernel32 = ctypes.WinDLL('kernel32')
 user32 = ctypes.WinDLL('user32')
@@ -25,10 +26,9 @@ class Prompt:
 
     def __init__(self, auth_data=None, client=None):
         self.client = client
-
-        self.skin_data = Loader.fetch_skin_data()
-
-        self.commands = Completer.generate_completer_dict()
+        self.commands = {}
+        completer_generator.cli = self
+        Completer.generate_completer_dict()
 
     def main_loop(self):
         command = [""]
@@ -48,20 +48,15 @@ class Prompt:
 
             if command[0] == "randomize":
                 Randomizer.randomize(self.client)
-                loadout.Loadout(self.client)
 
             if command[0] == "modify":
                 Editor.select_weapon_type(None)
 
             if command[0] == "set":
-                set_skin.Set_Skin(self.client, command, self.skin_data)
+                set_skin.Set_Skin(self.client, command)
 
             if command[0] == "loadout":
-                loadout.Loadout(self.client)
-
-            if command[0] == "test":
-                test.Test(self.client)
-
+                loadout.Loadout(command, self.client)
 
             if command[0] == "reset":
                 reset.Reset()
@@ -72,5 +67,7 @@ class Prompt:
             if command[0] == "reload": 
                 reload.Reload()
                 os._exit(1)
+
+            Completer.generate_completer_dict()
 
         os._exit(1)

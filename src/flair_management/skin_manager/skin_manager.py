@@ -1,16 +1,7 @@
+from ...utility.filepath import Filepath
+import os,json
+
 class Skin_Manager:
-
-    @staticmethod
-    def fetch_weapon_data(weapon_uuid,weapons_data):
-        for i in weapons_data:
-            if i['uuid'] == weapon_uuid:
-                return i
-
-    @staticmethod
-    def fetch_skin_data(skin_uuid,skin_datas):
-        for i in skin_datas:
-            if i['uuid'] == skin_uuid:
-                return i
 
     @staticmethod
     def modify_skin(client,weapon_uuid,skin_uuid,level_uuid,chroma_uuid):
@@ -23,4 +14,13 @@ class Skin_Manager:
                 weapon['ChromaID'] = chroma_uuid     
                 
         client.put_player_loadout(loadout=loadout)
-        
+
+    @staticmethod
+    def modify_skin_data(new_data):
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
+            json.dump(new_data, f)
+
+    @staticmethod
+    def fetch_skin_data():
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json'))) as f:
+            return json.load(f)

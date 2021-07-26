@@ -1,15 +1,15 @@
-from ..flair_loader.skin_loader_withcheck import Loader
+from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..content.identity_content import Identity_Content
 from ..content.skin_content import Skin_Content
 
 class Loadout_Grid:
 
     @staticmethod
-    def fetch_loadout_grid(client):
+    def fetch_loadout_grid(client,loadout_override=None):
         def ceildiv(a, b):
             return -(-a // b)
 
-        loadout = client.fetch_player_loadout()
+        loadout = client.fetch_player_loadout() if loadout_override is None else loadout_override
 
         loadout_sprays = {
             spray["SprayID"]: spray["EquipSlotID"] for spray in loadout["Sprays"]
@@ -17,7 +17,7 @@ class Loadout_Grid:
 
         sprays = Identity_Content.fetch_spray_data()
         buddies = Skin_Content.fetch_gun_buddies()
-        inventory = Loader.fetch_skin_data()
+        inventory = Skin_Manager.fetch_skin_data()
 
         spray_slot_uuids = {
             "0814b2fe-4512-60a4-5288-1fbdcec6ca48": "Spray1",

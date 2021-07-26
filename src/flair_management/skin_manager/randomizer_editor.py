@@ -1,7 +1,7 @@
 from InquirerPy import prompt, inquirer
 from InquirerPy.separator import Separator
 
-from ...flair_loader.skin_loader_withcheck import Loader
+from ...flair_management.skin_manager.skin_manager import Skin_Manager
 
 
 class Editor:
@@ -12,7 +12,7 @@ class Editor:
 
     @staticmethod
     def select_weapon_type(default="exit"):
-        skin_data = Loader.fetch_skin_data()
+        skin_data = Skin_Manager.fetch_skin_data()
 
         type_choices = [
             {"name": "exit", "value": "exit"},
@@ -98,7 +98,7 @@ class Editor:
             weapon_data['skins'][skin_choice] = Editor.set_skin_preferences(
                 weapon_skin_data)
 
-        Loader.modify_skin_data(skin_data)
+        Skin_Manager.modify_skin_data(skin_data)
         Editor.select_skin(skin_data, weapon_choice)
 
     @staticmethod

@@ -6,6 +6,7 @@ from ..content.skin_content import Skin_Content
 from ..entitlements.entitlement_manager import Entitlement_Manager
 from ..utility.logging import Logger
 from ..utility.filepath import Filepath
+from ..flair_management.skin_manager.skin_manager import Skin_Manager
 debug = Logger.debug
 
 class Loader:
@@ -98,11 +99,11 @@ class Loader:
         # if not, start new data
 
         try:
-            existing_skin_data = Loader.fetch_skin_data()
+            existing_skin_data = Skin_Manager.fetch_skin_data()
         except:
             debug("skin data integrity check failed!")
             color_print(
-                [("Yellow bold", "[!] integrity check of skin data file failed; generating fresh data")])
+                [("Yellow bold", "[!] integrity check of skin data file failed; generating fresh file")])
             existing_skin_data = Loader.generate_blank_skin_file()
 
         new_skin_data = {}
@@ -277,12 +278,4 @@ class Loader:
 
         return Loader.fetch_skin_data()
 
-    @staticmethod
-    def modify_skin_data(new_data):
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
-            json.dump(new_data, f)
-
-    @staticmethod
-    def fetch_skin_data():
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json'))) as f:
-            return json.load(f)
+    

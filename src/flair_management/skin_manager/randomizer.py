@@ -1,5 +1,4 @@
 from InquirerPy.utils import color_print
-from ...flair_loader.skin_loader_withcheck import Loader
 from .skin_manager import Skin_Manager
 import random
 
@@ -8,7 +7,7 @@ class Randomizer:
     @staticmethod
     def randomize(client):
         loadout = client.fetch_player_loadout()
-        all_skins = Loader.fetch_skin_data()
+        all_skins = Skin_Manager.fetch_skin_data()
 
         # this spawn of satan creates a streamlined dict of weapons enabled in the randomizer pool
         randomizer_pool = {weapon: {skin: {'levels': {level: level_data for level,level_data in skin_data['levels'].items() if level_data['enabled']}, 'chromas': {chroma: chroma_data for chroma,chroma_data in skin_data['chromas'].items() if chroma_data['enabled']}} for skin,skin_data in weapon_data['skins'].items() if skin_data['enabled']} for weapon,weapon_data in all_skins.items()}

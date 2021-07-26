@@ -2,8 +2,9 @@ from InquirerPy.utils import color_print
 from ...flair_management.skin_manager.skin_manager import Skin_Manager
 
 class Set_Skin:
-    def __init__(self, client, command,inventory_data):
-
+    def __init__(self, client, command):
+        
+        inventory_data = Skin_Manager.fetch_skin_data()
         # format: set weanpon_name skin_name level chroma
         if len(command) < 3:
             color_print([("#f44336","command missing required params")])
