@@ -1,4 +1,5 @@
 from ...utility.filepath import Filepath
+from ...content.skin_content import Skin_Content
 import os,json
 
 class Skin_Manager:
@@ -24,3 +25,20 @@ class Skin_Manager:
     def fetch_skin_data():
         with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json'))) as f:
             return json.load(f)
+
+    @staticmethod
+    def generate_blank_skin_file():
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
+            new_data = {}
+
+            all_weapon_content = Skin_Content.fetch_weapons_data()
+            for weapon in all_weapon_content:
+                weapon_uuid = weapon["uuid"]
+                weapon_data = {
+                    "display_name": weapon["displayName"],
+                    "skins": {}
+                }
+
+                new_data[weapon_uuid] = weapon_data
+
+            json.dump(new_data, f)

@@ -104,7 +104,7 @@ class Loader:
             debug("skin data integrity check failed!")
             color_print(
                 [("Yellow bold", "[!] integrity check of skin data file failed; generating fresh file")])
-            existing_skin_data = Loader.generate_blank_skin_file()
+            existing_skin_data = Skin_Manager.generate_blank_skin_file()
 
         new_skin_data = {}
 
@@ -258,24 +258,5 @@ class Loader:
             json.dump(new_skin_data, f)
             color_print([("Lime", "skins loaded!")])
 
-    @staticmethod
-    def generate_blank_skin_file():
-        debug("generating blank skin file")
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
-            new_data = {}
-
-            all_weapon_content = Skin_Content.fetch_weapons_data()
-            for weapon in all_weapon_content:
-                weapon_uuid = weapon["uuid"]
-                weapon_data = {
-                    "display_name": weapon["displayName"],
-                    "skins": {}
-                }
-
-                new_data[weapon_uuid] = weapon_data
-
-            json.dump(new_data, f)
-
-        return Loader.fetch_skin_data()
-
+    
     

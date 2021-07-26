@@ -1,6 +1,5 @@
 import os
 import json
-import traceback
 from InquirerPy.utils import color_print
 
 from ...utility.logging import Logger
