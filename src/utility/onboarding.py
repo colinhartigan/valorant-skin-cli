@@ -5,7 +5,7 @@ import time
 from .config_manager import Config as app_config
 
 from ..cli.commands.reload import Reload
-from ..flair_loader.skin_loader_withcheck import Loader
+from ..flair_loader.skin_loader_withcheck import Skin_Loader
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..flair_management.skin_manager.randomizer_editor import Editor
@@ -31,7 +31,7 @@ class Onboarder:
             },
             {
                 "text": "loading your skins...",
-                "method": Loader.generate_skin_data,
+                "method": Skin_Loader.generate_skin_data,
                 "args": (self.client,),
             },
             {

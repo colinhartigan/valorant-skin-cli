@@ -4,7 +4,8 @@ from InquirerPy.utils import color_print
 
 from .utility.config_manager import Config
 from .utility.onboarding import Onboarder
-from .flair_loader.skin_loader_withcheck import Loader
+from .flair_loader.skin_loader_withcheck import Skin_Loader
+from .flair_loader.buddy_loader import Buddy_Loader
 from .asynchronous.async_manager import Async_Manager
 from .cli.command_prompt import Prompt
 from .cli.commands.reload import Reload
@@ -45,7 +46,9 @@ class Startup:
             os._exit(1)
 
         # load skin data
-        Loader.generate_skin_data(client)
+        Skin_Loader.generate_skin_data(client)
+        Buddy_Loader.generate_buddy_data(client)
+        
 
         loop = Async_Manager(client=client)
         async_thread = threading.Thread(target=loop.init_loop, daemon=True)
@@ -55,6 +58,8 @@ class Startup:
         cli_thread = threading.Thread(target=prompt.main_loop)
         cli_thread.start()
         cli_thread.join()
+
+
 
     @staticmethod
     def setup_inquirer():

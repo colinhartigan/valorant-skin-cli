@@ -18,9 +18,14 @@ class Buddies_Manager:
     def generate_blank_buddies_file():
         debug("generating blank gunbuddy file")
         with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'buddies.json')), 'w') as f:
-            payload = []
+            payload = {}
             json.dump(payload, f)
             return payload
+
+    @staticmethod
+    def modify_buddy_data(new_data):
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'buddies.json')), 'w') as f:
+            json.dump(new_data, f)
 
     @staticmethod
     def fetch_all_buddies():
@@ -29,3 +34,4 @@ class Buddies_Manager:
                 return json.load(f)
         except:
             color_print([("Yellow bold", "[!] integrity check of gun buddy data file failed; generating fresh file")])
+            return Buddies_Manager.generate_blank_buddies_file()

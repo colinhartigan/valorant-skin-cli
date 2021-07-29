@@ -4,13 +4,13 @@ from InquirerPy import inquirer
 from ..flair_management.skin_manager.randomizer_editor import Editor
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
-from ..flair_management.skin_manager.randomizer import Randomizer
-from ..flair_loader.skin_loader_withcheck import Loader
+from ..flair_management.skin_manager.randomizer import Skin_Randomizer
+from ..flair_management.gunbuddy_manager.randomizer import Buddy_Randomizer
+from ..flair_loader.skin_loader_withcheck import Skin_Loader
 
 from ..core_game.session import Session
 
 # command imports
-from . import completer_generator
 from .completer_generator import Completer
 from .validator import Command_Validator
 from .commands import (loadout, set_skin, config, reload, reset)
@@ -27,7 +27,7 @@ class Prompt:
     def __init__(self, auth_data=None, client=None):
         self.client = client
         self.commands = {}
-        completer_generator.cli = self
+        Completer.cli = self
         Completer.generate_completer_dict()
 
     def main_loop(self):
@@ -47,7 +47,7 @@ class Prompt:
             ).execute()
 
             if command[0] == "randomize":
-                Randomizer.randomize(self.client)
+                Buddy_Randomizer.randomize(self.client)
 
             if command[0] == "modify":
                 Editor.select_weapon_type(None)

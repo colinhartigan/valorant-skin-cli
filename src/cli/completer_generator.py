@@ -1,10 +1,10 @@
-from ..flair_loader.skin_loader_withcheck import Loader
+from ..flair_loader.skin_loader_withcheck import Skin_Loader
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..flair_management.loadout_manager.loadouts_manager import Loadouts_Manager
 
-cli = None
-
 class Completer:
+
+    cli = None
 
     @staticmethod
     def generate_completer_dict():
@@ -53,5 +53,5 @@ class Completer:
         build_set_autocomplete()
         build_loadout_autocomplete()
 
-        cli.commands = data
+        Completer.cli.commands = data
         return data

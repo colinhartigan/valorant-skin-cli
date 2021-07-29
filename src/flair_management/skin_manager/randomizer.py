@@ -2,7 +2,7 @@ from InquirerPy.utils import color_print
 from .skin_manager import Skin_Manager
 import random
 
-class Randomizer:
+class Skin_Randomizer:
 
     @staticmethod
     def randomize(client):

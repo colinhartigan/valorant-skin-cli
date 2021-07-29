@@ -1,5 +1,4 @@
-import json
-import os
+import json,os
 from InquirerPy.utils import color_print
 
 from ..content.skin_content import Skin_Content
@@ -9,7 +8,7 @@ from ..utility.filepath import Filepath
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 debug = Logger.debug
 
-class Loader:
+class Skin_Loader:
 
     @staticmethod
     def sanitize_chroma_name(skin, chroma, weapon_name):
@@ -25,7 +24,7 @@ class Loader:
             return "Base"
 
     @staticmethod
-    def sanitize_level_name(level, skin_name):
+    def sanitize_level_name(index, level, skin_name):
         try:
             if not "Standard" in skin_name:
                 new = level 
@@ -34,9 +33,9 @@ class Loader:
                     return "Level 1"
                 return new 
             else:
-                return "Level 1"
+                return f"Level {index+1}"
         except:
-            return "Level 1"
+            return f"Level {index+1}"
 
     @staticmethod
     def fetch_content_tier(tiers, uuid):
@@ -84,10 +83,8 @@ class Loader:
 
     @staticmethod
     def generate_skin_data(client):
-        skin_level_entitlements = Entitlement_Manager.fetch_entitlements(
-            client, "skin_level")
-        skin_chroma_entitlements = Entitlement_Manager.fetch_entitlements(
-            client, "skin_chroma")
+        skin_level_entitlements = Entitlement_Manager.fetch_entitlements(client, "skin_level")
+        skin_chroma_entitlements = Entitlement_Manager.fetch_entitlements(client, "skin_chroma")
 
         debug(f"skin entitlements: {skin_level_entitlements}")
         debug(f"chroma entitlements: {skin_chroma_entitlements}")
@@ -102,16 +99,14 @@ class Loader:
             existing_skin_data = Skin_Manager.fetch_skin_data()
         except:
             debug("skin data integrity check failed!")
-            color_print(
-                [("Yellow bold", "[!] integrity check of skin data file failed; generating fresh file")])
+            color_print( [("Yellow bold", "[!] integrity check of skin data file failed; generating fresh file")])
             existing_skin_data = Skin_Manager.generate_blank_skin_file()
 
         new_skin_data = {}
 
         for weapon in all_weapon_content:
             # color_print([((f"[{weapon['displayName']}] generating skin data","green",attrs=["bold"])
-            debug(
-                f"generating skin data for {weapon['displayName']} ({weapon['uuid']})")
+            debug(f"generating skin data for {weapon['displayName']} ({weapon['uuid']})")
 
             weapon_uuid = weapon["uuid"]
             weapon_data = {
@@ -132,16 +127,12 @@ class Loader:
                 skin_owned = False
                 skin_previously_owned = False
                 skin_uuid = skin["uuid"]
-                skin_tier_data = Loader.fetch_content_tier(content_tiers, skin["contentTierUuid"] if skin[
-                    "contentTierUuid"] is not None else "standard" if "Standard" in
-                    skin[
-                    "displayName"] else "bp")
+                skin_tier_data = Skin_Loader.fetch_content_tier(content_tiers, skin["contentTierUuid"] if skin["contentTierUuid"] is not None else "standard" if "Standard" in skin["displayName"] else "bp")
 
                 for level in skin["levels"]:
                     for entitlement in skin_level_entitlements["Entitlements"]:
                         if level is not None and entitlement["ItemID"] == level["uuid"]:
-                            debug(
-                                f"{skin['displayName']} is owned (entitlement: {entitlement})")
+                            debug(f"{skin['displayName']} is owned (entitlement: {entitlement})")
                             skin_owned = True
                             break
 
@@ -151,15 +142,13 @@ class Loader:
 
                 if skin["uuid"] in existing_skin_data[weapon_uuid]["skins"]:
                     # check if there was already skin data in old backup file
-                    debug(
-                        f"already had data for {skin['displayName']} ({skin['uuid']})")
+                    debug(f"already had data for {skin['displayName']} ({skin['uuid']})")
                     skin_previously_owned = True
 
                 if skin_owned:
 
                     if not skin_previously_owned:
-                        color_print(
-                            [("Purple", f"[{weapon['displayName']}] new skin found -> {skin['displayName']}")])
+                        color_print([("Purple", f"[{weapon['displayName']}] new skin found -> {skin['displayName']}")])
 
                     weapon_data["skins"][skin_uuid] = {
                         "display_name": skin["displayName"],
@@ -175,25 +164,20 @@ class Loader:
 
                     for index, level in enumerate(skin["levels"]):
                         if level is not None:
-                            debug(
-                                f"{skin['displayName']}/LEVEL: beginning processing of {level['displayName']} ({level['uuid']}) - {level}")
+                            debug(f"{skin['displayName']}/LEVEL: beginning processing of {level['displayName']} ({level['uuid']}) - {level}")
                             level_already_exists = skin_previously_owned and level["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"]
 
                             def process_skin_level():
-                                debug(
-                                    f"{skin['displayName']}/LEVEL: {level['displayName']} ({level['uuid']}) is verified")
+                                debug(f"{skin['displayName']}/LEVEL: {level['displayName']} ({level['uuid']}) is verified")
                                 if level_already_exists:
-                                    weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = \
-                                        existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"][level["uuid"]]
+                                    weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = existing_skin_data[weapon_uuid]["skins"][skin_uuid]["levels"][level["uuid"]]
 
                                 else:
                                     weapon_data["skins"][skin_uuid]["levels"][level["uuid"]] = {
-                                        "display_name": f"{Loader.sanitize_level_name(level['displayName'],skin['displayName'])}" + (
-                                            f" ({level['levelItem'].replace('EEquippableSkinLevelItem::', '')})" if level['levelItem'] is not None else "" if level["displayName"] == skin["displayName"].replace("Standard ", "") else " (VFX)" if level['displayName'] != skin['displayName'] else ""),
+                                        "display_name": f"{Skin_Loader.sanitize_level_name(index,level['displayName'],skin['displayName'])}" + (f" ({level['levelItem'].replace('EEquippableSkinLevelItem::', '')})" if level['levelItem'] is not None else "" if level["displayName"] == skin["displayName"].replace("Standard ", "") else " (VFX)" if level['displayName'] != skin['displayName'] else ""),
                                         "enabled": False
                                     }
-                                    color_print(
-                                        [("DarkBlue", f"[{skin['displayName']}] found new level data ({level['displayName']})")])
+                                    color_print([("DarkBlue", f"[{skin['displayName']}] found new level data ({level['displayName']})")])
 
                             if level is not None and level["displayName"] == skin["displayName"].replace("Standard ", ""):
                                 # if skin is standard
@@ -207,15 +191,12 @@ class Loader:
 
                     for index, chroma in enumerate(skin["chromas"]):
                         if chroma is not None:
-                            sanitized_chroma_name = Loader.sanitize_chroma_name(
-                                skin, chroma["displayName"], weapon["displayName"])
-                            debug(
-                                f"{skin['displayName']}/CHROMA: beginning processing of {sanitized_chroma_name} ({chroma['uuid']}) - {chroma}")
+                            sanitized_chroma_name = Skin_Loader.sanitize_chroma_name(skin, chroma["displayName"], weapon["displayName"])
+                            debug(f"{skin['displayName']}/CHROMA: beginning processing of {sanitized_chroma_name} ({chroma['uuid']}) - {chroma}")
                             chroma_already_exists = skin_previously_owned and chroma["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
 
                             def process_chroma():
-                                debug(
-                                    f"{skin['displayName']}/CHROMA: {sanitized_chroma_name} ({chroma['uuid']}) is verified")
+                                debug(f"{skin['displayName']}/CHROMA: {sanitized_chroma_name} ({chroma['uuid']}) is verified")
                                 if chroma_already_exists:
                                     weapon_data["skins"][skin_uuid]["chromas"][chroma["uuid"]] = \
                                         existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"][chroma["uuid"]]
@@ -224,8 +205,7 @@ class Loader:
                                         "display_name": sanitized_chroma_name,
                                         "enabled": False
                                     }
-                                    color_print(
-                                        [("#00b0ff", f"[{skin['displayName']}] found new chroma data ({sanitized_chroma_name})")])
+                                    color_print([("#00b0ff", f"[{skin['displayName']}] found new chroma data ({sanitized_chroma_name})")])
 
                             if chroma["displayName"] == skin["displayName"].replace("Standard ", ""):
                                 process_chroma()
@@ -244,14 +224,13 @@ class Loader:
 
                     # enable base level/chroma
                     # print(weapon_data["skins"][skin_uuid])
-                    weapon_data["skins"][skin_uuid]["levels"][
-                        list(weapon_data["skins"][skin_uuid]["levels"].keys())[-1]]['enabled'] = True
-                    weapon_data["skins"][skin_uuid]["chromas"][
-                        list(weapon_data["skins"][skin_uuid]["chromas"].keys())[-1]]['enabled'] = True
+                    if len([level["enabled"] for _,level in weapon_data["skins"][skin_uuid]["levels"].items() if level["enabled"]]) == 0:
+                        weapon_data["skins"][skin_uuid]["levels"][list(weapon_data["skins"][skin_uuid]["levels"].keys())[-1]]['enabled'] = True
+                    if len([chroma["enabled"] for _,chroma in weapon_data["skins"][skin_uuid]["chromas"].items() if chroma["enabled"]]) == 0:
+                        weapon_data["skins"][skin_uuid]["chromas"][list(weapon_data["skins"][skin_uuid]["chromas"].keys())[-1]]['enabled'] = True
 
-                    # sort skins by tier index
-            weapon_data["skins"] = dict(
-                sorted(weapon_data["skins"].items(), key=lambda skin: skin[1]['tier']['tier_index'], reverse=True))
+            # sort skins by tier index
+            weapon_data["skins"] = dict(sorted(weapon_data["skins"].items(), key=lambda skin: skin[1]['tier']['tier_index'], reverse=True))
             new_skin_data[weapon_uuid] = weapon_data
 
         with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
