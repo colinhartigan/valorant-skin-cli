@@ -3,12 +3,8 @@ from InquirerPy import inquirer
 
 from ..flair_management.skin_manager.randomizer_editor import Editor
 
-from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..flair_management.skin_manager.randomizer import Skin_Randomizer
 from ..flair_management.gunbuddy_manager.randomizer import Buddy_Randomizer
-from ..flair_loader.skin_loader_withcheck import Skin_Loader
-
-from ..core_game.session import Session
 
 # command imports
 from .completer_generator import Completer
@@ -47,7 +43,7 @@ class Prompt:
             ).execute()
 
             if command[0] == "randomize":
-                Buddy_Randomizer.randomize(self.client)
+                Skin_Randomizer.randomize(self.client)
 
             if command[0] == "modify":
                 Editor.select_weapon_type(None)

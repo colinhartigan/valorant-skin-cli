@@ -4,7 +4,7 @@ from .filepath import Filepath
 from valclient import Client
 
 default_config = {
-    "version": "v1.1.0b2",
+    "version": "v1.1.0",
     "region": ["",Client.fetch_regions()],
     "async_refresh_interval": 5,
     "skin_manager": {
