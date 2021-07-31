@@ -8,6 +8,7 @@ from ..cli.commands.reload import Reload
 from ..flair_loader.skin_loader_withcheck import Skin_Loader
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
+from ..flair_management.loadout_manager.loadouts_manager import Loadouts_Manager
 from ..flair_management.skin_manager.randomizer_editor import Editor
 
 
@@ -27,6 +28,11 @@ class Onboarder:
             {
                 "text": "generating fresh skin data file...",
                 "method": Skin_Manager.generate_blank_skin_file,
+                "args": None
+            },
+            {
+                "text": "generating blank loadouts file...",
+                "method": Loadouts_Manager.generate_blank_loadouts_file,
                 "args": None
             },
             {
