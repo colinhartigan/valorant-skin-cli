@@ -1,7 +1,7 @@
 import os
 from InquirerPy.utils import color_print
 
-from .async_tasks.randomize import Skin_Randomizer
+from .async_tasks.randomize import Randomizer
 
 class Session:
     '''
@@ -20,7 +20,7 @@ class Session:
 
     async def randomizer_check(self):
         if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
-            Skin_Randomizer.randomize(self.client)
+            Randomizer.randomize(self.client)
         
     async def update_presence(self):
         self.previous_presence = self.presence 
