@@ -10,7 +10,10 @@ class Completer:
     def generate_completer_dict():
         '''Generate command autocomplete data'''
         data = {
-            "randomize": None,
+            "randomize": {
+                "skins": None,
+                "buddies": None   
+            },
             "modify": None,
             "reset": None,
             "loadout": {},

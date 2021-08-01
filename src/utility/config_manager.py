@@ -4,11 +4,14 @@ from .filepath import Filepath
 from valclient import Client
 
 default_config = {
-    "version": "v1.1.0",
+    "version": "v1.1.1b1",
     "region": ["",Client.fetch_regions()],
     "async_refresh_interval": 5,
-    "skin_manager": {
-        "randomize_after_each_game": True
+    "skin_randomizer": {
+        "enabled": True
+    },
+    "buddy_randomizer": {
+        "enabled": True,
     },
     "meta": {
         "onboarding_completed": False,

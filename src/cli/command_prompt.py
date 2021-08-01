@@ -9,7 +9,7 @@ from ..flair_management.gunbuddy_manager.randomizer import Buddy_Randomizer
 # command imports
 from .completer_generator import Completer
 from .validator import Command_Validator
-from .commands import (loadout, set_skin, config, reload, reset)
+from .commands import (loadout, set_skin, config, reload, reset, randomize)
 
 kernel32 = ctypes.WinDLL('kernel32')
 user32 = ctypes.WinDLL('user32')
@@ -43,7 +43,7 @@ class Prompt:
             ).execute()
 
             if command[0] == "randomize":
-                Skin_Randomizer.randomize(self.client)
+                randomize.Randomize(command,self.client)
 
             if command[0] == "modify":
                 Editor.select_weapon_type(None)

@@ -18,17 +18,17 @@ class Skin_Manager:
 
     @staticmethod
     def modify_skin_data(new_data):
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skins.json')), 'w') as f:
             json.dump(new_data, f)
 
     @staticmethod
     def fetch_skin_data():
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json'))) as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skins.json'))) as f:
             return json.load(f)
 
     @staticmethod
     def generate_blank_skin_file():
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skins.json')), 'w') as f:
             new_data = {}
 
             all_weapon_content = Skin_Content.fetch_weapons_data()

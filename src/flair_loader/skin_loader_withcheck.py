@@ -233,7 +233,7 @@ class Skin_Loader:
             weapon_data["skins"] = dict(sorted(weapon_data["skins"].items(), key=lambda skin: skin[1]['tier']['tier_index'], reverse=True))
             new_skin_data[weapon_uuid] = weapon_data
 
-        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skin_data.json')), 'w') as f:
+        with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), 'skins.json')), 'w') as f:
             json.dump(new_skin_data, f)
             color_print([("Lime", "skins loaded!")])
 
