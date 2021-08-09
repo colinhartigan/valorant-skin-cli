@@ -9,7 +9,7 @@ from ..flair_loader.skin_loader_withcheck import Skin_Loader
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..flair_management.loadout_manager.loadouts_manager import Loadouts_Manager
-from ..flair_management.skin_manager.randomizer_editor import Editor
+from ..flair_management.skin_manager.randomizer_editor import Randomizer_Editor
 
 
 class Onboarder:
@@ -42,7 +42,7 @@ class Onboarder:
             },
             {
                 "text": "set your skin preferences:",
-                "method": Editor.randomizer_entrypoint,
+                "method": Randomizer_Editor.randomizer_entrypoint,
                 "args": None,
             }
         ]

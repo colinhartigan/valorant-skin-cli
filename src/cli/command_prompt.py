@@ -1,7 +1,8 @@
 import os, ctypes
 from InquirerPy import inquirer 
 
-from ..flair_management.skin_manager.randomizer_editor import Editor
+from ..flair_management.skin_manager.randomizer_editor import Randomizer_Editor
+from ..flair_management.skin_manager.weight_editor import Weight_Editor
 
 from ..flair_management.skin_manager.randomizer import Skin_Randomizer
 from ..flair_management.gunbuddy_manager.randomizer import Buddy_Randomizer
@@ -46,7 +47,10 @@ class Prompt:
                 randomize.Randomize(command,self.client)
 
             if command[0] == "modify":
-                Editor.randomizer_entrypoint()
+                Randomizer_Editor.randomizer_entrypoint()
+
+            if command[0] == "weights":
+                Weight_Editor.weights_entrypoint()
 
             if command[0] == "set":
                 set_skin.Set_Skin(self.client, command)

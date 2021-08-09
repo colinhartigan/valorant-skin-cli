@@ -15,6 +15,7 @@ class Completer:
                 "buddies": None   
             },
             "modify": None,
+            "weights": None,
             "reset": None,
             "loadout": {},
             "config": None,
