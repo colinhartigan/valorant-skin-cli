@@ -58,10 +58,12 @@ class Loadout_Actions:
                 new_loadout["Identity"]["PlayerCardID"] = loadout["Identity"]["PlayerCardID"]
                 new_loadout["Identity"]["PlayerTitleID"] = loadout["Identity"]["PlayerTitleID"]
                 client.put_player_loadout(new_loadout)
-                color_print([("LimeGreen bold",f"successfully equipped your {loadout_name} loadout!")])
+                color_print([("LimeGreen bold",f"successfully equipped {loadout_name}!")])
 
     @staticmethod 
     def delete_loadout(loadout_name):
         all_loadouts = Loadouts_Manager.remove_loadout(loadout_name)
         new_loadout_names = [loadout["name"] for loadout in all_loadouts]
-        color_print([("LimeGreen",f"\nsuccessfully deleted your {loadout_name} loadout!\n\nyour loadouts list:\n"),("Blue","\n".join(f"- {name}" for name in new_loadout_names))])
+        color_print([("LimeGreen",f"successfully deleted {loadout_name}!")])
+        if len(new_loadout_names) > 0:
+            color_print([("LimeGreen","\nyour loadouts list:\n"),("Blue","\n".join(f"- {name}" for name in new_loadout_names))])

@@ -20,6 +20,7 @@ class Session:
 
     async def randomizer_check(self):
         if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
+            color_print([("Cyan bold","-- GG --")])
             Randomizer(self.client)
         
     async def update_presence(self):

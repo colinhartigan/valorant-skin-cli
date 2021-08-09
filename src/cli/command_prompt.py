@@ -46,7 +46,7 @@ class Prompt:
                 randomize.Randomize(command,self.client)
 
             if command[0] == "modify":
-                Editor.select_weapon_type(None)
+                Editor.randomizer_entrypoint()
 
             if command[0] == "set":
                 set_skin.Set_Skin(self.client, command)

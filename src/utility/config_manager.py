@@ -4,7 +4,7 @@ from .filepath import Filepath
 from valclient import Client
 
 default_config = {
-    "version": "v1.1.1b1",
+    "version": "v1.1.1b2",
     "region": ["",Client.fetch_regions()],
     "async_refresh_interval": 5,
     "skin_randomizer": {
@@ -82,4 +82,4 @@ class Config:
             os.mkdir(Filepath.get_appdata_folder())
         with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), "config.json")), "w") as f:
             json.dump(default_config, f)
-        return Config.fetch_config()
+        return Config.fetch_config() 

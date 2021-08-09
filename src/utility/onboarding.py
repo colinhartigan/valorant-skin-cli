@@ -42,7 +42,7 @@ class Onboarder:
             },
             {
                 "text": "set your skin preferences:",
-                "method": Editor.select_weapon_type,
+                "method": Editor.randomizer_entrypoint,
                 "args": None,
             }
         ]

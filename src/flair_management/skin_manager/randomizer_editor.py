@@ -25,18 +25,18 @@ class Editor:
             {"name": "Melee", "value": "Melee"}
         ]
         type_choice = inquirer.select(
-            message='[randomizer pool editor] select a weapon type',
+            message=f"select a weapon type",
             choices=type_choices,
             pointer=">",
             default=default,
         ).execute()
 
         if type_choice == "exit":
-            return
+            return None, None, None, None, None,
         if type_choice == "Melee":
-            Editor.select_skin(skin_data, "2f59173c-4bed-b6c3-2191-dea9b58be9c7")
+            return Editor.select_skin(skin_data, "2f59173c-4bed-b6c3-2191-dea9b58be9c7")
         else:
-            Editor.select_weapon(skin_data, type_choice)
+            return Editor.select_weapon(skin_data, type_choice)
 
     @staticmethod
     def select_weapon(skin_data, weapon_type):
@@ -53,13 +53,12 @@ class Editor:
         ).execute()
 
         if weapon_choice == "back":
-            Editor.select_weapon_type(weapon_type)
-            return
+            return Editor.select_weapon_type(weapon_type)
 
-        Editor.select_skin(skin_data, weapon_choice)
+        return Editor.select_skin(skin_data, weapon_choice)
 
     @staticmethod
-    def select_skin(skin_data, weapon_choice):
+    def select_skin(skin_data, weapon_choice, change_all=False):
         tier_aliases = {
             "Deluxe": "DLX",
             "Exclusive": "EXC",
@@ -77,7 +76,9 @@ class Editor:
         skin_choices = [
             {"name": f"{'√' if data['enabled'] else 'x'} [{tier_aliases[data['tier']['display_name']]}] {data['display_name']} ({len(data['levels'])} levels, {len(data['chromas'])} chromas)", "value": uuid} for uuid, data in weapon_data['skins'].items()]
         skin_choices.insert(0, {"name": "back", "value": "back"})
-        skin_choices.insert(1, {"name": ("disable" if skins_enabled == total_skins else "enable") + " all skins/chromas", "value": "change_all"})
+
+        if change_all:
+            skin_choices.insert(1, {"name": ("disable" if skins_enabled == total_skins else "enable") + " all skins/chromas", "value": "change_all"}) 
 
         skin_choice = inquirer.select(
             message=f"[{weapon_data['display_name']}] select a skin to modify",
@@ -87,19 +88,23 @@ class Editor:
 
         if skin_choice == "back":
             if weapon_data['display_name'] == "Melee":
-                Editor.select_weapon_type()
+                return Editor.select_weapon_type()
             else:
-                Editor.select_weapon(skin_data, weapon_data['weapon_type'])
-            return
+                return Editor.select_weapon(skin_data, weapon_data['weapon_type'])
         if skin_choice == "change_all":
             Editor.change_all_skins_by_weapon(weapon_data,skins_enabled == total_skins)
+            return Editor.select_skin(skin_data, weapon_choice, change_all=change_all)
         else:
             weapon_skin_data = weapon_data['skins'][skin_choice]
-            weapon_data['skins'][skin_choice] = Editor.set_skin_preferences(
-                weapon_skin_data)
-
-        Skin_Manager.modify_skin_data(skin_data)
-        Editor.select_skin(skin_data, weapon_choice)
+            return weapon_data, skin_data, skin_choice, weapon_choice, weapon_skin_data
+            
+    @staticmethod
+    def randomizer_entrypoint():
+        weapon_data, skin_data, skin_choice, weapon_choice, weapon_skin_data = Editor.select_weapon_type()
+        while weapon_data is not None:
+            weapon_data['skins'][skin_choice] = Editor.set_skin_preferences(weapon_skin_data)
+            Skin_Manager.modify_skin_data(skin_data)
+            weapon_data, skin_data, skin_choice, weapon_choice, weapon_skin_data = Editor.select_skin(skin_data, weapon_choice, change_all=True)
 
     @staticmethod
     def change_all_skins_by_weapon(weapon_data,disable):

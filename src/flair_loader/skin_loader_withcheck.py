@@ -95,12 +95,17 @@ class Skin_Loader:
         # check integrity of existing skin data and/or if it exists
         # if not, start new data
 
+        def failed_integrity():
+            debug("skin data integrity check failed!")
+            color_print( [("Yellow bold", "[!] integrity check of skin data file failed; generating fresh file")])
+            return Skin_Manager.generate_blank_skin_file()
+
         try:
             existing_skin_data = Skin_Manager.fetch_skin_data()
         except:
-            debug("skin data integrity check failed!")
-            color_print( [("Yellow bold", "[!] integrity check of skin data file failed; generating fresh file")])
-            existing_skin_data = Skin_Manager.generate_blank_skin_file()
+            existing_skin_data = failed_integrity()
+        if existing_skin_data == {}:
+            existing_skin_data = failed_integrity()
 
         new_skin_data = {}
 
@@ -146,13 +151,19 @@ class Skin_Loader:
                     skin_previously_owned = True
 
                 if skin_owned:
-
                     if not skin_previously_owned:
                         color_print([("Purple", f"[{weapon['displayName']}] new skin found -> {skin['displayName']}")])
 
+                    def check_attribute(key,default):
+                        if skin_previously_owned:
+                            if key in existing_skin_data[weapon_uuid]["skins"][skin_uuid].keys():
+                                return existing_skin_data[weapon_uuid]["skins"][skin_uuid][key] 
+                        return default
+
                     weapon_data["skins"][skin_uuid] = {
                         "display_name": skin["displayName"],
-                        "enabled": False if not skin_previously_owned else existing_skin_data[weapon_uuid]["skins"][skin_uuid]['enabled'],
+                        "enabled": check_attribute("enabled", False),
+                        "weight": check_attribute("weight", 1),
                         "tier": {
                             "display_name": skin_tier_data["devName"],
                             "color": skin_tier_data["highlightColor"],
@@ -161,6 +172,7 @@ class Skin_Loader:
                         "levels": {},
                         "chromas": {},
                     }
+
 
                     for index, level in enumerate(skin["levels"]):
                         if level is not None:

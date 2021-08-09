@@ -17,7 +17,7 @@ class Loadout:
             if command[1] == "create": 
                 Loadout_Actions.create_loadout(client)
 
-            if len(command) == 3:
+            elif len(command) == 3:
                 if command[1] == "equip": 
                     Loadout_Actions.equip_loadout(command[2].replace("-"," "), client)
 
