@@ -49,8 +49,8 @@ Check out the [commands page](https://github.com/colinhartigan/valorant-skin-cli
 
 
 ## What's next
-- [ ] loadout creator
-  - [ ] loadout randomizer
+- [X] loadout profile system
+  - [ ] loadout profile randomizer
 - [ ] spray randomizer 
 - [ ] gun buddy randomizer
 
