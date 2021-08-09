@@ -34,10 +34,24 @@ class Prompts:
 
     @staticmethod
     def select_weapon(skin_data, weapon_type, **kwargs):
-        
-        weapon_choices = [{
-            "name": f"{data['display_name']} (" + (f"{len(data['skins'])-1} skins, " if not kwargs["weights"] else "") + f"{len([skin for skin in data['skins'].keys() if data['skins'][skin]['enabled']])} enabled)",
-            "value": uuid} for uuid, data in skin_data.items() if data['weapon_type'] == weapon_type]
+        weapon_choices = []
+
+        for uuid,data in skin_data.items():
+            if data["weapon_type"] == weapon_type:
+                enabled_amount = len([skin for skin in data['skins'].keys() if data['skins'][skin]['enabled']])
+                if kwargs["weights"]:
+                    if enabled_amount > 1:
+                        weapon_choices.append({
+                            "name": f"{data['display_name']} ({enabled_amount} enabled)",
+                            "value": uuid
+                        })
+                else:
+                    weapon_choices.append({
+                        "name": f"{data['display_name']} ({len(data['skins'])-1} skins, {enabled_amount} enabled)",
+                        "value": uuid
+                    })
+
+
         weapon_choices.insert(0, {"name": "back", "value": "back"})
 
         weapon_choice = inquirer.select(
@@ -91,7 +105,7 @@ class Prompts:
             else:
                 return Prompts.select_weapon(skin_data, weapon_data['weapon_type'], **kwargs)
         if skin_choice == "change_all":
-            Prompts.change_all_skins_by_weapon(weapon_data,skins_enabled == total_skins)
+            kwargs["change_all_method"](weapon_data,skins_enabled == total_skins)
             return Prompts.select_skin(skin_data, weapon_choice, **kwargs)
         else:
             weapon_skin_data = weapon_data['skins'][skin_choice]

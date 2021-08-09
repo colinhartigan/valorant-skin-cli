@@ -13,11 +13,11 @@ class Randomizer_Editor:
 
     @staticmethod
     def randomizer_entrypoint():
-        weapon_data, skin_data, skin_choice, weapon_choice, weapon_skin_data = Prompts.select_weapon_type(change_all=True,weights=False)
+        weapon_data, skin_data, skin_choice, weapon_choice, weapon_skin_data = Prompts.select_weapon_type(change_all=True,weights=False, change_all_method=Randomizer_Editor.change_all_skins_by_weapon)
         while weapon_data is not None:
             weapon_data['skins'][skin_choice] = Randomizer_Editor.set_skin_preferences(weapon_skin_data)
             Skin_Manager.modify_skin_data(skin_data)
-            weapon_data, skin_data, skin_choice, weapon_choice, weapon_skin_data = Prompts.select_skin(skin_data, weapon_choice, change_all=True, weights=False)    
+            weapon_data, skin_data, skin_choice, weapon_choice, weapon_skin_data = Prompts.select_skin(skin_data, weapon_choice, change_all=True, weights=False, change_all_method=Randomizer_Editor.change_all_skins_by_weapon)    
 
 
     @staticmethod
