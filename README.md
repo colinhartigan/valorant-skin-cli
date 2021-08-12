@@ -1,5 +1,3 @@
-
-
 ## NOTE: This does not grant free skins; it only works with skins you already own.
 
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
@@ -37,7 +35,7 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 
 **Download the `.exe` file from the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/latest)**
 
-> __NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. 
+> __NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. Check [FAQ](#faq) for further information and steps to get back your file.
 > _I've rebuilt the executables with Python 3.7 and it seems they aren't being marked as malware anymore!_
 
 If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly. To test the latest features, clone the repository.
@@ -75,6 +73,18 @@ A: No.
 A: [@markhank:](https://medium.com/@markhank/how-to-stop-your-python-programs-being-seen-as-malware-bfd7eb407a7)
 >Code compiled using pyinstaller or py2exe is often incorrectly to be malware or a virus or a trojan by various antivirus programs. It can often have scary names like Trojan:Win32/Wacatac.C!ml.
 This is most likely what is known in the virus industry as a “false positive”. Your code might not be doing anything malicious, but because it was compiled in a way that looks a bit like other code which might do malicious things antivirus judges it to be a virus.
+
+To recover the `.exe` from Windows Defender:
+1. Open Windows Defender
+2. Select  **Virus & threat protection**  and then click  **Protection history**
+3. In the list of all recent items, filter on  **Quarantined Items**
+4. Select the `.exe`, press the **Actions** button, and press Restore
+
+To prevent Windows Defender from quarantining the file again:
+1. Open Windows Defender
+2. Select  **Virus & threat protection**  and under  **Virus & threat protection setting** click **Manage settings**
+3. Scroll down to **Exclusions** and click **Add or remove exclusions**
+4. Click **Add an exclusion**, click **File** and then select the downloaded`.exe`file
 
 <br/>
 
