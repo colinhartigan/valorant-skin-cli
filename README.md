@@ -38,7 +38,7 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 > __NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. Check [FAQ](#faq) for further information and steps to get back your file.
 > _I've rebuilt the executables with Python 3.7 and it seems they aren't being marked as malware anymore!_
 
-If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly. To test the latest features, clone the repository.
+If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly. To test the latest features, [join the Discord server and download the latest beta](https://discord.gg/uGuswsZwAT).
 
 ### Usage
 1. Ensure that VALORANT is already running. This app requires VALORANT to be running
