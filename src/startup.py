@@ -4,7 +4,7 @@ from InquirerPy.utils import color_print
 
 from .utility.config_manager import Config
 from .utility.onboarding import Onboarder
-from .flair_loader.skin_loader_withcheck import Skin_Loader
+from .flair_loader.skin_loader import Skin_Loader
 from .flair_loader.buddy_loader import Buddy_Loader
 from .asynchronous.async_manager import Async_Manager
 from .cli.command_prompt import Prompt
@@ -12,6 +12,7 @@ from .cli.commands.reload import Reload
 from .utility.logging import Logger
 from .utility.filepath import Filepath
 from .utility.version_checker import Checker
+from .utility.program_data import Program_Data
 
 kernel32 = ctypes.WinDLL('kernel32')
 
@@ -19,8 +20,10 @@ class Startup:
 
     @staticmethod
     def run():        
-        Startup.check_for_data_folder()
+        Startup.check_for_data_folders()
         Startup.setup_inquirer()
+
+        Program_Data.update_file_location()
 
         Logger.create_logger()
         Config.check_config()
@@ -66,7 +69,11 @@ class Startup:
         os.environ["INQUIRERPY_NO_RAISE_KBI"] = "true"
 
     @staticmethod 
-    def check_for_data_folder():
-        data_path = Filepath.get_appdata_folder()
-        if not os.path.isdir(data_path):
-            os.makedirs(data_path)
+    def check_for_data_folders():
+        appdata_path = Filepath.get_appdata_folder()
+        if not os.path.isdir(appdata_path):
+            os.makedirs(appdata_path)
+
+        programdata_path = Filepath.get_programdata_folder()
+        if not os.path.isdir(programdata_path):
+            os.makedirs(programdata_path)

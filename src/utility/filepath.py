@@ -11,3 +11,6 @@ class Filepath:
     @staticmethod 
     def get_appdata_folder():
         return Filepath.get_path(os.path.join(os.getenv('APPDATA'), 'valorant-skin-cli'))
+
+    def get_programdata_folder():
+        return Filepath.get_path(os.path.join(os.getenv('PROGRAMDATA'), 'valorant-tools'))

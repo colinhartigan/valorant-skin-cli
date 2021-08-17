@@ -26,11 +26,7 @@ class Session:
     async def update_presence(self):
         self.previous_presence = self.presence 
 
-        try:
-            self.presence = self.client.fetch_presence()
-            await self.randomizer_check()
-        except:
-            color_print([("Tomato","VALORANT is no longer running, terminating thread!")])
-            os._exit(1)
+        self.presence = self.client.fetch_presence()
+        await self.randomizer_check()            
 
         return self.presence

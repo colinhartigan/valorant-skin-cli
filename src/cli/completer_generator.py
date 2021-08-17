@@ -1,4 +1,4 @@
-from ..flair_loader.skin_loader_withcheck import Skin_Loader
+from ..flair_loader.skin_loader import Skin_Loader
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
 from ..flair_management.loadout_manager.loadouts_manager import Loadouts_Manager
 

@@ -1,4 +1,4 @@
-from ...flair_loader.skin_loader_withcheck import Skin_Loader 
+from ...flair_loader.skin_loader import Skin_Loader 
 from ...utility.config_manager import Config
 from .reload import Reload
 from InquirerPy.utils import color_print
