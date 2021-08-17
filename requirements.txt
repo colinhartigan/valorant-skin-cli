@@ -1,4 +1,4 @@
-valclient~=2.2
-requests~=2.25.1
-InquirerPy~=0.2.0
-PyInstaller
+valclient
+prompt_toolkit
+requests
+InquirerPy

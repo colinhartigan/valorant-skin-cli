@@ -8,19 +8,19 @@ class Program_Data:
     @staticmethod
     def update_file_location():
         if getattr(sys, 'frozen', False):
-            path = os.path.dirname(sys.executable)
+            path = sys.executable
         else:
-            color_print([("Yellow","running in a non-frozen environment, cannot update installation path")])
+            color_print([("Yellow","running in a testing environment, cannot update installation path")])
             path = None
 
         if path is not None:
-            installs = Program_Data.fetch_installs_file()
+            installs = Program_Data.fetch_installs()
             installs["valorant-skin-cli"] = path
             Program_Data.modify_isntalls(installs)
 
 
     @staticmethod
-    def fetch_installs_file():
+    def fetch_installs():
         try:
             with open(Program_Data.installs_path) as f:
                 installs = json.load(f)
@@ -33,12 +33,12 @@ class Program_Data:
         with open(Program_Data.installs_path, "w") as f:
             json.dump(payload, f)
 
-        return Program_Data.fetch_config()
+        return Program_Data.fetch_installs()
 
     @staticmethod
     def create_installs_file():
         with open(Program_Data.installs_path, "w") as f:
-            payload = {
-                "valorant-skin-cli": ""
-            }
+            payload = {}
             json.dump(payload, f)
+
+        return Program_Data.fetch_installs()
