@@ -38,7 +38,7 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 > __NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. Check [FAQ](#faq) for further information and steps to get back your file.
 > _I've rebuilt the executables with Python 3.7 and it seems they aren't being marked as malware anymore!_
 
-If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly. To test the latest features, clone the repository.
+If you'd rather build the executable yourself, download the release `.zip` file and run `build.bat`, or `run.bat` to execute the script directly. To test the latest features, [join the Discord server and download the latest beta](https://discord.gg/uGuswsZwAT).
 
 ### Usage
 1. Ensure that VALORANT is already running. This app requires VALORANT to be running
@@ -49,15 +49,15 @@ This presents you with a command line interface(CLI) where you need to type in c
 <br/>
 
 ## Current Features
-* Randomise skins with full customisation of what gets randomised
-* Change individual skin levels and chromas. This includes downgrading skins which is not possible in-game
-* Loadout system with multiple loadouts
+* Randomize skins with full customization of which skins, levels, and chromas are in the randomizer pool (basically a favorites system)
+* Change individual skin levels and chromas, including downgrading skins which is not possible in-game (fix your Prime Karambit!)
+* Loadout profile system with support for unlimited loadouts
 
 <br/>
 
 ## FAQ
 **Q: Will I get banned for using this?**  
-A: [u/Riot_Giraffy (Riot Employee) confirmed:](https://www.reddit.com/r/VALORANT/comments/oae5g6/i_got_tired_of_waiting_for_riot_to_add_a_skin/h3hwxtf?utm_source=share&utm_medium=web2x&context=3)
+A: [u/Riot_Giraffy (a Riot Engineer) confirmed:](https://www.reddit.com/r/VALORANT/comments/oae5g6/i_got_tired_of_waiting_for_riot_to_add_a_skin/h3hwxtf?utm_source=share&utm_medium=web2x&context=3)
 > Using the client API to modify loadouts does not seem ban worthy. The client API isn't officially supported for third party use, so don't expect future compatibility.
 
 
@@ -91,8 +91,7 @@ To prevent Windows Defender from quarantining the file again:
 ## What's next
 - [X] Loadout profile system
 -  - [ ] Loadout profile randomizer
-- [ ] Spray randomizer 
-- [ ] Gun buddy randomizer
+- Create a React frontend in an electron container to streamline and simplify the program
 
 <br/>
 
