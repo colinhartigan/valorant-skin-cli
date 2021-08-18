@@ -1,4 +1,4 @@
-valclient
-prompt_toolkit
 requests
+prompt_toolkit
+valclient
 InquirerPy

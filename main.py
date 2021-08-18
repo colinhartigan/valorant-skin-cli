@@ -1,4 +1,5 @@
 from InquirerPy.utils import color_print
+from InquirerPy import inquirer
 import ctypes,os,traceback
 
 from src.startup import Startup
