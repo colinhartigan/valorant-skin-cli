@@ -13,54 +13,56 @@ from .utility.logging import Logger
 from .utility.filepath import Filepath
 from .utility.version_checker import Checker
 from .utility.program_data import Program_Data
+from .utility.processes import Processes
 
 kernel32 = ctypes.WinDLL('kernel32')
 
 class Startup:
 
     @staticmethod
-    def run():        
-        Startup.check_for_data_folders()
-        Startup.setup_inquirer()
+    def run():   
+        if not Processes.is_program_already_running():     
+            Startup.check_for_data_folders()
+            Startup.setup_inquirer()
 
-        Program_Data.update_file_location()
+            Program_Data.update_file_location()
 
-        Logger.create_logger()
-        Config.check_config()
-        config = Config.fetch_config()
+            Logger.create_logger()
+            Config.check_config()
+            config = Config.fetch_config()
 
-        if not config["meta"]["onboarding_completed"]:
-            Onboarder()
-            # reset the client if region changed during onboarding
-            Reload()
+            if not config["meta"]["onboarding_completed"]:
+                Onboarder()
+                # reset the client if region changed during onboarding
+                Reload()
 
-        Checker.check_version(config)
+            Checker.check_version(config)
 
-        ctypes.windll.kernel32.SetConsoleTitleW(f"valorant-skin-cli {config['version']}") 
+            ctypes.windll.kernel32.SetConsoleTitleW(f"valorant-skin-cli {config['version']}") 
 
-        region = config["region"][0].lower()
-        client = Client(region=region)
-        try:
-            client.activate()
-        except Exception as e:
-            color_print([("Tomato", f"unable to launch: {e}")])
-            kernel32.SetConsoleMode(kernel32.GetStdHandle(-10), (0x4|0x80|0x20|0x2|0x10|0x1|0x40|0x100))
-            input("press enter to exit...")
-            os._exit(1)
+            region = config["region"][0].lower()
+            client = Client(region=region)
+            try:
+                client.activate()
+            except Exception as e:
+                color_print([("Tomato", f"unable to launch: {e}")])
+                kernel32.SetConsoleMode(kernel32.GetStdHandle(-10), (0x4|0x80|0x20|0x2|0x10|0x1|0x40|0x100))
+                input("press enter to exit...")
+                os._exit(1)
 
-        # load skin data
-        Skin_Loader.generate_skin_data(client)
-        Buddy_Loader.generate_buddy_data(client)
-        
+            # load skin data
+            Skin_Loader.generate_skin_data(client)
+            Buddy_Loader.generate_buddy_data(client)
+            
 
-        loop = Async_Manager(client=client)
-        async_thread = threading.Thread(target=loop.init_loop, daemon=True)
-        async_thread.start()
+            loop = Async_Manager(client=client)
+            async_thread = threading.Thread(target=loop.init_loop, daemon=True)
+            async_thread.start()
 
-        prompt = Prompt(client=client)
-        cli_thread = threading.Thread(target=prompt.main_loop)
-        cli_thread.start()
-        cli_thread.join()
+            prompt = Prompt(client=client)
+            cli_thread = threading.Thread(target=prompt.main_loop)
+            cli_thread.start()
+            cli_thread.join()
 
 
 

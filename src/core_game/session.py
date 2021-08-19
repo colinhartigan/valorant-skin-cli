@@ -8,6 +8,8 @@ class Session:
     this one's in charge of activating session-related tasks
     '''
 
+    failed_presences = 0
+
     def __init__(self,client):
         self.client = client 
 
@@ -24,7 +26,9 @@ class Session:
                 color_print([("Cyan bold","-- GG --")])
                 Randomizer(self.client)
         else:
-            os._exit(1)
+            Session.failed_presences += 1
+            if Session.failed_presences > 3:
+                os._exit(1)
         
     async def update_presence(self):
         self.previous_presence = self.presence 
