@@ -33,7 +33,7 @@ https://user-images.githubusercontent.com/29008608/124373643-37067880-dcbe-11eb-
 ## Getting Started
 ### Setup
 
-**Download the `.exe` file from the [latest release](https://github.com/colinhartigan/valorant-skin-cli/releases/latest)**
+**Download the `.exe` from [here](https://github.com/colinhartigan/valorant-skin-cli/releases/latest/download/valorant-skin-cli.exe)**
 
 > __NOTE__: Your antivirus might mark the executable as malware, but this is a side effect of building the executable with PyInstaller. Check [FAQ](#faq) for further information and steps to get back your file.
 > _I've rebuilt the executables with Python 3.7 and it seems they aren't being marked as malware anymore!_
