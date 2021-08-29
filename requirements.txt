@@ -1,5 +1,5 @@
+valclient
+psutil
 requests
 prompt_toolkit
-psutil
-valclient
 InquirerPy
