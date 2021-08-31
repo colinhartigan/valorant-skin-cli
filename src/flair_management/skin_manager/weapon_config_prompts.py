@@ -35,7 +35,7 @@ class Prompts:
     @staticmethod
     def select_weapon(skin_data, weapon_type, **kwargs):
         weapon_choices = []
-
+        Skin_Manager.modify_skin_data(skin_data)
         for uuid,data in skin_data.items():
             if data["weapon_type"] == weapon_type:
                 enabled_amount = len([skin for skin in data['skins'].keys() if data['skins'][skin]['enabled']])

@@ -1,10 +1,12 @@
 from InquirerPy.utils import color_print
+from InquirerPy import inquirer
 from valclient.client import Client
 import time
 
 from .config_manager import Config as app_config
 
 from ..cli.commands.reload import Reload
+from ..cli.commands.set_skin import Set_Skin
 from ..flair_loader.skin_loader import Skin_Loader
 
 from ..flair_management.skin_manager.skin_manager import Skin_Manager
@@ -41,8 +43,18 @@ class Onboarder:
                 "args": (self.client,),
             },
             {
-                "text": "set your skin preferences:",
-                "method": Randomizer_Editor.randomizer_entrypoint,
+                "text": "would you like to use the buddy randomizer? (you can change this later in config > buddy_randomizer)",
+                "method": self.prompt_buddy_randomizer,
+                "args": None,
+            },
+            {
+                "text": "would you like to use the skin randomizer? (you can change this later in config > skin_randomizer)",
+                "method": self.prompt_skin_randomizer,
+                "args": None,
+            },
+            {
+                "text": None,
+                "method": self.check_prime_karambit,
                 "args": None,
             }
         ]
@@ -53,7 +65,7 @@ class Onboarder:
 
         for item in self.procedure:
             returned = None
-            color_print([("Green", item["text"])])
+            color_print([("Green", item["text"])]) if item["text"] is not None else print()
             if item["args"] is not None:
                 returned = item["method"](*item["args"])
             else:
@@ -84,3 +96,26 @@ class Onboarder:
                             Reload()
         else:
             color_print([("LimeGreen",f"region: {self.config['region'][0]}")])
+
+    def prompt_skin_randomizer(self):
+        use_randomizer = inquirer.confirm("use skin randomizer?",default=True).execute()
+        if use_randomizer:
+            color_print([("Green","set up your randomizer pool using your ARROW KEYS and ENTER for navigation")])
+            Randomizer_Editor.randomizer_entrypoint()
+        else:
+            self.config["skin_randomizer"]["enabled"] = False
+            app_config.modify_config(self.config)
+        
+    def prompt_buddy_randomizer(self):
+        use_randomizer = inquirer.confirm("use buddy randomizer?",default=True).execute()
+        if not use_randomizer:
+            self.config["buddy_randomizer"]["enabled"] = False
+            app_config.modify_config(self.config)
+        
+    def check_prime_karambit(self):
+        skins = Skin_Manager.fetch_skin_data()
+        if "9237e734-4a2a-38ae-7438-6cbee901877d" in skins["2f59173c-4bed-b6c3-2191-dea9b58be9c7"]["skins"].keys():
+            color_print([("Yellow bold","you have a prime karambit! would you like to downgrade it?")])
+            if inquirer.confirm("downgrade prime karambit?").execute():
+                Set_Skin(self.client,"set Melee Prime//2.0-Karambit Level-1")
+                color_print([("Blue","\nrun "),("White",f"set Melee Prime//2.0-Karambit Level-1"),("Blue", " to downgrade it the next time you launch VALORANT")]) 

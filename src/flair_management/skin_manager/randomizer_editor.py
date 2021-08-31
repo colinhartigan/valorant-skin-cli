@@ -37,6 +37,7 @@ class Randomizer_Editor:
             enabled_chromas = [chroma for _, chroma in skin['chromas'].items() if chroma['enabled']]
             if len(enabled_chromas) == 0:
                 skin['chromas'][list(skin['chromas'].keys())[-1]]['enabled'] = True
+        return weapon_data
 
     @staticmethod
     def set_skin_preferences(skin_data):
