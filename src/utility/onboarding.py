@@ -114,8 +114,16 @@ class Onboarder:
         
     def check_prime_karambit(self):
         skins = Skin_Manager.fetch_skin_data()
-        if "9237e734-4a2a-38ae-7438-6cbee901877d" in skins["2f59173c-4bed-b6c3-2191-dea9b58be9c7"]["skins"].keys():
-            color_print([("Yellow bold","you have a prime karambit! would you like to downgrade it?")])
-            if inquirer.confirm("downgrade prime karambit?").execute():
-                Set_Skin(self.client,"set Melee Prime//2.0-Karambit Level-1")
-                color_print([("Blue","\nrun "),("White",f"set Melee Prime//2.0-Karambit Level-1"),("Blue", " to downgrade it the next time you launch VALORANT")]) 
+
+        skin_uuid = "9237e734-4a2a-38ae-7438-6cbee901877d"
+        upgraded_uuid = "a3c2dd26-4705-8e42-cce1-6bae0236ac7a"
+
+        command = "set Melee Prime//2.0-Karambit Level-1"
+
+        if skin_uuid in skins["2f59173c-4bed-b6c3-2191-dea9b58be9c7"]["skins"].keys():
+            if upgraded_uuid in skins["2f59173c-4bed-b6c3-2191-dea9b58be9c7"]["skins"][skin_uuid]["levels"].keys():
+                color_print([("Yellow bold","you have an upgraded prime karambit! would you like to equip and downgrade it?")])
+                if inquirer.confirm("downgrade prime karambit?").execute():
+                    Set_Skin(self.client,command.split(" "))
+                    color_print([("Blue","\nrun "),("White",command),("Blue", " to downgrade it the next time you launch VALORANT")]) 
+                    time.sleep(5)
