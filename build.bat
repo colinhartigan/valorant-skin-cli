@@ -29,7 +29,8 @@ if '%errorlevel%' NEQ '0' (
     CD /D "%~dp0"
 :--------------------------------------    
     "C:/Program Files/Python39/python.exe" -m pipreqs.pipreqs --force --no-pin
-	"C:/Program Files/Python37/python.exe" -m pip install -r requirements.txt
+	"C:/Program Files/Python37/python.exe" -m pip install --upgrade-pip
 	"C:/Program Files/Python37/python.exe" -m pip install -r requirements.txt --upgrade
+	"C:/Program Files/Python37/python.exe" -m pip install pyinstaller
 	"C:/Program Files/Python37/python.exe" -m PyInstaller main.py --noconfirm --icon=favicon.ico --name="valorant-skin-cli" --onefile 
 	pause
