@@ -24,7 +24,7 @@ class Session:
         if self.presence is not None:
             if (self.presence["sessionLoopState"] != self.previous_presence["sessionLoopState"]) and (self.previous_presence["sessionLoopState"] == "INGAME" and self.presence["sessionLoopState"] == "MENUS"):
                 color_print([("Cyan bold","-- GG --")])
-                Randomizer(self.client)
+                Randomizer(self.client) 
         else:
             Session.failed_presences += 1
             if Session.failed_presences > 3:

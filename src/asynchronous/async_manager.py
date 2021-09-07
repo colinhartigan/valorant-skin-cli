@@ -23,6 +23,7 @@ class Async_Manager:
         '''
         while True:
             # NONE OF THE CHILD MODULES SHOULD HAVE THEIR OWN LOOPS
+            
             await self.coregame_manager.main_loop() # coregame loop
 
             await asyncio.sleep(self.config["async_refresh_interval"])
