@@ -18,15 +18,14 @@ class Onboarder:
 
     def __init__(self):
         self.config = app_config.fetch_config()
+        try:
+            self.client = Client(region=self.config['region'][0])
+        except ValueError:
+            self.autodetect_region()
         self.client = Client(region="na" if self.config['region'][0] == "" else self.config['region'][0])
         self.client.activate()
 
         self.procedure = [
-            {
-                "text": "autodetecting region",
-                "method": self.autodetect_region,
-                "args": None,
-            },
             {
                 "text": "generating fresh skin data file...",
                 "method": Skin_Manager.generate_blank_skin_file,

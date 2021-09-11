@@ -106,6 +106,8 @@ class Prompts:
                 return Prompts.select_weapon(skin_data, weapon_data['weapon_type'], **kwargs)
         if skin_choice == "change_all":
             kwargs["change_all_method"](weapon_data,skins_enabled == total_skins)
+            if weapon_data['display_name'] == "Melee":
+                Skin_Manager.modify_skin_data(skin_data)
             return Prompts.select_skin(skin_data, weapon_choice, **kwargs)
         else:
             weapon_skin_data = weapon_data['skins'][skin_choice]
