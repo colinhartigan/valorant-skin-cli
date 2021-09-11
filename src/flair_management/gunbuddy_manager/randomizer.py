@@ -34,17 +34,20 @@ class Buddy_Randomizer:
                     weapon["CharmInstanceID"] = locked_weapons[weapon["ID"]]["instance_uuid"]
 
                 else:
-                    buddy_index = random.randrange(0,len(randomizer_pool))
-                    buddy_data = randomizer_pool[buddy_index]
-                    
-                    weapon["CharmID"] = buddy_data["buddy_uuid"]
-                    weapon["CharmLevelID"] = buddy_data["level_uuid"]
-                    weapon["CharmInstanceID"] = buddy_data["instances"][0]
-                    
-                    buddy_data["instances"].pop(0)
+                    try:
+                        buddy_index = random.randrange(0,len(randomizer_pool))
+                        buddy_data = randomizer_pool[buddy_index]
+                        
+                        weapon["CharmID"] = buddy_data["buddy_uuid"]
+                        weapon["CharmLevelID"] = buddy_data["level_uuid"]
+                        weapon["CharmInstanceID"] = buddy_data["instances"][0]
+                        
+                        buddy_data["instances"].pop(0)
 
-                    if len(buddy_data["instances"]) == 0:
-                        randomizer_pool.pop(buddy_index)
+                        if len(buddy_data["instances"]) == 0:
+                            randomizer_pool.pop(buddy_index)
+                    except:
+                        break
 
         client.put_player_loadout(loadout=loadout)
         color_print([("Lime", "randomized buddies")])
