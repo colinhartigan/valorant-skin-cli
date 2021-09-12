@@ -12,8 +12,9 @@ class Loadout_Grid:
         loadout = client.fetch_player_loadout() if loadout_override is None else loadout_override
 
         loadout_sprays = {
-            spray["SprayID"]: spray["EquipSlotID"] for spray in loadout["Sprays"]
+            spray["EquipSlotID"]: spray["SprayID"] for spray in loadout["Sprays"] # should be other way around
         } 
+        print(loadout_sprays)
 
         sprays = Identity_Content.fetch_spray_data()
         buddies = Skin_Content.fetch_gun_buddies()
@@ -21,7 +22,7 @@ class Loadout_Grid:
 
         spray_slot_uuids = {
             "0814b2fe-4512-60a4-5288-1fbdcec6ca48": "Spray1",
-            "04af080a-4071-487b-61c0-5b9c0cfaac74": "Spray2",
+            "04af080a-4071-487b-61c0-5b9c0cfaac74": "Spray2", 
             "5863985e-43ac-b05d-cb2d-139e72970014": "Spray3",
         }
         spray_types = {
@@ -65,23 +66,27 @@ class Loadout_Grid:
                 "color": skin_data["tier"]["color"]
             }
 
-        for spray in sprays:
-            if spray["uuid"] in loadout_sprays.keys():
-                 
-                spray_name = spray["displayName"].replace("Spray", "").strip()
-                spray_slot = spray_slot_uuids[loadout_sprays[spray["uuid"]]]
-                split = spray_name.split(" ")
-                lines = [spray_name,""]
-                if len(split) > 2 and len(spray_name) > 16:
-                    lines[0] = " ".join(split[0:ceildiv(len(split),2)])
-                    lines[1] = " ".join(i for i in split[ceildiv(len(split),2):])
-                loadout_patched[f"{spray_slot}"] = {
-                    "ID": spray["uuid"],
-                    "type": "spray",
-                    "display_name": lines[0],
-                    "display_name_line2": lines[1],
-                    "color": "White",
-                }
+        for slot, uuid in loadout_sprays.items():
+            for s in sprays:
+                if s["uuid"] == uuid:
+                    spray = s
+                
+            spray_name = spray["displayName"].replace("Spray", "").strip()
+            spray_slot = spray_slot_uuids[slot]
+
+            #spray_slot = spray_slot_uuids[loadout_sprays[spray["uuid"]]]
+            split = spray_name.split(" ")
+            lines = [spray_name,""]
+            if len(split) > 2 and len(spray_name) > 16:
+                lines[0] = " ".join(split[0:ceildiv(len(split),2)])
+                lines[1] = " ".join(i for i in split[ceildiv(len(split),2):])
+            loadout_patched[f"{spray_slot}"] = {
+                "ID": spray["uuid"],
+                "type": "spray",
+                "display_name": lines[0],
+                "display_name_line2": lines[1],
+                "color": "White",
+            }
 
         title_data = Identity_Content.fetch_title_by_id(loadout["Identity"]["PlayerTitleID"])
         title_name = title_data["displayName"].replace("Title","").strip()
