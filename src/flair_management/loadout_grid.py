@@ -14,7 +14,6 @@ class Loadout_Grid:
         loadout_sprays = {
             spray["EquipSlotID"]: spray["SprayID"] for spray in loadout["Sprays"] # should be other way around
         } 
-        print(loadout_sprays)
 
         sprays = Identity_Content.fetch_spray_data()
         buddies = Skin_Content.fetch_gun_buddies()
