@@ -1,4 +1,4 @@
-## NOTE: This does not grant free skins; it only works with skins you already own.
+## NOTE: This does not grant free skins; it only works with skins you already own. _This is not a cheat_ and does not interact with game files AT ALL.
 
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
