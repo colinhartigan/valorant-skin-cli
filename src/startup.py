@@ -59,7 +59,7 @@ class Startup:
             async_thread = threading.Thread(target=loop.init_loop, daemon=True)
             async_thread.start()
 
-            prompt = Prompt(client=client)
+            prompt = Prompt(client=client,app_config=config)
             cli_thread = threading.Thread(target=prompt.main_loop)
             cli_thread.start()
             cli_thread.join()

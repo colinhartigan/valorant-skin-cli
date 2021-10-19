@@ -6,11 +6,13 @@ from ...flair_management.gunbuddy_manager.randomizer import Buddy_Randomizer
 
 class Randomize:
 
-    def __init__(self,command,client):
+    def __init__(self,command,client,config):
         
         if len(command) != 2:
-            Skin_Randomizer.randomize(client)
-            Buddy_Randomizer.randomize(client)
+            if config["skin_randomizer"]["enabled"]:
+                Skin_Randomizer.randomize(client)
+            if config["buddy_randomizer"]["enabled"]:
+                Buddy_Randomizer.randomize(client)
         else:
             if command[1] == "skins": 
                 Skin_Randomizer.randomize(client)

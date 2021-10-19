@@ -21,9 +21,10 @@ kernel32.SetConsoleMode(kernel32.GetStdHandle(-10), 128) #disable inputs to cons
 
 class Prompt:
 
-    def __init__(self, auth_data=None, client=None):
+    def __init__(self, auth_data=None, client=None, app_config=None):
         self.client = client
         self.commands = {}
+        self.app_config = app_config
         Completer.cli = self
         Completer.generate_completer_dict()
 
@@ -44,7 +45,7 @@ class Prompt:
             ).execute()
 
             if command[0] == "randomize":
-                randomize.Randomize(command,self.client)
+                randomize.Randomize(command,self.client,self.app_config)
 
             if command[0] == "modify":
                 Randomizer_Editor.randomizer_entrypoint()
