@@ -1,8 +1,12 @@
-## NOTE: This does not grant free skins; it only works with skins you already own.
+## NOTE: This does not grant free skins; it only works with skins you already own. _This is not a cheat_ and does not interact with game files AT ALL.
 
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
 > A simple command line interface to manage VALORANT skins, including a skin randomizer
+
+<span class="badge-buymeacoffee">
+<a href="https://ko-fi.com/colinh" title="Donate to this project using Buy Me A Coffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg" alt="Buy Me A Coffee donate button" /></a>
+</span>
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![GitHub License](https://img.shields.io/github/license/colinhartigan/valorant-skin-cli)](https://github.com/colinhartigan/valorant-skin-cli/blob/master/LICENSE)
