@@ -6,7 +6,5 @@ class Randomizer:
 
     def __init__(self,client):
         config = Config.fetch_config() 
-        if config["skin_randomizer"]["enabled"]:
-            Skin_Randomizer.randomize(client)
-        if config["buddy_randomizer"]["enabled"]:
-            Buddy_Randomizer.randomize(client)
+        Skin_Randomizer.randomize(client,config)
+        Buddy_Randomizer.randomize(client,config)
