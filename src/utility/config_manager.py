@@ -3,23 +3,24 @@ import os
 from .filepath import Filepath
 from valclient import Client
 
-default_config = {
-    "version": "v1.2.3",
-    "region": ["",Client.fetch_regions()],
-    "async_refresh_interval": 5,
-    "skin_randomizer": {
-        "enabled": True
-    },
-    "buddy_randomizer": {
-        "enabled": True,
-    },
-    "meta": {
-        "onboarding_completed": False,
-        "surpress_update_notifications": False,
-    }
-}
-
 class Config:
+
+    default_config = {
+        "version": "v1.2.3",
+        "region": ["",Client.fetch_regions()],
+        "async_refresh_interval": 5,
+        "skin_randomizer": {
+            "enabled": True,
+            "prevent_repeats": True,
+        },
+        "buddy_randomizer": {
+            "enabled": True,
+        },
+        "meta": {
+            "onboarding_completed": False,
+            "surpress_update_notifications": False,
+        }
+    }
 
     @staticmethod
     def fetch_config():
@@ -72,8 +73,8 @@ class Config:
             check(blank,current)
             return current
 
-        check_for_new_vars(default_config,config)
-        config = remove_unused_vars(default_config,config)
+        check_for_new_vars(Config.default_config,config)
+        config = remove_unused_vars(Config.default_config,config)
         Config.modify_config(config)
 
     @staticmethod
@@ -81,5 +82,5 @@ class Config:
         if not os.path.exists(Filepath.get_appdata_folder()):
             os.mkdir(Filepath.get_appdata_folder())
         with open(Filepath.get_path(os.path.join(Filepath.get_appdata_folder(), "config.json")), "w") as f:
-            json.dump(default_config, f)
+            json.dump(Config.default_config, f)
         return Config.fetch_config() 

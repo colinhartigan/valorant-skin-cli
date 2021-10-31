@@ -1,19 +1,24 @@
 from InquirerPy.utils import color_print
 from .skin_manager import Skin_Manager
+from ...utility.config_manager import Config
 import random
 
 class Skin_Randomizer:
 
+    config = Config.fetch_config()
+
     @staticmethod
     def randomize(client):
         loadout = client.fetch_player_loadout()
+        equipped_skin_ids = [weapon['SkinID'] for weapon in loadout['Guns']]
         all_skins = Skin_Manager.fetch_skin_data()
 
         # this spawn of satan creates a streamlined dict of weapons enabled in the randomizer pool
         randomizer_pool = {weapon: {skin: {'weight': skin_data['weight'], 'levels': {level: level_data for level,level_data in skin_data['levels'].items() if level_data['enabled']}, 'chromas': {chroma: chroma_data for chroma,chroma_data in skin_data['chromas'].items() if chroma_data['enabled']}} for skin,skin_data in weapon_data['skins'].items() if skin_data['enabled']} for weapon,weapon_data in all_skins.items()}
+        randomizer_pool_no_repeats = {weapon: {skin: skin_data for skin,skin_data in weapon_data.items() if not skin in equipped_skin_ids} for weapon,weapon_data in randomizer_pool.items()}
 
         for weapon in loadout['Guns']:
-            weapon_data = randomizer_pool[weapon['ID']]
+            weapon_data = randomizer_pool_no_repeats[weapon['ID']] if (Skin_Randomizer.config["skin_randomizer"]["prevent_repeats"] and len(randomizer_pool_no_repeats[weapon['ID']]) > 1) else randomizer_pool[weapon['ID']]
 
             # if data is blank just leave skin as is
             if weapon_data != {}:

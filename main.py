@@ -3,26 +3,17 @@ from InquirerPy import inquirer
 import ctypes,os,traceback
 
 from src.startup import Startup
-from src.utility.config_manager import default_config
+from src.utility.config_manager import Config
 
 kernel32 = ctypes.WinDLL('kernel32')
 user32 = ctypes.WinDLL('user32')
 hWnd = kernel32.GetConsoleWindow()
 
-# TODO:
-# - launch with valorant
-# - detect new releases on github
-# - clarify some prompts
-
-# TODO LATER:
-# - loadouts
-
-
 if __name__ == "__main__":
     color_print([("Tomato", f""" _   _____   __   ____  ___  ___   _  ________        __    _              ___    
 | | / / _ | / /  / __ \/ _ \/ _ | / |/ /_  __/______ / /__ (_)__  ________/ (_)   
 | |/ / __ |/ /__/ /_/ / , _/ __ |/    / / / /___(_-</  '_// / _ \/___/ __/ / /    
-|___/_/ |_/____/\____/_/|_/_/ |_/_/|_/ /_/     /___/_/\_\/_/_//_/    \__/_/_/"""),("White",f"{default_config['version']}\n")])
+|___/_/ |_/____/\____/_/|_/_/ |_/_/|_/ /_/     /___/_/\_\/_/_//_/    \__/_/_/"""),("White",f"{Config.default_config['version']}\n")])
     
     try:
         Startup.run()
