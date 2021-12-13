@@ -11,13 +11,12 @@ debug = Logger.debug
 class Skin_Loader:
 
     @staticmethod
-    def sanitize_chroma_name(skin, chroma, weapon_name):
+    def sanitize_chroma_name(chroma_name, skin_name):
         try:
-            new = chroma
-            new = new.rstrip("\\r\\n")
-            new = new.strip(weapon_name)
+            new = chroma_name
+            new = new.strip()
             new = new[new.find("(") + 1:new.find(")")]
-            if new in skin['displayName']:
+            if new in skin_name or "Standard" in chroma_name:
                 new = "Base"
             return new
         except:
@@ -203,7 +202,7 @@ class Skin_Loader:
 
                     for index, chroma in enumerate(skin["chromas"]):
                         if chroma is not None:
-                            sanitized_chroma_name = Skin_Loader.sanitize_chroma_name(skin, chroma["displayName"], weapon["displayName"])
+                            sanitized_chroma_name = Skin_Loader.sanitize_chroma_name(chroma["displayName"], skin["displayName"])
                             debug(f"{skin['displayName']}/CHROMA: beginning processing of {sanitized_chroma_name} ({chroma['uuid']}) - {chroma}")
                             chroma_already_exists = skin_previously_owned and chroma["uuid"] in existing_skin_data[weapon_uuid]["skins"][skin_uuid]["chromas"]
 

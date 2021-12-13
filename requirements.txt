@@ -1,5 +1,5 @@
-requests
-valclient
-psutil
+psutil==5.8.0
+valclient==2.20
 prompt_toolkit==3.0.19
-InquirerPy
+requests==2.26.0
+InquirerPy==0.3.0
