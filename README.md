@@ -1,8 +1,10 @@
-## NOTE: This does not grant free skins; it only works with skins you already own. _This is not a cheat_ and does not interact with game files AT ALL.
+### Follow development of VSM, the new and improved:tm: VALORANT inventory manager: https://github.com/colinhartigan/valorant-skin-manager
 
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
-> A simple command line interface to manage VALORANT skins, including a skin randomizer
+#### A simple command line interface to manage VALORANT skins, including a skin randomizer
+
+## NOTE: This does not grant free skins; it only works with skins you already own. _This is not a cheat_ and does not interact with game files AT ALL.
 
 <span class="badge-buymeacoffee">
 <a href="https://ko-fi.com/colinh" title="Donate to this project using Buy Me A Coffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg" alt="Buy Me A Coffee donate button" /></a>
