@@ -1,4 +1,4 @@
-### Follow development of VSM, the new and improved:tm: VALORANT inventory manager: https://github.com/colinhartigan/valorant-skin-manager
+# Use [this](https://github.com/colinhartigan/valorant-inventory-manager) instead. VALORANT-skin-cli is no longer being maintained or updated.
 
 ![header](https://user-images.githubusercontent.com/42125428/124552512-a8027900-de01-11eb-9e85-b19f82d2eee6.png)
 
